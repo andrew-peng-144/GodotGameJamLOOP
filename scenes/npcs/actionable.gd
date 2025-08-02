@@ -3,7 +3,7 @@ extends Area2D
 const BALLOON = preload("res://scenes/ui/balloon.tscn")
 @export var dialogue_resource: DialogueResource
 @export var dialogue_start: String = "start"
-@onready var letter: Sprite2D = $"../../Letter"
+@onready var letter: Sprite2D = %Letter
 @onready var game_manager: Node = %GameManager
 @onready var dark_overlay: ColorRect = $"../../Dark-Overlay"
 @onready var tavern: TileMapLayer = $"../../TileMapLayers/tavern"

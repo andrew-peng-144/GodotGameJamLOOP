@@ -41,7 +41,11 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
 func _unhandled_input(_event: InputEvent) -> void:
-
+	if Globals.freeze_player_input:
+		velocity.x = 0
+		velocity.y = 0
+		return
+		
 	# Handle Actionable
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		#print(dialogue_locked)
@@ -147,8 +151,8 @@ func DIE(): # rip
 func _on_after_death_timer_timeout() -> void:
 	get_tree().reload_current_scene()
 
-
+# when player steps into killzone.
 func _on_sensor_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	print(area.get_groups())
+	#print(area.get_groups())
 	if area.is_in_group("killzones"):
 		DIE()

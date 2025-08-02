@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://cd2knak732xjs"]
+[gd_scene load_steps=44 format=4 uid="uid://cd2knak732xjs"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_jgkhi"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_lw27f"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cphvj3awqo71f" path="res://scenes/player/player.tscn" id="4_mdngp"]
 [ext_resource type="Script" path="res://scenes/levels/game5_cutscenes.gd" id="5_wkge6"]
 [ext_resource type="TileSet" uid="uid://bco4gqsflcwd7" path="res://scenes/levels/game2-main1.tres" id="6_0b6j5"]
+[ext_resource type="Resource" uid="uid://5iokah2p0ghp" path="res://assets/dialogue/intro.dialogue" id="6_cmhux"]
 [ext_resource type="Texture2D" uid="uid://bm03gfdnulk1s" path="res://assets/sprites/House Tiles.png" id="6_y0jc0"]
 [ext_resource type="PackedScene" uid="uid://chf3n27hyqvs4" path="res://scenes/platforming/platform.tscn" id="7_amo7j"]
 [ext_resource type="PackedScene" uid="uid://cggn66v8oayyy" path="res://scenes/enemies/enemy.tscn" id="8_wfbyc"]
@@ -73,6 +74,8 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 349, 192, 0, 0, 0, 0, 282.863, 173.176, 0, 0, 0, 0, 226.166, 159.317, 0, 0, 0, 0, 214.827, 117.739, 0, 0, 0, 0, 264.213, 89.6982, 0, 0, 0, 0, 317.13, 91.2731, 0, 0, 0, 0, 354, 129)
 }
 point_count = 7
+
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_0tv2v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hwhad"]
 texture = ExtResource("6_y0jc0")
@@ -395,6 +398,16 @@ loop = false
 [node name="CutsceneCamera" type="Camera2D" parent="Cutscenes/Path2D/PathFollow2D"]
 zoom = Vector2(3, 3)
 
+[node name="IntroDialogue" parent="Cutscenes" instance=ExtResource("16_43fj7")]
+dialogue_resource = ExtResource("6_cmhux")
+dialogue_start = "intro"
+
+[node name="WateringBoundary" type="StaticBody2D" parent="Cutscenes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/WateringBoundary"]
+position = Vector2(383, 215)
+shape = SubResource("ConcavePolygonShape2D_0tv2v")
+
 [node name="TileMapLayers" type="Node" parent="."]
 
 [node name="Background" type="TileMapLayer" parent="TileMapLayers"]
@@ -590,6 +603,7 @@ texture = ExtResource("24_magl1")
 flip_h = true
 
 [node name="Letter" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 z_index = 6
 position = Vector2(343, 220)
 texture = ExtResource("25_a1fni")
