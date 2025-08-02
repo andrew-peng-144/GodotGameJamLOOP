@@ -54,16 +54,15 @@ Barkeep: What will it be?
 {{Globals.MC}}: Carrot mead, thank you.
 #--darkening effect on all except MC--
 #--bgm quieter-
-{{Globals.MC}}: *thinking* The barkeep's not getting any younger, yet she's still working hard, dealing with unruly customers.
-{{Globals.MC}}: *thinking* I won't even get to be close to that age, being a rabbit and all.
-{{Globals.MC}}: *thinking* When the time comes... before it comes...
-{{Globals.MC}}: *thinking* Even though I'll probably just give up again... Even though I can't even lift a sword...
-{{Globals.MC}}: *thinking* I should give it one last try.
+{{Globals.MC}}: [wave]The barkeep's not getting any younger, yet she's still working hard, dealing with unruly customers.[/wave]
+{{Globals.MC}}: [wave]I won't even get to be close to that age, being a rabbit and all.[/wave]
+{{Globals.MC}}: [wave]When the time comes... before it comes...[/wave]
+{{Globals.MC}}: [wave]Even though I'll probably just give up again... Even though I can't even lift a sword...[/wave]
+{{Globals.MC}}: [wave]I should give it one last try.[/wave]
 #--lights back on--
 #--bgm back to normal--
-Barkeep: Here you are.
 do playSound('cup-put-down')
-do delay(1.0)
+Barkeep: Here you are.
 do playSound('gulp')
 {{Globals.MC}}: Thank you.
 #--money goes down--
@@ -142,8 +141,8 @@ Barkeep: Yesterday? No, I don't remember seeing you here. Haven't seen you in ag
 {{Globals.MC}}: What's going on? It's like everything's the same, but no one remembers. And there's more of those dimensional loop things around.
 {{Globals.MC}}: Hmm, weird. I'll get a-- WAIT.
 do playSound('rustle')
-{{Globals.MC}}: So the seed came back in my pocket but my money didn't?
-{{Globals.MC}}: UUGGHHHhhh.
+{{Globals.MC}}: [wave]So the seed came back in my pocket but my money didn't?[/wave]
+{{Globals.MC}}: [wave]UUGGHHHhhh.[/wave]
 {{Globals.MC}}: I'll get a __
 Barkeep: Here you are.
 do playSound('cup-put-down')
@@ -163,7 +162,7 @@ Barkeep: Every time someone tries, I see more and more of those dimensional loop
 Wizard: Well, well. It's been far too long since my last intruder. I would van--
 {{Globals.MC}}: Save it. You turned back time or something, didn't you?
 Wizard: Oh, did I? I've lost track at this point.
-{{Globals.MC}}: How am I going to defeat him if he can loop back time right before he dies?
+{{Globals.MC}}: [wave]How am I going to defeat him if he can loop back time right before he dies?[/wave]
 => END
 
 ~ test_dialogue_1
