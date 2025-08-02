@@ -40,8 +40,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 				
 	# Handle jump.	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		triple_jump_progress++
-		if (triple_jump_progress > 2)
+		AudioManager.newspaper_flip.play()
+		triple_jump_progress+=1
+		if (triple_jump_progress > 2):
 			triple_jump_progress = 0
 		velocity.y = JUMP_VELOCITY
 		

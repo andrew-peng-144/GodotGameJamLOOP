@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c635f3w634uys"]
+
+[ext_resource type="Script" path="res://util_scripts/audio_manager.gd" id="1_bvfvx"]
+[ext_resource type="AudioStream" uid="uid://dkb2lmaccltoc" path="res://assets/sounds/newspaper-flip-4-196721.mp3" id="2_r3tod"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_bvfvx")
+
+[node name="Newspaper-flip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_r3tod")
+max_polyphony = 5
