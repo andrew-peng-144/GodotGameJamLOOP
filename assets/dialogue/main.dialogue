@@ -1,19 +1,39 @@
 ~ letter
-Player: "We will not be renewing your lease due to upcoming property management changes..."
+{{Globals.MC}}: "We will not be renewing your lease due to upcoming property management changes..."
 #--flip sound effect--
-"Your employment is being terminated as part of our new cost alignment strategy..."
+do playSound('flipPaper')
+{{Globals.MC}}: "Your employment is being terminated as part of our new cost alignment strategy..."
 #--flip sound effect--
-"Unfortunately, you were not selected as a participant in the all-you-can-eat carrot competition..."
+do! playSound('flipPaper')
+{{Globals.MC}}: "Unfortunately, you were not selected as a participant in the all-you-can-eat carrot competition..."
+do! playSound('crumblePaper')
+do! vanishPaper()
 #--crumble sound effect--
 #--paper vanishes--
-... 10 years since the prophecy that was supposed to "turn my life around".
-And now what.
+{{Globals.MC}}: ... 10 years since the prophecy that was supposed to "turn my life around".
+{{Globals.MC}}: And now what.
 #--speech bubble ...--
-Might as well water the flowers since I'm out.
+{{Globals.MC}}: Might as well water the flowers since I'm out.
 => END
 
 ~ watering
-Player: water flowers
+{{Globals.MC}}: Oh? What's this in my pocket?
+{{Globals.MC}}: A spare seed? I don't remember putting this here.
+{{Globals.MC}}: Oh well, plenty of land to go around.
+#--planting sound effect--
+#--watering can animation--
+{{Globals.MC}}: Back to my extensional crisis.
+{{Globals.MC}}: I guess check the job board?
+{{Globals.MC}}: UGHHHHhhhhh...
+=> END
+
+~ sign
+{{Globals.MC}}: Stable cleaner... hazard pay included... Dragon Division? Yikes.
+{{Globals.MC}}: Leech gatherer... gloves provided... yuck.
+{{Globals.MC}}: Bounty: defeat the evil wizard responsible for all the dimensional loops appearing... yeah, no.
+#--speech bubble ...--
+{{Globals.MC}}: I guess it's time to become the jobless drunkard of the village.
+
 => END
 
 ~ test_dialogue_1
