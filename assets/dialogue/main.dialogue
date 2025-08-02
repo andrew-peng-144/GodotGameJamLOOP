@@ -41,25 +41,27 @@ Oh, if it isn't the chosen one. Any chance you've come to do something about our
 => END
 
 ~ amps1
-Ah, chosen one. I'm trying to get someone to buy my sword, but ah... maybe it's not your size.
+Ah, chosen one. I'm trying to get someone to buy me sword, but ah... I guess it's too big for you.
 => END
 
 ~ fro1
-Another stupid blasted loop thingy appeared in MY yard last night! I swear I'd kill that wizard in the super evil castle myself if I didn't have me wife and kids to think about. 
+Another stupid blasted loop thingy appeared in MY yard last night! It nearly took my leg off!
+Thankfully they aren't dangerous anymore after a few seconds, but still.
+I swear I'd kill that wizard in the super evil castle myself if I didn't have my wife and kids to think about. 
 => END
 
 ~ barkeep1
 Barkeep: Oh, {{Globals.MC}}, I don't often see you here during the day.
 Barkeep: What will it be?
 {{Globals.MC}}: Carrot mead, thank you.
-#--darkening effect on all except MC--
+do addDarkOverlay()
 #--bgm quieter-
 {{Globals.MC}}: [wave]The barkeep's not getting any younger, yet she's still working hard, dealing with unruly customers.[/wave]
 {{Globals.MC}}: [wave]I won't even get to be close to that age, being a rabbit and all.[/wave]
 {{Globals.MC}}: [wave]When the time comes... before it comes...[/wave]
 {{Globals.MC}}: [wave]Even though I'll probably just give up again... Even though I can't even lift a sword...[/wave]
 {{Globals.MC}}: [wave]I should give it one last try.[/wave]
-#--lights back on--
+do removeDarkOverlay()
 #--bgm back to normal--
 do playSound('cup-put-down')
 Barkeep: Here you are.
@@ -73,6 +75,8 @@ Barkeep: Leaving so soon?
 {{Globals.MC}}: But I think I just figured it out.
 Barkeep: Makes my job easier. I hope it works out for you. I'll always be here for a pick-me-up.
 {{Globals.MC}}: Cheers.
+do playSound('unlock')
+do openTavernDoor()
 => END
 
 ~ wizard1
@@ -130,7 +134,7 @@ I know the incident years ago was before your time, but you understand why peopl
 => END
 
 ~ fro2
-"The chosen one will ~restore life~ to the world"... Oh, I hope that's true.
+"The chosen one will [tornado]restore life[/tornado] to the world"... Oh, I hope that's true.
 => END
 
 ~ barkeep2
@@ -163,6 +167,29 @@ Wizard: Well, well. It's been far too long since my last intruder. I would van--
 {{Globals.MC}}: Save it. You turned back time or something, didn't you?
 Wizard: Oh, did I? I've lost track at this point.
 {{Globals.MC}}: [wave]How am I going to defeat him if he can loop back time right before he dies?[/wave]
+#glint the staff
+{{Globals.MC}}: [wave]His staff![/wave]
+{{Globals.MC}}: [wave]If I can knock it out of his arms, he can't cast the spell![/wave]
+Wizard: You can't defeat me. Why not stay for carrot tea instead, rabbit?
+{{Globals.MC}}: My name's not Rabbit! It's {{Globals.MC}}!!
+#fight
+=> END
+
+~ beatwizard2
+#wizard's staff is kicked off on last hit
+Wizard: Arg! What are you doing?
+{{Globals.MC}}: Saving the village. We don't deserve to live in fear of your dimensional loops!
+Wizard: Such a fool. They won't even matter once I'm done perfecting my spell.
+Wizard: Once I am able to turn back time to before [tornado]the incident[/tornado], all will be fixed!
+#Wizard: 100 years ago. Bastardized creatures like you wouldn't have even been born and will cease to exist.
+Wizard: 100 years ago. Bastardized creatures like us wouldn't have even been born and will cease to exist.
+{{Globals.MC}}: WHAT?! You disgusting, cave-dwelling... wait, like "us"?
+Wizard: [tornado]sigh...[/tornado]
+do playSound('cloak')
+do toggleCloakWizard()
+do delay(1.0)
+
+#let player jump and kill
 => END
 
 ~ test_dialogue_1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://bp5h8d5ucelq3"]
+[gd_scene load_steps=63 format=4 uid="uid://bp5h8d5ucelq3"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_84hi7"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_rtdfn"]
@@ -173,9 +173,6 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v27gu"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_shwjv"]
-size = Vector2(31, 231)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40b35"]
 
@@ -670,14 +667,6 @@ texture = ExtResource("25_ycopv")
 [node name="Fence2" type="Sprite2D" parent="Props"]
 position = Vector2(392, 218)
 texture = ExtResource("25_ycopv")
-
-[node name="fence-body" type="StaticBody2D" parent="Props"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/fence-body"]
-position = Vector2(384.5, 109.5)
-shape = SubResource("RectangleShape2D_shwjv")
 
 [node name="TavernProps" type="Node" parent="."]
 

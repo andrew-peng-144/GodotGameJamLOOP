@@ -9,6 +9,8 @@ extends Node
 @onready var cup_put_down: AudioStreamPlayer = $"Cup-put-down"
 @onready var gulp: AudioStreamPlayer = $Gulp
 @onready var rustle: AudioStreamPlayer = $Rustle
+@onready var cloak: AudioStreamPlayer = $Cloak
+@onready var unlock: AudioStreamPlayer = $Unlock
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
