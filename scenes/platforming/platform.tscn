@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://chf3n27hyqvs4"]
+
+[ext_resource type="Texture2D" uid="uid://d2lvom4hu53b2" path="res://assets/sprites/sheets/tileset.png" id="1_ifkji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xk2x"]
+size = Vector2(32, 7)
+
+[node name="Platform" type="AnimatableBody2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ifkji")
+region_enabled = true
+region_rect = Rect2(144, 16, 32, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3xk2x")
+one_way_collision = true

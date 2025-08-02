@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1rwvgk2jifcb"]
+
+[ext_resource type="Texture2D" uid="uid://dk8k4i5pxjtpy" path="res://assets/sprites/speech.png" id="1_og676"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xlup"]
+atlas = ExtResource("1_og676")
+region = Rect2(0, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thynr"]
+atlas = ExtResource("1_og676")
+region = Rect2(11, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkdun"]
+atlas = ExtResource("1_og676")
+region = Rect2(22, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gkau"]
+atlas = ExtResource("1_og676")
+region = Rect2(33, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywp0l"]
+atlas = ExtResource("1_og676")
+region = Rect2(44, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o8lv"]
+atlas = ExtResource("1_og676")
+region = Rect2(55, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knwiy"]
+atlas = ExtResource("1_og676")
+region = Rect2(66, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hfhw"]
+atlas = ExtResource("1_og676")
+region = Rect2(77, 0, 11, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_14p0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xlup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thynr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkdun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gkau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywp0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o8lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knwiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hfhw")
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 10.0
+}]
+
+[node name="SpeechBubble" type="AnimatedSprite2D" groups=["speechbubble"]]
+sprite_frames = SubResource("SpriteFrames_14p0i")
+animation = &"new_animation"
+frame = 7
+frame_progress = 1.0

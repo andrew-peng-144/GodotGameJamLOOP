@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://cggn66v8oayyy"]
+
+[ext_resource type="Texture2D" uid="uid://bamps62i8y2ve" path="res://assets/sprites/sheets/GoblinWorker.png" id="1_ao0vc"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_gmmve"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h82ry"]
+atlas = ExtResource("1_ao0vc")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bno03"]
+atlas = ExtResource("1_ao0vc")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yxsa"]
+atlas = ExtResource("1_ao0vc")
+region = Rect2(192, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj1ku"]
+atlas = ExtResource("1_ao0vc")
+region = Rect2(240, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcymk"]
+atlas = ExtResource("1_ao0vc")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwkah"]
+atlas = ExtResource("1_ao0vc")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_33hp1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h82ry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bno03")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yxsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj1ku")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcymk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwkah")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dw31t"]
+radius = 9.5
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_gmmve")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_33hp1")
+animation = &"run"
+autoplay = "idle"
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, -8)
+target_position = Vector2(13, 0)
+collision_mask = 9
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -8)
+target_position = Vector2(-12, 0)
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -8)
+shape = SubResource("CircleShape2D_dw31t")
