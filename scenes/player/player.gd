@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const ACCEL = 1000.0
-const DECEL = 800.0
+const ACCEL = 800.0
+const DECEL = 1000.0
 const JUMP_VELOCITY = -360.0
 const MAX_SPEED = 130.0
 
@@ -12,12 +12,16 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var actionable_finder: Area2D = $DirectionMarker/ActionableFinder
 @onready var direction_marker: Marker2D = $DirectionMarker
 @onready var after_death_timer: Timer = $AfterDeathTimer
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 var input_direction: int = 0
 
 var dialogue_locked = false
 var is_dead = false
+
+var triple_jump_progress = 0
+
 
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
@@ -36,6 +40,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 				
 	# Handle jump.	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		triple_jump_progress++
+		if (triple_jump_progress > 2)
+			triple_jump_progress = 0
 		velocity.y = JUMP_VELOCITY
 		
 	# Get the input direction: -1, 0, 1

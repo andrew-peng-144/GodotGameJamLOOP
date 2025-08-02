@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://cksliydx6qbmh"
+path="res://.godot/imported/test_call_func.dialogue-41d4c337732f8b85b7aaca8bdf53c734.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/test_call_func.dialogue"
+dest_files=["res://.godot/imported/test_call_func.dialogue-41d4c337732f8b85b7aaca8bdf53c734.tres"]
+
+[params]
+
+defaults=true
