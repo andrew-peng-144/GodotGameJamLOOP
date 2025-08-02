@@ -419,19 +419,21 @@ texture = ExtResource("14_kl22t")
 region_enabled = true
 region_rect = Rect2(24, 11, 15.43, 20)
 
-[node name="Slime" parent="." instance=ExtResource("22_s72og")]
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Slime" parent="Enemies" instance=ExtResource("22_s72og")]
 position = Vector2(1484, 240)
 
-[node name="Slime2" parent="." instance=ExtResource("22_s72og")]
+[node name="Slime2" parent="Enemies" instance=ExtResource("22_s72og")]
 position = Vector2(1570, 290)
 
-[node name="Slime3" parent="." instance=ExtResource("22_s72og")]
+[node name="Slime3" parent="Enemies" instance=ExtResource("22_s72og")]
 position = Vector2(1598, 290)
 
-[node name="Slime4" parent="." instance=ExtResource("22_s72og")]
+[node name="Slime4" parent="Enemies" instance=ExtResource("22_s72og")]
 position = Vector2(1654, 290)
 
-[node name="Enemy" parent="." instance=ExtResource("8_fgmjp")]
+[node name="Enemy" parent="Enemies" instance=ExtResource("8_fgmjp")]
 position = Vector2(1553, 256)
 
 [node name="Platforms" type="Node" parent="."]

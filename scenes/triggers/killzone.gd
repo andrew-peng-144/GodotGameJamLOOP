@@ -1,6 +1,5 @@
 extends Area2D
 
-@onready var timer: Timer = $Timer
 @onready var game_manager: Node = %GameManager
 
 

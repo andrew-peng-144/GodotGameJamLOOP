@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://x7eucgslsxye"]
+
+[ext_resource type="Texture2D" uid="uid://cjbfblsn18e0i" path="res://assets/SUNNYLAND/Props/spikes.png" id="1_on4df"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbtv1"]
+size = Vector2(16, 9)
+
+[node name="Spikes" type="Area2D" groups=["killzones"]]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_gbtv1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_on4df")

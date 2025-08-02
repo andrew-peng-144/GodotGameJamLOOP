@@ -10,4 +10,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	debug_text.text = "Player dialogue_locked: " + str(player.dialogue_locked)
+	debug_text.text = "Player dialogue_locked: " + str(player.dialogue_locked) + "\nMidair jumps remaining: " + str(player.midair_jumps_remaining)

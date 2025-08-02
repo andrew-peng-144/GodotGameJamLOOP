@@ -38,6 +38,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 speechbubble=""
 player_body=""
+killzones=""
 
 [input]
 
@@ -77,6 +78,7 @@ locale/translations_pot_files=PackedStringArray("res://assets/dialogue/main.dial
 2d_physics/layer_6="Projectiles"
 2d_physics/layer_7="Trigger Areas"
 2d_physics/layer_8="ActionableFinder"
+2d_physics/layer_9="Killzones"
 
 [rendering]
 

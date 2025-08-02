@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cphvj3awqo71f"]
+[gd_scene load_steps=38 format=3 uid="uid://cphvj3awqo71f"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xgbmt"]
 [ext_resource type="Texture2D" uid="uid://bku6fmkhjv4pn" path="res://assets/sprites/Bunny/IDLE/Bunny_Idle.png" id="2_qf4jk"]
@@ -236,8 +236,11 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_5f7wb"]
 radius = 14.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvkhr"]
+radius = 6.0
+
 [node name="Player" type="CharacterBody2D" groups=["player_body"]]
-collision_mask = 126
+collision_mask = 382
 script = ExtResource("1_xgbmt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -263,8 +266,17 @@ script = ExtResource("6_jm408")
 position = Vector2(10, 0)
 shape = SubResource("CircleShape2D_5f7wb")
 
+[node name="KillzoneSensor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillzoneSensor"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_pvkhr")
+
 [node name="AfterDeathTimer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="DirectionMarker/ActionableFinder" to="DirectionMarker/ActionableFinder" method="_on_area_entered"]
 [connection signal="area_exited" from="DirectionMarker/ActionableFinder" to="DirectionMarker/ActionableFinder" method="_on_area_exited"]
+[connection signal="area_shape_entered" from="KillzoneSensor" to="." method="_on_sensor_area_shape_entered"]
 [connection signal="timeout" from="AfterDeathTimer" to="." method="_on_after_death_timer_timeout"]
