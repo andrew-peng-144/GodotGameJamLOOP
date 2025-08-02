@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://dly2facgb200l"]
+[gd_scene load_steps=32 format=3 uid="uid://dly2facgb200l"]
 
 [ext_resource type="Texture2D" uid="uid://bltyfelhjd6jv" path="res://assets/sprites/mywizard/Wizard_1Attack.png" id="1_snus6"]
 [ext_resource type="Texture2D" uid="uid://bd828kvj3qmol" path="res://assets/sprites/mywizard/Wizard_Idle.png" id="2_6ypep"]
+[ext_resource type="Texture2D" uid="uid://be14apq8r0c6o" path="res://assets/sprites/mywizard/Wizard_Side_Walk.png" id="3_dpuos"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yww0k"]
 atlas = ExtResource("1_snus6")
@@ -75,6 +76,38 @@ region = Rect2(465, 0, 93, 77)
 atlas = ExtResource("2_6ypep")
 region = Rect2(558, 0, 93, 77)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g4ri"]
+atlas = ExtResource("3_dpuos")
+region = Rect2(0, 0, 93, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sif81"]
+atlas = ExtResource("3_dpuos")
+region = Rect2(93, 0, 93, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg5fg"]
+atlas = ExtResource("3_dpuos")
+region = Rect2(186, 0, 93, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkupo"]
+atlas = ExtResource("3_dpuos")
+region = Rect2(279, 0, 93, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcvci"]
+atlas = ExtResource("3_dpuos")
+region = Rect2(372, 0, 93, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceek2"]
+atlas = ExtResource("3_dpuos")
+region = Rect2(465, 0, 93, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn0k6"]
+atlas = ExtResource("3_dpuos")
+region = Rect2(558, 0, 93, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t03aq"]
+atlas = ExtResource("3_dpuos")
+region = Rect2(651, 0, 93, 77)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wcht8"]
 animations = [{
 "frames": [{
@@ -113,7 +146,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -139,13 +172,50 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g4ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sif81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg5fg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkupo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcvci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ceek2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn0k6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t03aq")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kjbcy"]
+radius = 15.0333
+
+[node name="Wizard" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -17)
 sprite_frames = SubResource("SpriteFrames_wcht8")
-animation = &"attack"
-frame_progress = 0.514594
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.832023
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_kjbcy")

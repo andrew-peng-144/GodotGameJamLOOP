@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nkpy11hkvslv"
-path="res://.godot/imported/unnamed.png-91c0329258b144edd1ba07637cc70d07.ctex"
+uid="uid://ctv0k0jui1csd"
+path="res://.godot/imported/branches.png-27bb8e0f9253f3afdbb5c71e06dfc567.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/unnamed.png"
-dest_files=["res://.godot/imported/unnamed.png-91c0329258b144edd1ba07637cc70d07.ctex"]
+source_file="res://assets/sprites/branches.png"
+dest_files=["res://.godot/imported/branches.png-27bb8e0f9253f3afdbb5c71e06dfc567.ctex"]
 
 [params]
 

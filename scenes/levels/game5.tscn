@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://chf3n27hyqvs4" path="res://scenes/platforming/platform.tscn" id="7_amo7j"]
 [ext_resource type="PackedScene" uid="uid://cggn66v8oayyy" path="res://scenes/enemies/enemy.tscn" id="8_wfbyc"]
 [ext_resource type="PackedScene" uid="uid://bjeakr0b2bom2" path="res://scenes/pickups/coin.tscn" id="9_huqr4"]
-[ext_resource type="PackedScene" uid="uid://x7eucgslsxye" path="res://scenes/platforming/spikes.tscn" id="9_x4g7a"]
+[ext_resource type="PackedScene" path="res://scenes/platforming/spikes.tscn" id="9_x4g7a"]
 [ext_resource type="Script" path="res://util_scripts/debug_text.gd" id="10_bqo0p"]
 [ext_resource type="PackedScene" uid="uid://cou5qxw4r0t88" path="res://scenes/triggers/killzone.tscn" id="11_km4dx"]
 [ext_resource type="Texture2D" uid="uid://ugga7fklcpqm" path="res://assets/SUNNYLAND/Props/palm.png" id="12_kfcyn"]

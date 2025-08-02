@@ -7,6 +7,10 @@ const BALLOON = preload("res://scenes/ui/balloon.tscn")
 @onready var game_manager: Node = %GameManager
 @onready var dark_overlay: ColorRect = $"../../Dark-Overlay"
 @onready var tavern: TileMapLayer = $"../../TileMapLayers/tavern"
+@onready var fence_body: StaticBody2D = %"fence-body"
+@onready var fence_body_2: StaticBody2D = %"fence-body2"
+@onready var tavern_door_body: StaticBody2D = %TavernDoorBody
+
 
 func playSound(name) -> void:
 	if name == 'flipPaper':
@@ -55,21 +59,18 @@ func removeDarkOverlay() -> void:
 func toggleCloakWizard() -> void:
 	print("toggle cloak wizard")
 
+func openFence1() -> void:
+	fence_body.get_node("CollisionShape2D").set_disabled(true)
+
+func openFence2() -> void:
+	fence_body_2.get_node("CollisionShape2D").set_disabled(true)
+
 func openTavernDoor() -> void:
-	var cell_coords = Vector2i(79, 20)
-	#var cell_coords = tavern.local_to_map(tavern.get_local_mouse_position())
-	#(79,20)
-	print(cell_coords)
-	#var open_cell_coords = Vector2i(68, 20)
-	#(68, 20)
-	#print(open_cell_coords)
-	#var tile_data = tavern.get_cell_tile_data(cell_coords)
-	tavern.set_cell(cell_coords, 0, Vector2i(3, 11), 0)
-	var tile_data := tavern.get_cell_tile_data(cell_coords)
-	#if tile_data:
-	#	tile_data.flip_h = true
-	#	tavern.set_cell_tile_data(0, cell_coords, tile_data)
-		
+	tavern_door_body.get_node("TavernDoorSprite").flip_h = false
+	tavern_door_body.get_node("CollisionShape2D").set_disabled(true)
+	#var cell_coords = Vector2i(79, 20)
+	#tavern.set_cell(cell_coords, 0, Vector2i(3, 11), 0)
+	print("open door")
 
 func action() -> void:
 	var balloon: Node = BALLOON.instantiate()

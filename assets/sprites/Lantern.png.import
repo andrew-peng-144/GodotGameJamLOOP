@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cou4gx2lvu4w4"
-path="res://.godot/imported/branch-2.png-067e4a15da0df16923f25dbc49fc292d.ctex"
+uid="uid://dbrxa50d6lyly"
+path="res://.godot/imported/Lantern.png-2d99f489547f1241c95310ef80f966ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/branch-2.png"
-dest_files=["res://.godot/imported/branch-2.png-067e4a15da0df16923f25dbc49fc292d.ctex"]
+source_file="res://assets/sprites/Lantern.png"
+dest_files=["res://.godot/imported/Lantern.png-2d99f489547f1241c95310ef80f966ea.ctex"]
 
 [params]
 

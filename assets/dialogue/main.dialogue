@@ -26,6 +26,8 @@ set Globals.watering = false
 {{Globals.MC}}: Back to my extensional crisis.
 {{Globals.MC}}: I guess check the job board?
 {{Globals.MC}}: UGHHHHhhhhh...
+do playSound('unlock')
+do openFence1()
 => END
 
 ~ sign
@@ -34,6 +36,8 @@ set Globals.watering = false
 {{Globals.MC}}: Bounty: defeat the evil wizard responsible for all the dimensional loops appearing... yeah, no.
 #--speech bubble ...--
 {{Globals.MC}}: I guess it's time to become the jobless drunkard of the village.
+do playSound('unlock')
+do openFence2()
 => END
 
 ~ blonde1
