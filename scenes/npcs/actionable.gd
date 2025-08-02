@@ -21,6 +21,8 @@ func playSound(name) -> void:
 		AudioManager.cup_put_down.play()
 	elif name == 'gulp':
 		AudioManager.gulp.play()
+	elif name == 'rustle':
+		AudioManager.rustle.play()
 	else:
 		print("Fail!")
 		

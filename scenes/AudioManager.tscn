@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dir8f4i0spcdc"]
+[gd_scene load_steps=16 format=4 uid="uid://dir8f4i0spcdc"]
 
 [ext_resource type="Script" path="res://util_scripts/audio_manager.gd" id="1_bvfvx"]
 [ext_resource type="AudioStream" uid="uid://dkb2lmaccltoc" path="res://assets/sounds/newspaper-flip-4-196721.mp3" id="2_r3tod"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://xoipciyjkg3n" path="res://assets/sounds/Pickup1.wav" id="11_udqgn"]
 [ext_resource type="AudioStream" uid="uid://brj8kokg4phkx" path="res://assets/sounds/planting-02-266291.mp3" id="12_nh2pb"]
 [ext_resource type="AudioStream" uid="uid://b3u4dpiu65pyt" path="res://assets/sounds/watering4.wav" id="13_0i0h0"]
+[ext_resource type="AudioStream" uid="uid://baauw2vy85ncg" path="res://assets/sounds/rustle1.wav" id="13_jco8n"]
 [ext_resource type="AudioStream" uid="uid://be8iwojdfcbb1" path="res://assets/sounds/cup-put-down.wav" id="13_pu62k"]
 
 [sub_resource type="AudioStreamMP3" id="AudioStreamMP3_edh6e"]
@@ -56,6 +57,9 @@ stream = ExtResource("12_nh2pb")
 
 [node name="Watering" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_0i0h0")
+
+[node name="Rustle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_jco8n")
 
 [node name="Cup-put-down" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_pu62k")

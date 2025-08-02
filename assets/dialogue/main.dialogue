@@ -14,6 +14,7 @@ do! vanishPaper()
 
 ~ watering
 {{Globals.MC}}: Oh? What's this in my pocket?
+do playSound('rustle')
 {{Globals.MC}}: A spare seed? I don't remember putting this here.
 {{Globals.MC}}: Oh well, plenty of land to go around. Might as well plant it.
 do playSound('plantSeed')
@@ -73,6 +74,96 @@ Barkeep: Leaving so soon?
 {{Globals.MC}}: But I think I just figured it out.
 Barkeep: Makes my job easier. I hope it works out for you. I'll always be here for a pick-me-up.
 {{Globals.MC}}: Cheers.
+=> END
+
+~ wizard1
+Wizard: Well, well. It's been far too long since my last intruder. I would vanish you instantly, but I admit I didn't expect a defenseless rabbit.
+{{Globals.MC}}: I don't need a sword to kick your ass.
+Wizard: Calm down. Don't be foolish. What, you sold yourself out to do the humans' bidding?
+{{Globals.MC}}: No. You need to stop creating these dimensional loops that destroy our land, and our homes.
+Wizard: Hmph. It can't be helped. I'm not doing it on purpose. It's just a side effect of my magic.
+{{Globals.MC}}: Not ordinary magic, I take it.
+Wizard: No. And I don't care if it destroys that stupid village of yours. You've got your priorities all wrong. If only you knew, rabbit... that no one there deserves to live!
+=> END
+
+~ beatwizard1
+Wizard: You... are a fool... Protecting the wrong people. No matter. I'll just try again.
+{{Globals.MC}}: Hah! You wish. It's over, old man.
+=> END
+
+~ letter2
+{{Globals.MC}}: "We will not be renewing your lease...?"
+do playSound('flipPaper')
+{{Globals.MC}}: "Your employment is being terminated...?!"
+do playSound('flipPaper')
+{{Globals.MC}}: "...all-you-can-eat carrot competition...?!"
+do! playSound('crumblePaper')
+do! vanishPaper()
+{{Globals.MC}}: What...? Why do I feel like I already threw these away?
+do playSound('rustle')
+{{Globals.MC}}: This seed in my pocket... also feels familiar?
+=> END
+
+~ watering2
+{{Globals.MC}}: Okay, this is new. What on earth grew here?
+{{Globals.MC}}: Isn't this from the seed I already planted? What's going on?
+do playSound('plantSeed')
+do delay(1.0)
+do playSound('watering')
+set Globals.watering = true
+do watering()
+set Globals.watering = false
+{{Globals.MC}}: I don't even know what these plants are. But even they deserve to live.
+=> END
+
+~ sign2
+{{Globals.MC}}: Bounty: defeat the evil wizard.. It's definitely him. He must have done something! I killed him already!
+=> END
+
+~ blonde2
+Huh, I feel like I saw you here recently. Drinking on the job, eh?
+=> END
+
+~ amps2
+Since The Bramble is being evacuated, we might start seeing more hybrids showing up around here. I guess that's good for you, huh? 
+These new ones better not start destroying our buildings again, or steal our food, or break into homes.
+I know the incident years ago was before your time, but you understand why people would be wary, right?
+=> END
+
+~ fro2
+"The chosen one will ~restore life~ to the world"... Oh, I hope that's true.
+=> END
+
+~ barkeep2
+Barkeep: Oh, MC, I don't often see you here during the day.
+Barkeep: What will it be?
+{{Globals.MC}}: Huh? Wasn't I here yesterday?
+Barkeep: Yesterday? No, I don't remember seeing you here. Haven't seen you in ages, to be frank.
+{{Globals.MC}}: What's going on? It's like everything's the same, but no one remembers. And there's more of those dimensional loop things around.
+{{Globals.MC}}: Hmm, weird. I'll get a-- WAIT.
+do playSound('rustle')
+{{Globals.MC}}: So the seed came back in my pocket but my money didn't?
+{{Globals.MC}}: UUGGHHHhhh.
+{{Globals.MC}}: I'll get a __
+Barkeep: Here you are.
+do playSound('cup-put-down')
+do delay(1.0)
+do playSound('gulp')
+{{Globals.MC}}: Thanks again.
+#--money goes down--
+do playSound('coin-drop')
+do delay(1.0)
+Barkeep: Leaving so soon?
+{{Globals.MC}}: Time to pay the old wizard another visit.
+Barkeep: The evil one? Forget it. It's impossible. 
+Barkeep: Every time someone tries, I see more and more of those dimensional loop things popping up...
+=> END
+
+~ wizard2
+Wizard: Well, well. It's been far too long since my last intruder. I would van--
+{{Globals.MC}}: Save it. You turned back time or something, didn't you?
+Wizard: Oh, did I? I've lost track at this point.
+{{Globals.MC}}: How am I going to defeat him if he can loop back time right before he dies?
 => END
 
 ~ test_dialogue_1

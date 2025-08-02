@@ -515,6 +515,11 @@ texture = ExtResource("21_o4si5")
 position = Vector2(548, 242)
 texture = ExtResource("14_8kdh5")
 
+[node name="Bush2" type="Sprite2D" parent="Props"]
+z_index = -1
+position = Vector2(944, 322)
+texture = ExtResource("14_8kdh5")
+
 [node name="Big-house" type="Sprite2D" parent="Props"]
 z_index = -5
 position = Vector2(759, 264)
@@ -542,6 +547,14 @@ shape = SubResource("CircleShape2D_v27gu")
 
 [node name="Rock" type="Sprite2D" parent="Props"]
 position = Vector2(502, 249)
+texture = ExtResource("16_cw46e")
+
+[node name="Rock2" type="Sprite2D" parent="Props"]
+position = Vector2(910, 329)
+texture = ExtResource("16_cw46e")
+
+[node name="Rock3" type="Sprite2D" parent="Props"]
+position = Vector2(1219, 329)
 texture = ExtResource("16_cw46e")
 
 [node name="Skulls" type="Sprite2D" parent="Props"]
