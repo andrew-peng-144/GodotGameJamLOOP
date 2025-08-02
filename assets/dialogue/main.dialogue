@@ -1,11 +1,34 @@
+~ letter
+Player: "We will not be renewing your lease due to upcoming property management changes..."
+#--flip sound effect--
+"Your employment is being terminated as part of our new cost alignment strategy..."
+#--flip sound effect--
+"Unfortunately, you were not selected as a participant in the all-you-can-eat carrot competition..."
+#--crumble sound effect--
+#--paper vanishes--
+... 10 years since the prophecy that was supposed to "turn my life around".
+And now what.
+#--speech bubble ...--
+Might as well water the flowers since I'm out.
+=> END
+
+~ watering
+Player: water flowers
+=> END
+
 ~ test_dialogue_1
 Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => test_dialogue_1
-- End the conversation => END
-Nathan: For more information see the online documentation.
+#Nathan: Here are some choices.
+#- First one
+#	Nathan: You picked the first one.
+#- Second one
+#	Nathan: You picked the second one.
+#- Start again => test_dialogue_1
+#- End the conversation => END
+#Nathan: For more information see the online documentation.
+=> END
+
+~ title_1
+Pohead: LILY is.
+You: are a pohead. wowowowowow.
 => END

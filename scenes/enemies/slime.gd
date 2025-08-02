@@ -8,7 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction = 1
 
-var is_chasing_player = true
+var is_chasing_player = false
 var is_roaming = false
 
 var dead = false

@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://cq73qfmma2kf" path="res://scenes/enemies/slime.tscn" id="21_40xey"]
 [ext_resource type="Texture2D" uid="uid://bdtjkcp2ca4l5" path="res://assets/SUNNYLAND/Props/house.png" id="22_6qsa2"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o1jn5"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_koulp"]
 texture = ExtResource("2_862du")
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -227,9 +227,9 @@ texture = ExtResource("2_862du")
 [sub_resource type="TileSet" id="TileSet_m5pif"]
 physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_o1jn5")
+sources/0 = SubResource("TileSetAtlasSource_koulp")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o1if2"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hwhad"]
 texture = ExtResource("6_igmlm")
 6:0/0 = 0
 7:0/0 = 0
@@ -421,7 +421,7 @@ texture = ExtResource("6_igmlm")
 25:13/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_e3vgl"]
-sources/0 = SubResource("TileSetAtlasSource_o1if2")
+sources/0 = SubResource("TileSetAtlasSource_hwhad")
 
 [sub_resource type="Animation" id="Animation_02sse"]
 length = 0.001
@@ -487,6 +487,7 @@ offset_right = 771.0
 offset_bottom = 234.0
 texture = ExtResource("2_ykai5")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxLayerMiddle" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.8, 0.1)
@@ -497,10 +498,11 @@ offset_right = 1683.0
 offset_bottom = 477.0
 texture = ExtResource("3_o8ed8")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_sf182")]
 z_index = 5
-position = Vector2(215, 147)
+position = Vector2(544, 251)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -38)
