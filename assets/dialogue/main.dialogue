@@ -1,15 +1,11 @@
 ~ letter
 {{Globals.MC}}: "We will not be renewing your lease due to upcoming property management changes..."
-#--flip sound effect--
 do playSound('flipPaper')
 {{Globals.MC}}: "Your employment is being terminated as part of our new cost alignment strategy..."
-#--flip sound effect--
 do! playSound('flipPaper')
 {{Globals.MC}}: "Unfortunately, you were not selected as a participant in the all-you-can-eat carrot competition..."
 do! playSound('crumblePaper')
 do! vanishPaper()
-#--crumble sound effect--
-#--paper vanishes--
 {{Globals.MC}}: ... 10 years since the prophecy that was supposed to "turn my life around".
 {{Globals.MC}}: And now what.
 #--speech bubble ...--
@@ -19,9 +15,13 @@ do! vanishPaper()
 ~ watering
 {{Globals.MC}}: Oh? What's this in my pocket?
 {{Globals.MC}}: A spare seed? I don't remember putting this here.
-{{Globals.MC}}: Oh well, plenty of land to go around.
-#--planting sound effect--
-#--watering can animation--
+{{Globals.MC}}: Oh well, plenty of land to go around. Might as well plant it.
+do playSound('plantSeed')
+do delay(1.0)
+do playSound('watering')
+set Globals.watering = true
+do watering()
+set Globals.watering = false
 {{Globals.MC}}: Back to my extensional crisis.
 {{Globals.MC}}: I guess check the job board?
 {{Globals.MC}}: UGHHHHhhhhh...
@@ -33,7 +33,46 @@ do! vanishPaper()
 {{Globals.MC}}: Bounty: defeat the evil wizard responsible for all the dimensional loops appearing... yeah, no.
 #--speech bubble ...--
 {{Globals.MC}}: I guess it's time to become the jobless drunkard of the village.
+=> END
 
+~ blonde1
+Oh, if it isn't the chosen one. Any chance you've come to do something about our problems?
+=> END
+
+~ amps1
+Ah, chosen one. I'm trying to get someone to buy my sword, but ah... maybe it's not your size.
+=> END
+
+~ fro1
+Another stupid blasted loop thingy appeared in MY yard last night! I swear I'd kill that wizard in the super evil castle myself if I didn't have me wife and kids to think about. 
+=> END
+
+~ barkeep1
+Barkeep: Oh, {{Globals.MC}}, I don't often see you here during the day.
+Barkeep: What will it be?
+{{Globals.MC}}: Carrot mead, thank you.
+#--darkening effect on all except MC--
+#--bgm quieter-
+{{Globals.MC}}: *thinking* The barkeep's not getting any younger, yet she's still working hard, dealing with unruly customers.
+{{Globals.MC}}: *thinking* I won't even get to be close to that age, being a rabbit and all.
+{{Globals.MC}}: *thinking* When the time comes... before it comes...
+{{Globals.MC}}: *thinking* Even though I'll probably just give up again... Even though I can't even lift a sword...
+{{Globals.MC}}: *thinking* I should give it one last try.
+#--lights back on--
+#--bgm back to normal--
+Barkeep: Here you are.
+do playSound('cup-put-down')
+do delay(1.0)
+do playSound('gulp')
+{{Globals.MC}}: Thank you.
+#--money goes down--
+do playSound('coin-drop')
+do delay(1.0)
+Barkeep: Leaving so soon?
+{{Globals.MC}}: Well, I was going to give a long monologue about feeling like there's nothing I can do and giving up and all.
+{{Globals.MC}}: But I think I just figured it out.
+Barkeep: Makes my job easier. I hope it works out for you. I'll always be here for a pick-me-up.
+{{Globals.MC}}: Cheers.
 => END
 
 ~ test_dialogue_1

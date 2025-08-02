@@ -40,7 +40,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 				
 	# Handle jump.	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		AudioManager.newspaper_flip.play()
+		AudioManager.jump_low.play()
 		triple_jump_progress+=1
 		if (triple_jump_progress > 2):
 			triple_jump_progress = 0
@@ -78,13 +78,14 @@ func update_animations(input_direction):
 		direction_marker.rotation_degrees = 180.0
 	
 	# Play animations
-	if is_on_floor():
-		if input_direction == 0:
-			animated_sprite.play("idle")
+	if Globals.watering == false:
+		if is_on_floor():
+			if input_direction == 0:
+				animated_sprite.play("idle")
+			else:
+				animated_sprite.play("run")
 		else:
-			animated_sprite.play("run")
-	else:
-		animated_sprite.play("jump")
+			animated_sprite.play("jump")
 		
 func _on_dialogue_ended(resource: DialogueResource):
 	dialogue_locked = false

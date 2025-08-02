@@ -225,7 +225,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5kck6")
 }],
-"loop": true,
+"loop": false,
 "name": &"water",
 "speed": 8.0
 }]
@@ -243,7 +243,7 @@ script = ExtResource("1_xgbmt")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_uqvrv")
-animation = &"idle"
+animation = &"water"
 autoplay = "idle"
 flip_h = true
 
