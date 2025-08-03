@@ -54,6 +54,9 @@ func _ready() -> void:
 	#wizard.set_friendly(true)
 	player.invuln = true
 	wizard.invuln = true
+	
+	# so next loop plays cutscene
+	Globals.played_intro_cutscene = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

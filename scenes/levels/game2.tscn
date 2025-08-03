@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://bp5h8d5ucelq3"]
+[gd_scene load_steps=80 format=4 uid="uid://bp5h8d5ucelq3"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_84hi7"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_rtdfn"]
@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://dh2d5dkitiym4" path="res://assets/sprites/longbranch.png" id="42_uhooc"]
 [ext_resource type="Texture2D" uid="uid://c1v3ven7xtdv8" path="res://assets/sprites/tavern-door.png" id="44_7team"]
 [ext_resource type="PackedScene" uid="uid://beh6jws8rltbu" path="res://scenes/triggers/checkpoint_no_sprite.tscn" id="51_c7eok"]
+[ext_resource type="PackedScene" uid="uid://cqswgck5dl3cn" path="res://scenes/triggers/checkpoint.tscn" id="51_pqd8d"]
 [ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="51_sncue"]
 [ext_resource type="PackedScene" uid="uid://coedpyeoonamd" path="res://scenes/triggers/scene_transition_area.tscn" id="52_isoea"]
 
@@ -918,5 +919,8 @@ next_scene_door_id = "outside_dungeon_1_entrance"
 position = Vector2(1792, 136)
 shape = SubResource("RectangleShape2D_ceh6p")
 disabled = true
+
+[node name="Checkpoint" parent="." instance=ExtResource("51_pqd8d")]
+position = Vector2(1281, 336)
 
 [connection signal="body_entered" from="IntroCutscene/PlayerDetectorForInitialCutscene" to="IntroCutscene" method="_on_player_detector_for_initial_cutscene_body_entered"]

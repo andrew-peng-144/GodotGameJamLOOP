@@ -6,11 +6,14 @@ var MC = "Clover"
 var watering = false
 
 var freeze_player_input = false # player cannot move or act. only UI actions allowed.
-var godmode = true 
+var godmode = false 
 
 var coins = 0
 
 var debug_text = false
+
+var played_intro_cutscene = false
+
 
 var current_checkpoint_scene_path: String = ""
 var current_checkpoint_position: Vector2 = Vector2.ZERO

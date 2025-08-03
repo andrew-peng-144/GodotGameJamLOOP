@@ -29,6 +29,10 @@ func _on_player_detector_for_initial_cutscene_body_entered(body: Node2D) -> void
 		cutsceneopening()
 			
 func cutsceneopening():
+	if Globals.played_intro_cutscene:
+		Globals.freeze_player_input = false
+		color_rect.visible = false
+		return
 	print("CUTSCENE OPENIGN!")
 	
 	intro_dialogue.action() # Read intro dialogue
@@ -38,6 +42,7 @@ func cutsceneopening():
 	letter.get_node("Actionable").action() # Read letter automatically
 	await DialogueManager.dialogue_ended
 	Globals.freeze_player_input = false
+	Globals.played_intro_cutscene = true
 	queue_free()
 
 	

@@ -9,6 +9,8 @@ var debug_text_dict = {}
 func _ready() -> void:
 	debug_text_label.text = ""
 	color_rect.visible = true # so it's invisible only in editor.
+	
+	DisplayServer.window_set_title("Clover, Again") # title for windiw
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

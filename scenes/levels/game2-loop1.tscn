@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=4 uid="uid://b4plimotmhskp"]
+[gd_scene load_steps=93 format=4 uid="uid://b4plimotmhskp"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_thv2a"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_1fb1l"]
@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://b3vy2811stmeb" path="res://assets/sprites/bar.png" id="47_6k8jw"]
 [ext_resource type="Texture2D" uid="uid://c1v3ven7xtdv8" path="res://assets/sprites/tavern-door.png" id="48_go48l"]
 [ext_resource type="Texture2D" uid="uid://df6bmgptwe3nu" path="res://assets/sprites/asdf.png" id="49_616xc"]
+[ext_resource type="PackedScene" uid="uid://cqswgck5dl3cn" path="res://scenes/triggers/checkpoint.tscn" id="50_tgkn1"]
 [ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="51_v2ih7"]
 [ext_resource type="PackedScene" uid="uid://beh6jws8rltbu" path="res://scenes/triggers/checkpoint_no_sprite.tscn" id="52_0rds7"]
 
@@ -414,32 +415,6 @@ unique_name_in_owner = true
 position = Vector2(-116, 0)
 tile_map_data = PackedByteArray("AABDABEAAAACAAgAAABDABIAAAACAAkAAABEABEAAAADAAgAAABEABIAAAADAAkAAABDAA8AAAACAAQAAABDABAAAAACAAUAAABEABAAAAADAAcAAABDABMAAAACAAoAAABDABQAAAACAAsAAABEABMAAAADAAoAAABEABQAAAADAAsAAABFABMAAAAEAAoAAABFABQAAAAEAAsAAABGABMAAAAFAAoAAABGABQAAAAFAAsAAABFABEAAAAEAAgAAABFABIAAAAEAAkAAABGABEAAAAFAAgAAABGABIAAAAFAAkAAABFAA8AAAAGAAMAAABFABAAAAAFAAsAAABGAA8AAAAHAAcAAABGABAAAAAFAAsAAABFAA4AAAAEAAMAAABGAA0AAAAEAAMAAABGAA4AAAAHAAIAAABHAA0AAAAGAAMAAABHAA4AAAAHAAcAAABIAA0AAAAHAAcAAABIAA4AAAAHAAcAAABJAA0AAAAHAAcAAABJAA4AAAAHAAcAAABJAA8AAAAHAAcAAABJABAAAAAFAAoAAABKABAAAAAFAAoAAABJABEAAAAFAAsAAABJABIAAAASAAsAAABKABEAAAAFAAsAAABKABIAAAAFAAsAAABHABEAAAAFAAsAAABHABIAAAASAAsAAABIABEAAAAFAAsAAABIABIAAAATAAsAAABHAA8AAAAHAAcAAABHABAAAAAFAAsAAABIAA8AAAAHAAcAAABIABAAAAAFAAsAAABHABMAAAASAAoAAABHABQAAAASAAsAAABIABMAAAATAAoAAABIABQAAAATAAsAAABJABMAAAASAAoAAABJABQAAAASAAsAAABKABMAAAAFAAoAABBKABQAAAAFAAsAABBPABMAAAAFAAoAAABPABQAAAAEAAoAAABQABMAAAAFAAoAAABQABQAAAAFAAoAAABNABMAAAAFAAoAABBNABQAAAAFAAsAABBOABMAAAAEAAoAABBOABQAAAAEAAsAABBLABMAAAAFAAoAAABLABQAAAAFAAsAAABMABMAAAAFAAoAAABMABQAAAAFAAsAAABLABEAAAAFAAsAAABLABIAAAAFAAsAAABMABEAAAAFAAoAAABMABIAAAAFAAsAAABNABEAAAAFAAgAABBNABIAAAAFAAkAABBOABEAAAAEAAgAABBOABIAAAAEAAkAABBPABEAAAADAAgAABBPABIAAAAFAAoAAABQABEAAAACAAgAABBQABIAAAAEAAoAAABLABAAAAAFAAoAAABGAAwAAAAEAAIAAABHAAsAAAAEAAIAAABHAAwAAAAFAAIAAABIAAwAAAAHAAIAAABCABAAAAABAAUAAABEAA8AAAAHAAkAAABEAA4AAAAHAAgAAABFAA0AAAAEAAIAAABQABAAAAALAAUAAABPABAAAAADAAcAABBPAA4AAAAHAAgAABBPAA8AAAAHAAkAABBQAA8AAAALAAQAAABRABAAAAAMAAUAAABMAAsAAAAJAAIAAABMAAwAAAAIAAIAAABMAA0AAAAHAAIAAABNAAwAAAAJAAIAAABNAA0AAAAIAAIAAABOAA0AAAAJAAIAAABLAAoAAAAIAAEAAABLAAsAAAAIAAIAAABLAAwAAAAHAAIAAABKAAkAAAAHAAAAAABKAAoAAAAHAAEAAABKAAsAAAAHAAIAAABIAAoAAAAFAAEAAABIAAsAAAAFAAIAAABJAAkAAAAGAAAAAABJAAoAAAAGAAEAAABJAAsAAAAGAAIAAABJAAwAAAAHAAcAAABKAAwAAAAHAAcAAABKAA0AAAAHAAcAAABLAA0AAAAHAAcAAABOAA4AAAAJAAMAAABNAA4AAAAIAAMAAABMAA4AAAAHAAcAAABOAA8AAAAIAAMAAABNAA8AAAAHAAcAAABMAA8AAAAHAAcAAABKAA4AAAAHAAcAAABLAA4AAAAHAAcAAABLAA8AAAAHAAcAAABKAA8AAAAHAAcAAABMABAAAAAHAAcAAABNABAAAAAHAAcAAABOABAAAAAHAAcAAAA=")
 tile_set = ExtResource("6_chfqm")
-
-[node name="UI" type="Node" parent="."]
-process_mode = 3
-
-[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
-
-[node name="ScoreLabel" type="Label" parent="UI/CanvasLayer"]
-offset_left = 49.0
-offset_top = 54.0
-offset_right = 114.0
-offset_bottom = 77.0
-text = "TESTING
-"
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/CanvasLayer"]
-offset_left = 33.0
-offset_top = 51.0
-offset_right = 73.0
-offset_bottom = 91.0
-
-[node name="DebugText" type="Label" parent="UI/CanvasLayer"]
-offset_left = 67.0
-offset_top = 101.0
-offset_right = 107.0
-offset_bottom = 124.0
-text = "ASDF"
 
 [node name="Killzone" parent="." instance=ExtResource("8_ei03b")]
 
@@ -1048,5 +1023,8 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fence-body3"]
 position = Vector2(384.5, -213)
 shape = SubResource("RectangleShape2D_awi2a")
+
+[node name="Checkpoint" parent="." instance=ExtResource("50_tgkn1")]
+position = Vector2(1281, 336)
 
 [connection signal="body_entered" from="IntroCutscene/PlayerDetectorForInitialCutscene" to="IntroCutscene" method="_on_player_detector_for_initial_cutscene_body_entered"]

@@ -115,7 +115,7 @@ func _on_top_area_body_entered(body: Node2D) -> void:
 			health -= 1
 			print("hurt wizard, "+str(health)+" hp left")
 			body.velocity.y = -bounce
-			body.make_invuln(0.2)
+			body.make_invuln(2.0)
 			self.make_invuln(invuln_seconds)
 			animated_sprite_2d.play("hurt")
 			await animated_sprite_2d.animation_finished
