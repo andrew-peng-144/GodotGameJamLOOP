@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://b48rv86tfjbeh"]
+
+[ext_resource type="PackedScene" uid="uid://cou5qxw4r0t88" path="res://scenes/triggers/killzone.tscn" id="1_n0857"]
+[ext_resource type="Script" path="res://scenes/enemies/bird.gd" id="1_ym7t0"]
+[ext_resource type="Texture2D" uid="uid://c0pfng8sraqqn" path="res://assets/sprites/sheets/bird.png" id="2_n8b4f"]
+[ext_resource type="Texture2D" uid="uid://bamps62i8y2ve" path="res://assets/sprites/sheets/GoblinWorker.png" id="3_hm2t4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52dlm"]
+radius = 13.1529
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpjbj"]
+atlas = ExtResource("3_hm2t4")
+region = Rect2(288, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35fpv"]
+atlas = ExtResource("3_hm2t4")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrnme"]
+atlas = ExtResource("3_hm2t4")
+region = Rect2(48, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1bbr"]
+atlas = ExtResource("2_n8b4f")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3msim"]
+atlas = ExtResource("2_n8b4f")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jtp2"]
+atlas = ExtResource("2_n8b4f")
+region = Rect2(90, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s00up"]
+atlas = ExtResource("2_n8b4f")
+region = Rect2(135, 0, 45, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgiln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpjbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35fpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrnme")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1bbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3msim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jtp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s00up")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upsrv"]
+size = Vector2(20, 4.5)
+
+[node name="BIRD" type="Node2D"]
+script = ExtResource("1_ym7t0")
+
+[node name="Killzone" parent="." instance=ExtResource("1_n0857")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-4, 4)
+shape = SubResource("CircleShape2D_52dlm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Killzone"]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_cgiln")
+autoplay = "default"
+
+[node name="TopArea" type="Area2D" parent="Killzone"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone/TopArea"]
+position = Vector2(-4, -14)
+shape = SubResource("RectangleShape2D_upsrv")
+
+[connection signal="body_entered" from="Killzone/TopArea" to="." method="_on_top_area_body_entered"]

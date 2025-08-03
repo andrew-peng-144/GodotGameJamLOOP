@@ -439,13 +439,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uw7nx"]
-radius = 6.0
+radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5f7wb"]
 radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pvkhr"]
-radius = 6.0
+radius = 3.16228
 
 [node name="Player" type="CharacterBody2D" groups=["player_body"]]
 collision_mask = 382
@@ -459,7 +459,7 @@ autoplay = "idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_uw7nx")
 
 [node name="DirectionMarker" type="Marker2D" parent="."]
@@ -479,7 +479,7 @@ collision_layer = 0
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillzoneSensor"]
-position = Vector2(0, -6)
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_pvkhr")
 
 [node name="TriggerSensor" type="Area2D" parent="."]
@@ -487,7 +487,7 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerSensor"]
-position = Vector2(0, -6)
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_pvkhr")
 
 [node name="AfterDeathTimer" type="Timer" parent="."]

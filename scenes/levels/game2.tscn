@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://bp5h8d5ucelq3"]
+[gd_scene load_steps=83 format=4 uid="uid://bp5h8d5ucelq3"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_84hi7"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_rtdfn"]
@@ -50,6 +50,9 @@
 [ext_resource type="Texture2D" uid="uid://ctv0k0jui1csd" path="res://assets/sprites/branches.png" id="39_bnhab"]
 [ext_resource type="Texture2D" uid="uid://dh2d5dkitiym4" path="res://assets/sprites/longbranch.png" id="42_uhooc"]
 [ext_resource type="Texture2D" uid="uid://c1v3ven7xtdv8" path="res://assets/sprites/tavern-door.png" id="44_7team"]
+[ext_resource type="PackedScene" uid="uid://beh6jws8rltbu" path="res://scenes/triggers/checkpoint_no_sprite.tscn" id="51_c7eok"]
+[ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="51_sncue"]
+[ext_resource type="PackedScene" uid="uid://coedpyeoonamd" path="res://scenes/triggers/scene_transition_area.tscn" id="52_isoea"]
 
 [sub_resource type="Animation" id="Animation_x3dvm"]
 length = 0.001
@@ -235,6 +238,9 @@ size = Vector2(31, 876)
 size = Vector2(31, 47)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40b35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceh6p"]
+size = Vector2(43, 78)
 
 [node name="Game2" type="Node2D"]
 
@@ -922,5 +928,21 @@ dialogue_start = "letter"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Letter/Actionable"]
 shape = SubResource("CircleShape2D_40b35")
+
+[node name="CheckpointNoSprite" parent="." instance=ExtResource("51_c7eok")]
+position = Vector2(349, 226)
+
+[node name="Door" parent="." instance=ExtResource("51_sncue")]
+position = Vector2(1790, 272)
+door_id = "game2_exit"
+next_scene_file = "res://scenes/levels/outside_dungeon_1.tscn"
+next_scene_door_id = "outside_dungeon_1_entrance"
+
+[node name="SceneTransitionArea" parent="." instance=ExtResource("52_isoea")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionArea"]
+position = Vector2(1792, 136)
+shape = SubResource("RectangleShape2D_ceh6p")
+disabled = true
 
 [connection signal="body_entered" from="IntroCutscene/PlayerDetectorForInitialCutscene" to="IntroCutscene" method="_on_player_detector_for_initial_cutscene_body_entered"]

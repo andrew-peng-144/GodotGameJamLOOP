@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://dl758vqgfcmat"]
+
+[ext_resource type="Script" path="res://scenes/triggers/moving_spell.gd" id="1_b5gy3"]
+[ext_resource type="Texture2D" uid="uid://3vflmodng6oc" path="res://assets/sprites/fireball.png" id="2_itx0n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_082ju"]
+atlas = ExtResource("2_itx0n")
+region = Rect2(0, 0, 29, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5h8j"]
+atlas = ExtResource("2_itx0n")
+region = Rect2(29, 0, 29, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj1h8"]
+atlas = ExtResource("2_itx0n")
+region = Rect2(58, 0, 29, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcp8p"]
+atlas = ExtResource("2_itx0n")
+region = Rect2(87, 0, 29, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyaw6"]
+atlas = ExtResource("2_itx0n")
+region = Rect2(116, 0, 29, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_27m3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_082ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5h8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj1h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcp8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyaw6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4bgh3"]
+radius = 6.08276
+
+[node name="MovingSpell" type="Area2D" groups=["killzones"]]
+collision_layer = 256
+script = ExtResource("1_b5gy3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_27m3f")
+autoplay = "default"
+frame_progress = 0.318706
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4bgh3")

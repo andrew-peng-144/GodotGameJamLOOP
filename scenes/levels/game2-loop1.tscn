@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://b4plimotmhskp"]
+[gd_scene load_steps=92 format=4 uid="uid://b4plimotmhskp"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_thv2a"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_1fb1l"]
@@ -50,6 +50,8 @@
 [ext_resource type="Texture2D" uid="uid://b3vy2811stmeb" path="res://assets/sprites/bar.png" id="47_6k8jw"]
 [ext_resource type="Texture2D" uid="uid://c1v3ven7xtdv8" path="res://assets/sprites/tavern-door.png" id="48_go48l"]
 [ext_resource type="Texture2D" uid="uid://df6bmgptwe3nu" path="res://assets/sprites/asdf.png" id="49_616xc"]
+[ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="51_v2ih7"]
+[ext_resource type="PackedScene" uid="uid://beh6jws8rltbu" path="res://scenes/triggers/checkpoint_no_sprite.tscn" id="52_0rds7"]
 
 [sub_resource type="Animation" id="Animation_x3dvm"]
 length = 0.001
@@ -625,7 +627,7 @@ position = Vector2(1553, 256)
 [node name="Wizard" parent="Enemies" instance=ExtResource("17_n1aql")]
 unique_name_in_owner = true
 z_index = 5
-position = Vector2(1775, 264)
+position = Vector2(1755, 269)
 collision_layer = 4
 collision_mask = 0
 
@@ -1025,5 +1027,14 @@ dialogue_start = "letter2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Letter/Actionable"]
 shape = SubResource("CircleShape2D_40b35")
+
+[node name="Door" parent="." instance=ExtResource("51_v2ih7")]
+position = Vector2(1790, 272)
+door_id = "game2_loop1_exit"
+next_scene_file = "res://scenes/levels/outside_dungeon_1.tscn"
+next_scene_door_id = "outside_dungeon_1_entrance"
+
+[node name="CheckpointNoSprite" parent="." instance=ExtResource("52_0rds7")]
+position = Vector2(349, 226)
 
 [connection signal="body_entered" from="IntroCutscene/PlayerDetectorForInitialCutscene" to="IntroCutscene" method="_on_player_detector_for_initial_cutscene_body_entered"]

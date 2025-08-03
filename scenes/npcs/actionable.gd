@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Actionable
+
 const BALLOON = preload("res://scenes/ui/balloon.tscn")
 @export var dialogue_resource: DialogueResource
 @export var dialogue_start: String = "start"
@@ -10,8 +12,8 @@ const BALLOON = preload("res://scenes/ui/balloon.tscn")
 @onready var fence_body: StaticBody2D = %"fence-body"
 @onready var fence_body_2: StaticBody2D = %"fence-body2"
 @onready var tavern_door_body: StaticBody2D = %TavernDoorBody
-@onready var wizard: CharacterBody2D = %Wizard
-@onready var wizardSprite = wizard.get_node("AnimatedSprite2D")
+@onready var wizard: Area2D = %Wizard
+#@onready var wizardSprite = wizard.get_node("AnimatedSprite2D")
 @onready var white_overlay: ColorRect = %"White-Overlay"
 @onready var branchSize = 1
 @onready var branch_small: Sprite2D = %BranchSmall
@@ -97,16 +99,19 @@ func removeDarkOverlay() -> void:
 	tween.tween_property(dark_overlay, "modulate:a", 0.0, 0.5)
 	
 func toggleCloakWizard() -> void:
+	var wizardSprite = wizard.get_node("AnimatedSprite2D")
 	wizardSprite.play(&"reveal_noStaff")
 	await wizardSprite.animation_finished
 	wizardSprite.play(&"reveal_idle_noStaff")
 
 func wizardGlint() -> void:
+	var wizardSprite = wizard.get_node("AnimatedSprite2D")
 	wizardSprite.play(&"glint")
 	await wizardSprite.animation_finished
 	wizardSprite.play(&"idle")
 
 func wizardLosesStaff() -> void:
+	var wizardSprite = wizard.get_node("AnimatedSprite2D")
 	wizardSprite.play(&"idle_noStaff")
 
 func openFence1() -> void:
@@ -132,6 +137,7 @@ func removeWhiteOverlay() -> void:
 	tween.tween_property(white_overlay, "modulate:a", 0.0, 0.5)
 	
 func revealWizardStaff() -> void:
+	var wizardSprite = wizard.get_node("AnimatedSprite2D")
 	wizardSprite.play(&"reveal_idle")
 
 #func growBranch() -> void:
@@ -182,7 +188,11 @@ func swampSpellsOff() -> void:
 	spark_2.visible = false
 	spark_3.visible = false
 
+func onWizardStartFight1() -> void:
+	get_owner().get_node("Cutscenes").start_fight_1()
+	
 func onWizardDeath1() -> void:
+	var wizardSprite = wizard.get_node("AnimatedSprite2D")
 	addWhiteOverlay()
 	await get_tree().create_timer(1.0).timeout
 	player.position = Vector2(369, 256)
@@ -198,9 +208,11 @@ func onWizardLoop1() -> void:
 	addWhiteOverlay()
 	await get_tree().create_timer(5.0).timeout
 	get_tree().change_scene_to_file("res://scenes/levels/game2-loop1.tscn")
+	Globals.door_id_to_spawn_at = ""
 	Globals.loop_count = Globals.loop_count + 1
 
 func onWizardDeath2() -> void:
+	var wizardSprite = wizard.get_node("AnimatedSprite2D")
 	addWhiteOverlay()
 	await get_tree().create_timer(1.0).timeout
 	player.position = Vector2(369, 256)
@@ -244,10 +256,12 @@ func positionForWizardDeath() -> void:
 	wizard.position = Vector2(735, 273)
 
 func turnWizard() -> void:
+	var wizardSprite = wizard.get_node("AnimatedSprite2D")
 	wizard.position = Vector2(715, 273)
 	wizardSprite.flip_h = true
 
 func wizardDeathAnimation() -> void:
+	var wizardSprite = wizard.get_node("AnimatedSprite2D")
 	wizardSprite.play(&"death")
 	await wizardSprite.animation_finished
 	dark_overlay.modulate.a = 0.0
