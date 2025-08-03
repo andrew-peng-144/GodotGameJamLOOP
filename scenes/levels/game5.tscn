@@ -309,6 +309,8 @@ _data = {
 "move": SubResource("Animation_n41kk")
 }
 
+[sub_resource type="GDScript" id="GDScript_tdw86"]
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2qmvx"]
 distance = -440.0
 
@@ -320,11 +322,10 @@ distance = -440.0
 
 [node name="Game" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body", "coins_label")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 unique_name_in_owner = true
 script = ExtResource("1_jgkhi")
 player_body = NodePath("../Player")
-coins_label = NodePath("../UI/CanvasLayer/ScoreLabel")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -479,14 +480,13 @@ offset_top = 51.0
 offset_right = 73.0
 offset_bottom = 91.0
 
-[node name="DebugText" type="Label" parent="UI/CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="DebugText" type="Label" parent="UI/CanvasLayer"]
 offset_left = 67.0
 offset_top = 101.0
 offset_right = 107.0
 offset_bottom = 124.0
 text = "ASDF"
-script = ExtResource("10_bqo0p")
-player = NodePath("../../../Player")
+script = SubResource("GDScript_tdw86")
 
 [node name="Killzone" parent="." instance=ExtResource("11_km4dx")]
 

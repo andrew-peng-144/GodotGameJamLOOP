@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dykq3eufopseo"]
+
+[node name="MainScene" type="Node"]
+
+[node name="DataToPersist" type="Node" parent="."]

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name Player
 
 const ACCEL = 800.0
 const DECEL = 1000.0
@@ -22,12 +23,16 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var after_death_timer: Timer = $AfterDeathTimer
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var killzone_sensor: Area2D = $KillzoneSensor
+@onready var trigger_sensor: Area2D = $TriggerSensor
+@onready var screen_transition_animation_player: Node = $ScreenTransitionAnimation/AnimationPlayer
+@onready var screen_transition_animation_color_rect: ColorRect = $ScreenTransitionAnimation/ColorRect
 
 
 var input_direction: int = 0
 
 var dialogue_locked = false
 var is_dead = false
+var is_stopped = false
 
 #var triple_jump_progress = 0 # 1, 2, or 3. 0 is invalid.
 
@@ -39,17 +44,23 @@ var midair_jumps_remaining = 0
 
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+	
+	screen_transition_animation_color_rect.visible = true # so it's invisible only in editor.
+	screen_transition_animation_player.play("fade_out")
+	
+	# Move to previous checkpoint
+	if (Globals.last_scene_transition_from_death):
+		global_position = Globals.current_checkpoint_position
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Globals.freeze_player_input:
+	if Globals.freeze_player_input or is_stopped:
 		velocity.x = 0
 		velocity.y = 0
 		return
 		
-	# Handle Actionable
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#print(dialogue_locked)
 		if dialogue_locked == false:
+			# Handle Actionable
 			var actionables = actionable_finder.get_overlapping_areas() # should only detect things on Actionable Layer
 			if actionables.size() > 0:
 				actionables[0].action()
@@ -61,19 +72,27 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if is_on_floor():
 		midair_jumps_remaining = max_midair_jumps
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		AudioManager.jump_low.play()
-		velocity.y = JUMP_VELOCITY
-		#triple_jump_progress+=1
-		#if (triple_jump_progress > 3):
-			#triple_jump_progress = 1
-		#print("TRIPLE JUMP "+str(triple_jump_progress))
-		#match triple_jump_progress:
-			#1:
-				#velocity.y = JUMP_VELOCITY_1
-			#2:
-				#velocity.y = JUMP_VELOCITY_2
-			#_:
-				#velocity.y = JUMP_VELOCITY_3
+		# Handle door, activated on jump
+		var triggers = trigger_sensor.get_overlapping_areas()
+		if triggers.size() > 0:
+			print(triggers)
+			if triggers[0] is Door:
+				Globals.last_scene_transition_from_death = false
+				change_scene(triggers[0].next_scene_file)
+		else:
+			AudioManager.jump_low.play()
+			velocity.y = JUMP_VELOCITY
+			#triple_jump_progress+=1
+			#if (triple_jump_progress > 3):
+				#triple_jump_progress = 1
+			#print("TRIPLE JUMP "+str(triple_jump_progress))
+			#match triple_jump_progress:
+				#1:
+					#velocity.y = JUMP_VELOCITY_1
+				#2:
+					#velocity.y = JUMP_VELOCITY_2
+				#_:
+					#velocity.y = JUMP_VELOCITY_3
 	elif Input.is_action_just_pressed("jump") and not is_on_floor():
 		if midair_jumps_remaining > 0:
 			AudioManager.jump_low.play()
@@ -85,8 +104,23 @@ func _unhandled_input(_event: InputEvent) -> void:
 	# Get the input direction: -1, 0, 1
 	input_direction = Input.get_axis("move_left", "move_right")
 
+func _process(delta: float):
+	GlobalUI.set_debug_text("Current Scene",get_tree().current_scene.scene_file_path)
+	
+	GlobalUI.set_debug_text("player.midair_jumps_remaining", str(midair_jumps_remaining))
+	GlobalUI.set_debug_text("player.dialogue_locked", str(dialogue_locked))
+	
+	GlobalUI.set_debug_text("freeze_player_input", str(Globals.freeze_player_input))
+	GlobalUI.set_debug_text("coins", str(Globals.coins))
+	GlobalUI.set_debug_text("current_checkpoint_position", str(Globals.current_checkpoint_position))
+	GlobalUI.set_debug_text("current_checkpoint_scene_path", str(Globals.current_checkpoint_scene_path))
 
+	
 func _physics_process(delta: float) -> void:
+	if is_stopped:
+		velocity.x = 0
+		velocity.y = 0
+		return
 
 	# Add the gravity.
 	if not is_on_floor():
@@ -140,6 +174,8 @@ func _on_dialogue_ended(resource: DialogueResource):
 	
 func take_damage():
 	pass
+func stop():
+	is_stopped = true
 
 func DIE(): # rip
 	is_dead = true
@@ -147,12 +183,31 @@ func DIE(): # rip
 	self.get_node("CollisionShape2D").queue_free()
 	killzone_sensor.queue_free()
 	after_death_timer.start()
+	
+func change_scene(next_scene_file: String):
+	screen_transition_animation_player.play("fade_in")
+	is_stopped = true
+	await screen_transition_animation_player.animation_finished
+	get_tree().change_scene_to_file(next_scene_file)
+	is_stopped = false
+	
 
 func _on_after_death_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+	if Globals.current_checkpoint_scene_path:
+		# Change scene to prev checkpoint 
+		Globals.last_scene_transition_from_death = true
+		change_scene(Globals.current_checkpoint_scene_path)
+	else:
+		# No checkpoint
+		get_tree().reload_current_scene()
+	
 
-# when player steps into killzone.
-func _on_sensor_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	#print(area.get_groups())
+# when player steps into any trigger zones.
+func _on_trigger_sensor_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area is SceneTransitionArea:
+		change_scene(area.next_scene_file)
+
+# when player steps into any killzones
+func _on_killzone_sensor_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.is_in_group("killzones"):
 		DIE()

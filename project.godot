@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameJamLOOP"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/main_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Globals="*res://util_scripts/globals.gd"
 AudioManager="*res://scenes/AudioManager.tscn"
+GlobalUI="*res://scenes/ui/global_ui.tscn"
 
 [dialogue_manager]
 
@@ -39,6 +40,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 speechbubble=""
 player_body=""
 killzones=""
+doors=""
 
 [input]
 
