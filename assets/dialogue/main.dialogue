@@ -335,11 +335,20 @@ Mysterious Croaking: Just only cared about yourself. As always. You selfish, nas
 Wizard: Selfish... yes, yes I suppose so. It's just who I am, isn't it?
 Wizard: There's no home for me anywhere. Not in this timeline, not 100 years ago, not ever!
 {{Globals.MC}}: What are you saying...?
-
+do playSound('spellcasting')
+do delay(1.0)
+do swampSpells()
+do playSound('explosions')
 # wizard destruction
 {{Globals.MC}}: Stop!! The animals!
+do addWhiteOverlay()
+do playSound('explosions')
+do delay(2.0)
+do swampSpellsOff()
+do removeWhiteOverlay()
 # boom
 {{Globals.MC}}: Wizard... no!!!
+
 # fight
 # you win
 => END

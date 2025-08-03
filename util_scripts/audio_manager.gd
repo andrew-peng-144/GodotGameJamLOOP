@@ -14,6 +14,7 @@ extends Node
 @onready var glint: AudioStreamPlayer = $Sparkle
 @onready var hit: AudioStreamPlayer = $Hit3
 @onready var spellcasting: AudioStreamPlayer = $"Magic-spell-333896"
+@onready var explosions: AudioStreamPlayer = $"Explosion-large-129051"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

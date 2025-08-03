@@ -192,7 +192,7 @@ size = Vector2(31, 47)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40b35"]
 
-[node name="Game" type="Node2D"]
+[node name="Game2" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 unique_name_in_owner = true

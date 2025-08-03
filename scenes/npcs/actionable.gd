@@ -19,6 +19,20 @@ const BALLOON = preload("res://scenes/ui/balloon.tscn")
 @onready var branch_big: Sprite2D = %BranchBig
 @onready var music: AudioStreamPlayer2D = %Music
 
+#swamp spells
+@onready var round_magic: AnimatedSprite2D = $"../../../Props/round-magic"
+@onready var explosion: AnimatedSprite2D = $"../../../Props/Explosion"
+@onready var explosion_2: AnimatedSprite2D = $"../../../Props/Explosion2"
+@onready var explosion_3: AnimatedSprite2D = $"../../../Props/Explosion3"
+@onready var fire_bomb: AnimatedSprite2D = $"../../../Props/Fire-bomb"
+@onready var lightning: AnimatedSprite2D = $"../../../Props/Lightning"
+@onready var lightning_3: AnimatedSprite2D = $"../../../Props/Lightning3"
+@onready var lightning_2: AnimatedSprite2D = $"../../../Props/Lightning2"
+@onready var spark: AnimatedSprite2D = $"../../../Props/Spark"
+@onready var spark_2: AnimatedSprite2D = $"../../../Props/Spark2"
+@onready var spark_3: AnimatedSprite2D = $"../../../Props/Spark3"
+
+
 
 func playSound(name) -> void:
 	if name == 'flipPaper':
@@ -47,6 +61,8 @@ func playSound(name) -> void:
 		AudioManager.hit.play()
 	elif name == 'spellcasting':
 		AudioManager.spellcasting.play()
+	elif name == 'explosions':
+		AudioManager.explosions.play()
 	else:
 		print("Fail!")
 		
@@ -120,11 +136,41 @@ func revealWizardStaff() -> void:
 #	branchSize = branchSize + 1
 
 func toggleMusicVolume() -> void:
-	print(music.volume_db)
 	if music.volume_db == 0:
 		music.volume_db = -10
 	else:
 		music.volume_db = 0
+		
+func swampSpells() -> void:
+	round_magic.visible = true
+	round_magic.play(&"default")
+	await round_magic.animation_finished
+	round_magic.play(&"idle")
+	explosion.visible = true
+	explosion_2.visible = true
+	explosion_3.visible = true
+	fire_bomb.visible = true
+	lightning.visible = true
+	lightning_3.visible = true
+	lightning_2.visible = true
+	spark.visible = true
+	spark_2.visible = true
+	spark_3.visible = true
+
+func swampSpellsOff() -> void:
+	round_magic.play(&"end")
+	await round_magic.animation_finished
+	round_magic.visible = false
+	explosion.visible = false
+	explosion_2.visible = false
+	explosion_3.visible = false
+	fire_bomb.visible = false
+	lightning.visible = false
+	lightning_3.visible = false
+	lightning_2.visible = false
+	spark.visible = false
+	spark_2.visible = false
+	spark_3.visible = false
 
 func action() -> void:
 	var balloon: Node = BALLOON.instantiate()
