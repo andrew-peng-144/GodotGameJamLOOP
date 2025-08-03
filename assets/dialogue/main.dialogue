@@ -54,6 +54,19 @@ Thankfully they aren't dangerous anymore after a few seconds, but still.
 I swear I'd kill that wizard in the super evil castle myself if I didn't have my wife and kids to think about. 
 => END
 
+~ me1
+Hey, I made some carrot cake the other day if you want some.
+=> END
+
+~ buns1
+Your fur looks really cute today <3
+=> END
+
+~ red1
+I like you, you're making waves. Gotta stick to the man, right? Humans are so last 100 prophecies ago!
+{{Globals.MC}}: Uhh, thanks?
+=> END
+
 ~ barkeep1
 Barkeep: Oh, {{Globals.MC}}, I don't often see you here during the day.
 Barkeep: What will it be?
@@ -283,7 +296,7 @@ set Globals.watering = false
 {{Globals.MC}}: No rent.
 => END
 
-~ passageway
+~ trapdoor
 {{Globals.MC}}: Well, isn't this convenient.
 => END
 
@@ -363,9 +376,17 @@ Wizard: It really is beautiful...
 # fade to black
 => END
 
-~ epilogue
+~ flowersEnd
 # bunny in swamp, has a house, watering flowers
 # stands where wizard died. flowers on grave.
+
+#pan camera, fade away
+do playSound('watering')
+set Globals.watering = true
+do watering()
+set Globals.watering = false
+
+
 => END
 
 ~ test_dialogue_1

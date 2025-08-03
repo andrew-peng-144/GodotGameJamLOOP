@@ -1,4 +1,4 @@
-[gd_scene load_steps=171 format=4 uid="uid://dijeu5qieagx7"]
+[gd_scene load_steps=173 format=4 uid="uid://dijeu5qieagx7"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_s4y4t"]
 [ext_resource type="Texture2D" uid="uid://vgsf6gkfjg2v" path="res://assets/Swamp/background.png" id="2_7l3w3"]
@@ -1171,12 +1171,19 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hg0j"]
+shader = ExtResource("16_hgqnr")
+shader_parameter/tint_color = Color(1, 1, 0.5, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3y8o"]
 size = Vector2(31, 876)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4uqaf"]
 shader = ExtResource("16_hgqnr")
 shader_parameter/tint_color = Color(1, 1, 0.5, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsifk"]
+size = Vector2(30, 4)
 
 [node name="Game" type="Node2D"]
 
@@ -1694,6 +1701,7 @@ texture = ExtResource("25_00k3g")
 
 [node name="BranchBig" type="Sprite2D" parent="Props"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_7hg0j")
 position = Vector2(1834, 219)
 texture = ExtResource("42_ims3p")
 
@@ -1728,12 +1736,22 @@ collision_mask = 0
 position = Vector2(384.5, -213)
 shape = SubResource("RectangleShape2D_v3y8o")
 
-[node name="Trapdoors" type="Sprite2D" parent="Props"]
-material = SubResource("ShaderMaterial_4uqaf")
+[node name="Trapdoor" type="Area2D" parent="Props"]
 position = Vector2(1093, 289)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("18_ef4rn")
+dialogue_resource = ExtResource("19_i37kc")
+dialogue_start = "trapdoor"
+
+[node name="Trapdoors" type="Sprite2D" parent="Props/Trapdoor"]
+material = SubResource("ShaderMaterial_4uqaf")
 texture = ExtResource("30_im268")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Trapdoor"]
+shape = SubResource("RectangleShape2D_gsifk")
 
 [node name="Dark-Overlay" type="ColorRect" parent="."]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=171 format=4 uid="uid://ck5ikjq0fnmao"]
+[gd_scene load_steps=177 format=4 uid="uid://ck5ikjq0fnmao"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_l5esg"]
 [ext_resource type="Texture2D" uid="uid://vgsf6gkfjg2v" path="res://assets/Swamp/background.png" id="2_p0jrj"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://dd02g6vg16im7" path="res://assets/Swamp/vine.png" id="29_saklf"]
 [ext_resource type="Texture2D" uid="uid://c8q8bdt6vojbr" path="res://assets/sprites/asdfd.png" id="31_fniyo"]
 [ext_resource type="Texture2D" uid="uid://bumqsrsx34rlw" path="res://assets/sprites/tombstones.png" id="32_qfr1i"]
+[ext_resource type="Texture2D" uid="uid://3c6yx3c6n4de" path="res://assets/sprites/trapdoors.png" id="33_8cq14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_280nf"]
 texture = ExtResource("5_ofj6j")
@@ -1173,6 +1174,23 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aoty7"]
+shader = ExtResource("15_c78yo")
+shader_parameter/tint_color = Color(1, 1, 0.5, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jsdk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4gwk7"]
+shader = ExtResource("15_c78yo")
+shader_parameter/tint_color = Color(1, 1, 0.5, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_las0m"]
+shader = ExtResource("15_c78yo")
+shader_parameter/tint_color = Color(1, 1, 0.5, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxlts"]
+size = Vector2(31, 876)
+
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body")]
@@ -1690,6 +1708,7 @@ texture = ExtResource("25_kvkvi")
 
 [node name="BranchBig" type="Sprite2D" parent="Props"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_aoty7")
 position = Vector2(1834, 219)
 texture = ExtResource("24_nydhg")
 
@@ -1718,15 +1737,53 @@ texture = ExtResource("29_saklf")
 position = Vector2(861, 190)
 texture = ExtResource("25_bvojy")
 
-[node name="flowers" type="Sprite2D" parent="Props"]
+[node name="flowers" type="Area2D" parent="Props"]
 position = Vector2(750, 269)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("10_tt27t")
+dialogue_resource = ExtResource("11_02h1s")
+dialogue_start = "flowersEnd"
+
+[node name="flowers" type="Sprite2D" parent="Props/flowers"]
 texture = ExtResource("31_fniyo")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/flowers"]
+shape = SubResource("CircleShape2D_7jsdk")
+
 [node name="Tombstones" type="Sprite2D" parent="Props"]
+material = SubResource("ShaderMaterial_4gwk7")
 position = Vector2(729, 261)
 texture = ExtResource("32_qfr1i")
 region_enabled = true
 region_rect = Rect2(32, 0, 24, 27)
+
+[node name="Trapdoors" type="Sprite2D" parent="Props"]
+material = SubResource("ShaderMaterial_las0m")
+position = Vector2(1093, 289)
+texture = ExtResource("33_8cq14")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 6)
+
+[node name="invisibleWall" type="StaticBody2D" parent="Props"]
+unique_name_in_owner = true
+position = Vector2(304, 141)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/invisibleWall"]
+position = Vector2(384.5, -213)
+shape = SubResource("RectangleShape2D_yxlts")
+
+[node name="invisibleWall2" type="StaticBody2D" parent="Props"]
+unique_name_in_owner = true
+position = Vector2(583, 136)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/invisibleWall2"]
+position = Vector2(384.5, -213)
+shape = SubResource("RectangleShape2D_yxlts")
 
 [node name="Dark-Overlay" type="ColorRect" parent="."]
 unique_name_in_owner = true
