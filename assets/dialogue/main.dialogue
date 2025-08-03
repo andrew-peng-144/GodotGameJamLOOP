@@ -31,7 +31,7 @@ do openFence1()
 => END
 
 ~ sign
-{{Globals.MC}}: Stable cleaner... hazard pay included... Dragon Division? Yikes.
+{{Globals.MC}}: Stable cleaner... free fire resist potions... Dragon Division? Yikes.
 {{Globals.MC}}: Leech gatherer... gloves provided... yuck.
 {{Globals.MC}}: Bounty: defeat the evil wizard responsible for all the dimensional loops appearing... yeah, no.
 #--speech bubble ...--
@@ -105,6 +105,7 @@ Wizard: Hmph. It can't be helped. I'm not doing it on purpose. It's just a side 
 {{Globals.MC}}: Not ordinary magic, I take it.
 Wizard: No. And I've never cared about that stupid village, ever since [tornado]the incident[/tornado]. 
 Wizard: If only you knew, rabbit... that no one there deserves to live!
+do onWizardDeath1() #REMOVE THIS!!!
 => END
 
 ~ beatwizard1
@@ -113,7 +114,6 @@ Wizard: You... are a fool... Protecting the wrong people. No matter. I'll just t
 => END
 
 ~ letter2
-#do growBranch()
 {{Globals.MC}}: "We will not be renewing your lease...?"
 do playSound('flipPaper')
 {{Globals.MC}}: "Your employment is being terminated...?!"
@@ -198,6 +198,7 @@ do wizardGlint()
 {{Globals.MC}}: [wave]If I can knock it out of his arms, he can't cast the spell![/wave]
 Wizard: You can't defeat me. Why not stay for carrot tea instead, rabbit?
 {{Globals.MC}}: My name's not Rabbit! It's {{Globals.MC}}!!
+do onWizardDeath2() #REMOVE THIS!!!
 #fight
 => END
 
@@ -286,6 +287,7 @@ set Globals.watering = true
 do watering()
 set Globals.watering = false
 {{Globals.MC}}: Okay. Let's go.
+do removeBranchBoundary()
 => END
 
 ~ swamp
@@ -298,6 +300,7 @@ set Globals.watering = false
 
 ~ trapdoor
 {{Globals.MC}}: Well, isn't this convenient.
+do openTrapDoor()
 => END
 
 ~ wizardFinal
@@ -322,6 +325,7 @@ Wizard: I already invested so much in my magic. I can't let it all be for naught
 {{Globals.MC}}: Please. Just come with me to the swamp. It'll give you a new perspective, at least.
 Wizard: Rabbit. This better not be a trap.
 {{Globals.MC}}: I promise, from one hybrid to another. I wouldn't lie to you.
+do goTogetherToSwamp()
 => END
 
 ~ wizardSwamp
@@ -361,18 +365,22 @@ do swampSpellsOff()
 do removeWhiteOverlay()
 # boom
 {{Globals.MC}}: Wizard... no!!!
-
+do onWizardDeath3() #REMOVETHIS!!
 # fight
 # you win
 => END
 
 ~ wizardDeath
+do positionForWizardDeath()
 {{Globals.MC}}: Wizard... I'm sorry, it was too sudden--
 Wizard: ... Save it... {{Globals.MC}}.
 Wizard: I was wrong. I was wrong 100 years ago, and I was wrong just now.
 Wizard: Ahh, it's really too late for me.
 Wizard: But... I really would've liked to stay in this swamp longer.
+do turnWizard()
+do delay(1.0)
 Wizard: It really is beautiful...
+do wizardDeathAnimation()
 # fade to black
 => END
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=95 format=4 uid="uid://d1b6g3eftm5nc"]
+[gd_scene load_steps=98 format=4 uid="uid://d1b6g3eftm5nc"]
 
+[ext_resource type="Script" path="res://scenes/levels/game2_loop2_cutscenes.gd" id="1_6ayyw"]
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_m10ia"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_cb0jo"]
 [ext_resource type="Texture2D" uid="uid://bcxpwbrcgcfrr" path="res://assets/SUNNYLAND/Layers/middle.png" id="3_ck28w"]
@@ -50,6 +51,11 @@
 [ext_resource type="Texture2D" uid="uid://b3vy2811stmeb" path="res://assets/sprites/bar.png" id="47_vhitp"]
 [ext_resource type="Texture2D" uid="uid://c1v3ven7xtdv8" path="res://assets/sprites/tavern-door.png" id="48_qjy83"]
 [ext_resource type="Texture2D" uid="uid://df6bmgptwe3nu" path="res://assets/sprites/asdf.png" id="49_y8eg2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dau4i"]
+size = Vector2(49, 55)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ei76n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_41ia6"]
 shader = ExtResource("43_53ar3")
@@ -343,6 +349,23 @@ size = Vector2(31, 47)
 [sub_resource type="CircleShape2D" id="CircleShape2D_40b35"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Cutscenes" type="Node" parent="."]
+script = ExtResource("1_6ayyw")
+
+[node name="PlayerDetectorForInitialCutscene" type="Area2D" parent="Cutscenes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/PlayerDetectorForInitialCutscene"]
+position = Vector2(348, 215)
+shape = SubResource("RectangleShape2D_dau4i")
+
+[node name="IntroDialogue" parent="Cutscenes" instance=ExtResource("11_20k2s")]
+position = Vector2(23, 19)
+dialogue_start = "letter3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/IntroDialogue"]
+shape = SubResource("CircleShape2D_ei76n")
+disabled = true
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 unique_name_in_owner = true
@@ -967,6 +990,16 @@ collision_mask = 0
 position = Vector2(384.5, -213)
 shape = SubResource("RectangleShape2D_shwjv")
 
+[node name="branch-boundary" type="StaticBody2D" parent="Props"]
+unique_name_in_owner = true
+position = Vector2(-209, 0)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/branch-boundary"]
+position = Vector2(384.5, -213)
+shape = SubResource("RectangleShape2D_shwjv")
+
 [node name="TavernProps" type="Node" parent="."]
 
 [node name="Barrels2" type="Sprite2D" parent="TavernProps"]
@@ -1053,3 +1086,5 @@ dialogue_start = "letter3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Letter/Actionable"]
 shape = SubResource("CircleShape2D_40b35")
+
+[connection signal="body_entered" from="Cutscenes/PlayerDetectorForInitialCutscene" to="Cutscenes" method="_on_player_detector_for_initial_cutscene_body_entered"]

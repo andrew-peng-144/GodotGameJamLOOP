@@ -15,6 +15,7 @@ extends Node
 @onready var hit: AudioStreamPlayer = $Hit3
 @onready var spellcasting: AudioStreamPlayer = $"Magic-spell-333896"
 @onready var explosions: AudioStreamPlayer = $"Explosion-large-129051"
+@onready var torch_lit: AudioStreamPlayer = $"Torch-lit"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

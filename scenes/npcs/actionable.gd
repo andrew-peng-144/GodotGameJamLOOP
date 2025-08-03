@@ -18,19 +18,25 @@ const BALLOON = preload("res://scenes/ui/balloon.tscn")
 @onready var branch_medium: Sprite2D = %BranchMedium
 @onready var branch_big: Sprite2D = %BranchBig
 @onready var music: AudioStreamPlayer2D = %Music
+@onready var wizard_kill_dialogue: Area2D = %wizardKillDialogue
+@onready var player: Player = %Player
+@onready var branch_boundary: StaticBody2D = %"branch-boundary"
+
 
 #swamp spells
-@onready var round_magic: AnimatedSprite2D = $"../../../Props/round-magic"
-@onready var explosion: AnimatedSprite2D = $"../../../Props/Explosion"
-@onready var explosion_2: AnimatedSprite2D = $"../../../Props/Explosion2"
-@onready var explosion_3: AnimatedSprite2D = $"../../../Props/Explosion3"
-@onready var fire_bomb: AnimatedSprite2D = $"../../../Props/Fire-bomb"
-@onready var lightning: AnimatedSprite2D = $"../../../Props/Lightning"
-@onready var lightning_3: AnimatedSprite2D = $"../../../Props/Lightning3"
-@onready var lightning_2: AnimatedSprite2D = $"../../../Props/Lightning2"
-@onready var spark: AnimatedSprite2D = $"../../../Props/Spark"
-@onready var spark_2: AnimatedSprite2D = $"../../../Props/Spark2"
-@onready var spark_3: AnimatedSprite2D = $"../../../Props/Spark3"
+@onready var round_magic: AnimatedSprite2D = %"round-magic"
+@onready var explosion: AnimatedSprite2D = %Explosion
+@onready var explosion_2: AnimatedSprite2D = %Explosion2
+@onready var explosion_3: AnimatedSprite2D = %Explosion3
+@onready var fire_bomb: AnimatedSprite2D = %"Fire-bomb"
+@onready var lightning: AnimatedSprite2D = %Lightning
+@onready var lightning_3: AnimatedSprite2D = %Lightning3
+@onready var lightning_2: AnimatedSprite2D = %Lightning2
+@onready var spark: AnimatedSprite2D = %Spark
+@onready var spark_2: AnimatedSprite2D = %Spark2
+@onready var spark_3: AnimatedSprite2D = %Spark3
+
+
 
 
 
@@ -63,6 +69,8 @@ func playSound(name) -> void:
 		AudioManager.spellcasting.play()
 	elif name == 'explosions':
 		AudioManager.explosions.play()
+	elif name == 'torch-lit':
+		AudioManager.torch_lit.play()
 	else:
 		print("Fail!")
 		
@@ -172,7 +180,79 @@ func swampSpellsOff() -> void:
 	spark_2.visible = false
 	spark_3.visible = false
 
-# change dialogue_start to where tilde is
+func onWizardDeath1() -> void:
+	addWhiteOverlay()
+	await get_tree().create_timer(1.0).timeout
+	player.position = Vector2(369, 256)
+	wizard.position = Vector2(380, 256)
+	wizardSprite.flip_h = true
+	await get_tree().create_timer(1.0).timeout
+	removeWhiteOverlay()
+	wizard_kill_dialogue.action()
+	await DialogueManager.dialogue_ended
+	onWizardLoop1() # REMOVETHIS!!
+
+func onWizardLoop1() -> void:
+	addWhiteOverlay()
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://scenes/levels/game2-loop1.tscn")
+	Globals.loop_count = Globals.loop_count + 1
+
+func onWizardDeath2() -> void:
+	addWhiteOverlay()
+	await get_tree().create_timer(1.0).timeout
+	player.position = Vector2(369, 256)
+	wizard.position = Vector2(380, 256)
+	wizardSprite.flip_h = true
+	await get_tree().create_timer(1.0).timeout
+	removeWhiteOverlay()
+	wizard_kill_dialogue.dialogue_start = "beatwizard2"
+	wizard_kill_dialogue.action()
+	await DialogueManager.dialogue_ended
+	onWizardLoop2() # REMOVETHIS!!
+
+func onWizardLoop2() -> void:
+	addWhiteOverlay()
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://scenes/levels/game2-loop2.tscn")
+	Globals.loop_count = Globals.loop_count + 1
+	
+func removeBranchBoundary() -> void:
+	branch_boundary.get_node("CollisionShape2D").set_disabled(true)
+
+func openTrapDoor() -> void:
+	get_tree().change_scene_to_file("res://scenes/levels/dungeon_wizard.tscn")
+
+func goTogetherToSwamp() -> void:
+	get_tree().change_scene_to_file("res://scenes/levels/game2-swamp.tscn")
+	
+func onWizardDeath3() -> void:
+	addWhiteOverlay()
+	await get_tree().create_timer(1.0).timeout
+	player.position = Vector2(1574, 236)
+	wizard.position = Vector2(1499, 241)
+	await get_tree().create_timer(1.0).timeout
+	removeWhiteOverlay()
+	wizard_kill_dialogue.action()
+	await DialogueManager.dialogue_ended
+
+func positionForWizardDeath() -> void:
+	player.position = Vector2(771, 272)
+	wizard.position = Vector2(735, 273)
+
+func turnWizard() -> void:
+	wizard.position = Vector2(715, 273)
+	wizardSprite.flip_h = true
+
+func wizardDeathAnimation() -> void:
+	wizardSprite.play(&"death")
+	await wizardSprite.animation_finished
+	dark_overlay.modulate.a = 0.0
+	dark_overlay.visible = true
+	var tween := create_tween()
+	tween.tween_property(dark_overlay, "modulate:a", 1, 1)
+	await get_tree().create_timer(3.0).timeout
+	get_tree().change_scene_to_file("res://scenes/levels/game2-swamp-epilogue.tscn")
 
 func action() -> void:
 	var balloon: Node = BALLOON.instantiate()

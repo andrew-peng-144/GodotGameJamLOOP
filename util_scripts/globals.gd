@@ -17,4 +17,4 @@ var last_scene_transition_from_death = false # Whether the player just died, mea
 var door_id_to_spawn_at: String
 var door_direction_x = 0 # Which direction is the player moving toward when entering this Scene Transition Area? 1 = right,  -1 = left,  0 = neutral
 
-var loop_count = 2 #0 = never looped, 1 = looped once, 2 = looped twice, etc
+var loop_count = 0 #0 = never looped, 1 = looped once, 2 = looped twice, etc

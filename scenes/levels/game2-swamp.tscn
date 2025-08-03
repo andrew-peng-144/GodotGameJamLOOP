@@ -1,7 +1,9 @@
-[gd_scene load_steps=173 format=4 uid="uid://dijeu5qieagx7"]
+[gd_scene load_steps=178 format=4 uid="uid://dijeu5qieagx7"]
 
+[ext_resource type="Script" path="res://scenes/levels/game2_swamp_cutscenes.gd" id="1_cw1og"]
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_s4y4t"]
 [ext_resource type="Texture2D" uid="uid://vgsf6gkfjg2v" path="res://assets/Swamp/background.png" id="2_7l3w3"]
+[ext_resource type="PackedScene" uid="uid://3y5kn2ut0yhq" path="res://scenes/npcs/actionable.tscn" id="2_p3cg7"]
 [ext_resource type="Texture2D" uid="uid://d3fudatdk82ak" path="res://assets/Swamp/middleground.png" id="3_qaile"]
 [ext_resource type="PackedScene" uid="uid://cphvj3awqo71f" path="res://scenes/player/player.tscn" id="4_b77i2"]
 [ext_resource type="Texture2D" uid="uid://o2u3mjv0dsn8" path="res://assets/Swamp/tileset.png" id="5_7smro"]
@@ -30,6 +32,13 @@
 [ext_resource type="Texture2D" uid="uid://dd02g6vg16im7" path="res://assets/Swamp/vine.png" id="29_no8tq"]
 [ext_resource type="Texture2D" uid="uid://3c6yx3c6n4de" path="res://assets/sprites/trapdoors.png" id="30_im268"]
 [ext_resource type="Texture2D" uid="uid://dh2d5dkitiym4" path="res://assets/sprites/longbranch.png" id="42_ims3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5duh"]
+size = Vector2(49, 55)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3eht"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wo0s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_280nf"]
 texture = ExtResource("5_7smro")
@@ -1187,6 +1196,33 @@ size = Vector2(30, 4)
 
 [node name="Game" type="Node2D"]
 
+[node name="Cutscenes" type="Node" parent="."]
+script = ExtResource("1_cw1og")
+
+[node name="PlayerDetectorForInitialCutscene" type="Area2D" parent="Cutscenes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/PlayerDetectorForInitialCutscene"]
+position = Vector2(1627, 217)
+shape = SubResource("RectangleShape2D_y5duh")
+
+[node name="IntroDialogue" parent="Cutscenes" instance=ExtResource("2_p3cg7")]
+position = Vector2(23, 19)
+dialogue_start = "swamp"
+
+[node name="introDialogueCollisionShape" type="CollisionShape2D" parent="Cutscenes/IntroDialogue"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_w3eht")
+disabled = true
+
+[node name="wizardKillDialogue" parent="." instance=ExtResource("2_p3cg7")]
+unique_name_in_owner = true
+position = Vector2(-312, -118)
+dialogue_start = "wizardDeath"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wizardKillDialogue"]
+shape = SubResource("CircleShape2D_3wo0s")
+disabled = true
+
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 unique_name_in_owner = true
 script = ExtResource("1_s4y4t")
@@ -1220,8 +1256,9 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_b77i2")]
+unique_name_in_owner = true
 z_index = 5
-position = Vector2(1627, 228)
+position = Vector2(1626, 229)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -38)
@@ -1281,7 +1318,7 @@ parameters/looping = false
 [node name="Wizard" parent="Enemies" instance=ExtResource("17_wl13l")]
 unique_name_in_owner = true
 z_index = 5
-position = Vector2(1498, 241)
+position = Vector2(726, 662)
 collision_layer = 4
 collision_mask = 0
 
@@ -1612,6 +1649,7 @@ sprite_frames = SubResource("SpriteFrames_o162q")
 autoplay = "default"
 
 [node name="round-magic" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 z_index = 5
 position = Vector2(1498.5, 223)
@@ -1621,6 +1659,7 @@ animation = &"end"
 autoplay = "default"
 
 [node name="Explosion" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1389, 224)
 sprite_frames = SubResource("SpriteFrames_7snl7")
@@ -1628,6 +1667,7 @@ autoplay = "default"
 frame_progress = 0.102059
 
 [node name="Explosion2" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1453, 233)
 sprite_frames = SubResource("SpriteFrames_7snl7")
@@ -1635,6 +1675,7 @@ autoplay = "default"
 frame_progress = 0.83061
 
 [node name="Explosion3" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1549, 237)
 sprite_frames = SubResource("SpriteFrames_7snl7")
@@ -1642,6 +1683,7 @@ autoplay = "default"
 frame_progress = 0.83061
 
 [node name="Fire-bomb" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1428, 244)
 sprite_frames = SubResource("SpriteFrames_mvm0w")
@@ -1649,6 +1691,7 @@ autoplay = "default"
 frame_progress = 0.55536
 
 [node name="Lightning" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1414, 175)
 sprite_frames = SubResource("SpriteFrames_0h3yn")
@@ -1656,6 +1699,7 @@ autoplay = "default"
 frame_progress = 0.627992
 
 [node name="Lightning3" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1480, 176)
 sprite_frames = SubResource("SpriteFrames_0h3yn")
@@ -1663,6 +1707,7 @@ autoplay = "default"
 frame_progress = 0.627992
 
 [node name="Lightning2" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1546, 182)
 sprite_frames = SubResource("SpriteFrames_0h3yn")
@@ -1670,6 +1715,7 @@ autoplay = "default"
 frame_progress = 0.381424
 
 [node name="Spark" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1443, 152)
 sprite_frames = SubResource("SpriteFrames_2yd6e")
@@ -1677,6 +1723,7 @@ autoplay = "default"
 frame_progress = 0.876711
 
 [node name="Spark2" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1521, 119)
 sprite_frames = SubResource("SpriteFrames_2yd6e")
@@ -1684,6 +1731,7 @@ autoplay = "default"
 frame_progress = 0.5434
 
 [node name="Spark3" type="AnimatedSprite2D" parent="Props"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1589, 183)
 sprite_frames = SubResource("SpriteFrames_2yd6e")
@@ -1759,7 +1807,7 @@ visible = false
 z_index = 4
 offset_left = -3.0
 offset_top = -7.0
-offset_right = 1699.0
+offset_right = 2187.0
 offset_bottom = 495.0
 color = Color(0, 0, 0, 1)
 
@@ -1771,3 +1819,5 @@ offset_left = -3.0
 offset_top = -7.0
 offset_right = 2105.0
 offset_bottom = 495.0
+
+[connection signal="body_entered" from="Cutscenes/PlayerDetectorForInitialCutscene" to="Cutscenes" method="_on_player_detector_for_initial_cutscene_body_entered"]
