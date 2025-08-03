@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://dld11jjif5foy"]
+[gd_scene load_steps=27 format=4 uid="uid://dld11jjif5foy"]
 
 [ext_resource type="PackedScene" uid="uid://cphvj3awqo71f" path="res://scenes/player/player.tscn" id="1_dm4kc"]
 [ext_resource type="Script" path="res://scenes/levels/dungeon_wizard_cutscenes.gd" id="1_edb5g"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://da2cgv7pcx0mt" path="res://assets/sprites/dungeon_wizard/mountains.png" id="2_bjb6m"]
 [ext_resource type="Texture2D" uid="uid://cjbfblsn18e0i" path="res://assets/SUNNYLAND/Props/spikes.png" id="3_c8037"]
 [ext_resource type="PackedScene" uid="uid://3y5kn2ut0yhq" path="res://scenes/npcs/actionable.tscn" id="3_qmrb0"]
-[ext_resource type="AudioStream" uid="uid://dhpylsm1cvfie" path="res://assets/music/chibi-robot-b.ogg" id="4_4mndr"]
 [ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="6_gico7"]
 [ext_resource type="PackedScene" uid="uid://cq73qfmma2kf" path="res://scenes/enemies/slime.tscn" id="7_nt0wi"]
 [ext_resource type="PackedScene" uid="uid://bjeakr0b2bom2" path="res://scenes/pickups/coin.tscn" id="8_6pdx2"]
@@ -194,11 +193,6 @@ position = Vector2(528, -55)
 unique_name_in_owner = true
 stream = ExtResource("2_7utlo")
 autoplay = true
-attenuation = 1e-05
-
-[node name="fightMusic" parent="." instance=ExtResource("1_y0crg")]
-unique_name_in_owner = true
-stream = ExtResource("4_4mndr")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -278,6 +272,8 @@ z_index = 5
 position = Vector2(381, 256)
 collision_layer = 4
 collision_mask = 0
+health = 3
+bounce = 300
 
 [node name="Area2D" type="Area2D" parent="Wizard"]
 collision_layer = 16
@@ -310,7 +306,7 @@ unique_name_in_owner = true
 visible = false
 z_index = 11
 offset_left = -3.0
-offset_top = -456.0
+offset_top = -7.0
 offset_right = 1699.0
 offset_bottom = 495.0
 

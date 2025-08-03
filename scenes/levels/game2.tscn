@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://bp5h8d5ucelq3"]
+[gd_scene load_steps=79 format=4 uid="uid://bp5h8d5ucelq3"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_84hi7"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_rtdfn"]
@@ -9,7 +9,6 @@
 [ext_resource type="TileSet" uid="uid://d2l5gwfm57qt7" path="res://scenes/levels/game2-tavern.tres" id="6_pmeht"]
 [ext_resource type="Resource" uid="uid://5iokah2p0ghp" path="res://assets/dialogue/intro.dialogue" id="7_gk3wv"]
 [ext_resource type="PackedScene" uid="uid://chf3n27hyqvs4" path="res://scenes/platforming/platform.tscn" id="7_ppk7f"]
-[ext_resource type="PackedScene" uid="uid://cggn66v8oayyy" path="res://scenes/enemies/enemy.tscn" id="8_fgmjp"]
 [ext_resource type="PackedScene" uid="uid://bjeakr0b2bom2" path="res://scenes/pickups/coin.tscn" id="9_sc4cy"]
 [ext_resource type="AudioStream" uid="uid://b4dinwvgav8um" path="res://assets/music/1BITTopDownMusics - Track 03 (1BIT Eerie).wav" id="10_4em34"]
 [ext_resource type="PackedScene" uid="uid://cou5qxw4r0t88" path="res://scenes/triggers/killzone.tscn" id="11_7nu6s"]
@@ -93,8 +92,6 @@ _data = {
 size = Vector2(49, 55)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8mpwe"]
-
-[sub_resource type="GDScript" id="GDScript_tdw86"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2qmvx"]
 distance = -440.0
@@ -333,33 +330,6 @@ position = Vector2(-116, 0)
 tile_map_data = PackedByteArray("AABDABEAAAACAAgAAABDABIAAAACAAkAAABEABEAAAADAAgAAABEABIAAAADAAkAAABDAA8AAAACAAQAAABDABAAAAACAAUAAABEABAAAAADAAcAAABDABMAAAACAAoAAABDABQAAAACAAsAAABEABMAAAADAAoAAABEABQAAAADAAsAAABFABMAAAAEAAoAAABFABQAAAAEAAsAAABGABMAAAAFAAoAAABGABQAAAAFAAsAAABFABEAAAAEAAgAAABFABIAAAAEAAkAAABGABEAAAAFAAgAAABGABIAAAAFAAkAAABFAA8AAAAGAAMAAABFABAAAAAFAAsAAABGAA8AAAAHAAcAAABGABAAAAAFAAsAAABFAA4AAAAEAAMAAABGAA0AAAAEAAMAAABGAA4AAAAHAAIAAABHAA0AAAAGAAMAAABHAA4AAAAHAAcAAABIAA0AAAAHAAcAAABIAA4AAAAHAAcAAABJAA0AAAAHAAcAAABJAA4AAAAHAAcAAABJAA8AAAAHAAcAAABJABAAAAAFAAoAAABKABAAAAAFAAoAAABJABEAAAAFAAsAAABJABIAAAASAAsAAABKABEAAAAFAAsAAABKABIAAAAFAAsAAABHABEAAAAFAAsAAABHABIAAAASAAsAAABIABEAAAAFAAsAAABIABIAAAATAAsAAABHAA8AAAAHAAcAAABHABAAAAAFAAsAAABIAA8AAAAHAAcAAABIABAAAAAFAAsAAABHABMAAAASAAoAAABHABQAAAASAAsAAABIABMAAAATAAoAAABIABQAAAATAAsAAABJABMAAAASAAoAAABJABQAAAASAAsAAABKABMAAAAFAAoAABBKABQAAAAFAAsAABBPABMAAAAFAAoAAABPABQAAAAEAAoAAABQABMAAAAFAAoAAABQABQAAAAFAAoAAABNABMAAAAFAAoAABBNABQAAAAFAAsAABBOABMAAAAEAAoAABBOABQAAAAEAAsAABBLABMAAAAFAAoAAABLABQAAAAFAAsAAABMABMAAAAFAAoAAABMABQAAAAFAAsAAABLABEAAAAFAAsAAABLABIAAAAFAAsAAABMABEAAAAFAAoAAABMABIAAAAFAAsAAABNABEAAAAFAAgAABBNABIAAAAFAAkAABBOABEAAAAEAAgAABBOABIAAAAEAAkAABBPABEAAAADAAgAABBPABIAAAAFAAoAAABQABEAAAACAAgAABBQABIAAAAEAAoAAABLABAAAAAFAAoAAABGAAwAAAAEAAIAAABHAAsAAAAEAAIAAABHAAwAAAAFAAIAAABIAAwAAAAHAAIAAABCABAAAAABAAUAAABEAA8AAAAHAAkAAABEAA4AAAAHAAgAAABFAA0AAAAEAAIAAABQABAAAAALAAUAAABPABAAAAADAAcAABBPAA4AAAAHAAgAABBPAA8AAAAHAAkAABBQAA8AAAALAAQAAABRABAAAAAMAAUAAABMAAsAAAAJAAIAAABMAAwAAAAIAAIAAABMAA0AAAAHAAIAAABNAAwAAAAJAAIAAABNAA0AAAAIAAIAAABOAA0AAAAJAAIAAABLAAoAAAAIAAEAAABLAAsAAAAIAAIAAABLAAwAAAAHAAIAAABKAAkAAAAHAAAAAABKAAoAAAAHAAEAAABKAAsAAAAHAAIAAABIAAoAAAAFAAEAAABIAAsAAAAFAAIAAABJAAkAAAAGAAAAAABJAAoAAAAGAAEAAABJAAsAAAAGAAIAAABJAAwAAAAHAAcAAABKAAwAAAAHAAcAAABKAA0AAAAHAAcAAABLAA0AAAAHAAcAAABOAA4AAAAJAAMAAABNAA4AAAAIAAMAAABMAA4AAAAHAAcAAABOAA8AAAAIAAMAAABNAA8AAAAHAAcAAABMAA8AAAAHAAcAAABKAA4AAAAHAAcAAABLAA4AAAAHAAcAAABLAA8AAAAHAAcAAABKAA8AAAAHAAcAAABMABAAAAAHAAcAAABNABAAAAAHAAcAAABOABAAAAAHAAcAAAA=")
 tile_set = ExtResource("6_pmeht")
 
-[node name="UI" type="Node" parent="."]
-process_mode = 3
-
-[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
-
-[node name="ScoreLabel" type="Label" parent="UI/CanvasLayer"]
-offset_left = 49.0
-offset_top = 54.0
-offset_right = 114.0
-offset_bottom = 77.0
-text = "TESTING
-"
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/CanvasLayer"]
-offset_left = 33.0
-offset_top = 51.0
-offset_right = 73.0
-offset_bottom = 91.0
-
-[node name="DebugText" type="Label" parent="UI/CanvasLayer"]
-offset_left = 67.0
-offset_top = 101.0
-offset_right = 107.0
-offset_bottom = 124.0
-text = "ASDF"
-script = SubResource("GDScript_tdw86")
-
 [node name="Killzone" parent="." instance=ExtResource("11_7nu6s")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
@@ -542,14 +512,11 @@ position = Vector2(1665, 349)
 [node name="Slime4" parent="Enemies" instance=ExtResource("22_s72og")]
 position = Vector2(1699, 362)
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("8_fgmjp")]
-position = Vector2(1553, 256)
-
 [node name="Wizard" parent="Enemies" instance=ExtResource("17_m1mcb")]
 unique_name_in_owner = true
 visible = false
 z_index = 5
-position = Vector2(2095, 113)
+position = Vector2(988, 1046)
 collision_layer = 4
 collision_mask = 0
 
@@ -831,7 +798,6 @@ collision_mask = 0
 position = Vector2(384.5, -213)
 shape = SubResource("RectangleShape2D_shwjv")
 
-
 [node name="house-boundary" type="StaticBody2D" parent="Props"]
 unique_name_in_owner = true
 position = Vector2(-255, 17)
@@ -847,7 +813,6 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/fence-body3"]
-
 position = Vector2(384.5, -213)
 shape = SubResource("RectangleShape2D_shwjv")
 

@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://c5ldsvb08manb" path="res://assets/sprites/unnamed1.png" id="13_ddmsx"]
 [ext_resource type="Texture2D" uid="uid://cwcxbsahfqr5l" path="res://assets/sprites/my_sprites_transparent.png" id="14_0fguj"]
 [ext_resource type="PackedScene" uid="uid://cq73qfmma2kf" path="res://scenes/enemies/slime.tscn" id="15_flwq3"]
-[ext_resource type="PackedScene" uid="uid://cggn66v8oayyy" path="res://scenes/enemies/enemy.tscn" id="16_0r0el"]
 [ext_resource type="PackedScene" uid="uid://dly2facgb200l" path="res://scenes/enemies/wizard.tscn" id="17_n1aql"]
 [ext_resource type="Script" path="res://scenes/npcs/actionable.gd" id="18_sv3uw"]
 [ext_resource type="Resource" uid="uid://jbsd78prqwes" path="res://assets/dialogue/main.dialogue" id="19_v78vb"]
@@ -626,13 +625,11 @@ position = Vector2(1598, 290)
 [node name="Slime4" parent="Enemies" instance=ExtResource("15_flwq3")]
 position = Vector2(1654, 290)
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("16_0r0el")]
-position = Vector2(1553, 256)
-
 [node name="Wizard" parent="Enemies" instance=ExtResource("17_n1aql")]
 unique_name_in_owner = true
+visible = false
 z_index = 5
-position = Vector2(798, 621)
+position = Vector2(1210, 2224)
 collision_layer = 4
 collision_mask = 0
 
