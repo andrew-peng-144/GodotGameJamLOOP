@@ -59,14 +59,14 @@ Barkeep: Oh, {{Globals.MC}}, I don't often see you here during the day.
 Barkeep: What will it be?
 {{Globals.MC}}: Carrot mead, thank you.
 do addDarkOverlay()
-#--bgm quieter-
+do toggleMusicVolume()
 {{Globals.MC}}: [wave]The barkeep's not getting any younger, yet she's still working hard, dealing with unruly customers.[/wave]
 {{Globals.MC}}: [wave]I won't even get to be close to that age, being a rabbit and all.[/wave]
 {{Globals.MC}}: [wave]When the time comes... before it comes...[/wave]
 {{Globals.MC}}: [wave]Even though I'll probably just give up again... Even though I can't even lift a sword...[/wave]
 {{Globals.MC}}: [wave]I should give it one last try.[/wave]
 do removeDarkOverlay()
-#--bgm back to normal--
+do toggleMusicVolume()
 do playSound('cup-put-down')
 Barkeep: Here you are.
 do playSound('gulp')
@@ -90,7 +90,8 @@ Wizard: Calm down. Don't be foolish. What, you sold yourself out to do the human
 {{Globals.MC}}: No. You need to stop creating these dimensional loops that destroy our land, and our homes.
 Wizard: Hmph. It can't be helped. I'm not doing it on purpose. It's just a side effect of my magic.
 {{Globals.MC}}: Not ordinary magic, I take it.
-Wizard: No. And I don't care if it destroys that stupid village of yours. You've got your priorities all wrong. If only you knew, rabbit... that no one there deserves to live!
+Wizard: No. And I've never cared about that stupid village, ever since [tornado]the incident[/tornado]. 
+Wizard: If only you knew, rabbit... that no one there deserves to live!
 => END
 
 ~ beatwizard1
@@ -99,6 +100,7 @@ Wizard: You... are a fool... Protecting the wrong people. No matter. I'll just t
 => END
 
 ~ letter2
+#do growBranch()
 {{Globals.MC}}: "We will not be renewing your lease...?"
 do playSound('flipPaper')
 {{Globals.MC}}: "Your employment is being terminated...?!"
@@ -121,10 +123,14 @@ set Globals.watering = true
 do watering()
 set Globals.watering = false
 {{Globals.MC}}: I don't even know what these plants are. But even they deserve to live.
+do playSound('unlock')
+do openFence1()
 => END
 
 ~ sign2
 {{Globals.MC}}: Bounty: defeat the evil wizard.. It's definitely him. He must have done something! I killed him already!
+do playSound('unlock')
+do openFence2()
 => END
 
 ~ blonde2
@@ -146,7 +152,7 @@ Barkeep: Oh, MC, I don't often see you here during the day.
 Barkeep: What will it be?
 {{Globals.MC}}: Huh? Wasn't I here yesterday?
 Barkeep: Yesterday? No, I don't remember seeing you here. Haven't seen you in ages, to be frank.
-{{Globals.MC}}: What's going on? It's like everything's the same, but no one remembers. And there's more of those dimensional loop things around.
+{{Globals.MC}}: [wave]What's going on? It's like everything's the same, but no one remembers. And there's more of those dimensional loop things around.[/wave]
 {{Globals.MC}}: Hmm, weird. I'll get a-- WAIT.
 do playSound('rustle')
 {{Globals.MC}}: [wave]So the seed came back in my pocket but my money didn't?[/wave]
@@ -164,6 +170,8 @@ Barkeep: Leaving so soon?
 {{Globals.MC}}: Time to pay the old wizard another visit.
 Barkeep: The evil one? Forget it. It's impossible. 
 Barkeep: Every time someone tries, I see more and more of those dimensional loop things popping up...
+do playSound('unlock')
+do openTavernDoor()
 => END
 
 ~ wizard2
@@ -171,7 +179,8 @@ Wizard: Well, well. It's been far too long since my last intruder. I would van--
 {{Globals.MC}}: Save it. You turned back time or something, didn't you?
 Wizard: Oh, did I? I've lost track at this point.
 {{Globals.MC}}: [wave]How am I going to defeat him if he can loop back time right before he dies?[/wave]
-#glint the staff
+do playSound('glint')
+do wizardGlint()
 {{Globals.MC}}: [wave]His staff![/wave]
 {{Globals.MC}}: [wave]If I can knock it out of his arms, he can't cast the spell![/wave]
 Wizard: You can't defeat me. Why not stay for carrot tea instead, rabbit?
@@ -181,6 +190,8 @@ Wizard: You can't defeat me. Why not stay for carrot tea instead, rabbit?
 
 ~ beatwizard2
 #wizard's staff is kicked off on last hit
+do playSound('hit')
+do wizardLosesStaff()
 Wizard: Arg! What are you doing?
 {{Globals.MC}}: Saving the village. We don't deserve to live in fear of your dimensional loops!
 Wizard: Such a fool. They won't even matter once I'm done perfecting my spell.
@@ -192,8 +203,55 @@ Wizard: [tornado]sigh...[/tornado]
 do playSound('cloak')
 do toggleCloakWizard()
 do delay(1.0)
+{{Globals.MC}}: You're--
+Wizard: Yes, Rabbit. A hybrid, like you.
+{{Globals.MC}}: That explains... nothing. You want us to never exist? If you hate humans so much, shouldn't you be targeting them?
+{{Globals.MC}}: Not that I condone that.
+Wizard: Our existence was a mistake. One second I was enjoying the beauty of life and nature, and the next second it was all ripped away from us.
+Wizard: Cursed into these monstrous beings. Our home, desecrated by the hands of humans. Forced to flee, and violently rejected everywhere we went.
+Wizard: I know not where the others ran off to. I always thought I was the only one who survived.
+Wizard: But another hybrid in front of me, generations later... perhaps...
+{{Globals.MC}}: Hold on, you weren't born a hybrid? I've never heard of that, except from the very first hybrids 100 years ago--
+{{Globals.MC}}: YOU! You were one of the firsts?!
+{{Globals.MC}}: You were-- you there for the incident that destroyed all those humans' homes? Their lives?
+Wizard: We had no idea! We were turned into mutants and forced to fend for ourselves!
+Wizard: We saw food and ate it. We saw shelter and took it. By the time we learned about all the rules, the humans had slaughtered and driven us out.
+Wizard: Life was miserable since the curse, and I've been trying to fix it ever since.
+{{Globals.MC}}: It was cruel what happened to you. I guess I only heard of the incident through the humans, about how a bunch of hybrids came and destroyed everything.
+{{Globals.MC}}: I never knew they were cursed, and confused, and scared.
+Wizard: Exactly. These humans will never accept us. The only solution for us to be happy is to go back to our lives as animals.
+Wizard: Did you know toads, the little ones, they run from me?
+Wizard: If we could all turn back, we could have a home again.
+{{Globals.MC}}: If you turn back time, maybe you'd be happy again, but what about hybrids now? We'd all cease to exist?
+Wizard: I-I'll find a way. I'm sure of it. A few more iterations is all it'll take.
+Wizard: If-- When the time comes, I trust you'll stand by me?
+{{Globals.MC}}: ... Living with humans has always been tough. I really hate it sometimes.
+{{Globals.MC}}: I hate that everyone immediately sees my weakness.
+{{Globals.MC}}: I hate that no one knows how to act around me, or they think I have to be treated with special gloves.
+{{Globals.MC}}: But when I really think about it, with just my own thoughts and not the thoughts and judgments of others:
+{{Globals.MC}}: I kinda do like who I am, even though I'm not strong or tall, and won't live long.
+{{Globals.MC}}: I don't see much of myself in humans, but nor do I see myself in rabbits either.
+#{{Globals.MC}}: I don't want to have to become one or the other. I just want to be myself and be accepted the way I am.
+{{Globals.MC}}: Even though I don't have a home in the village anymore, I want to find a home for myself to be the hybrid I am.
+{{Globals.MC}}: So, no. I'm not with you. If you want to become a toad, so be it, but let the rest of us hybrids decide our own fates.
+Wizard: [tornado]sigh...[/tornado]
+Wizard: Being a hybrid is all you've known. Sure, you think it's better now, but that's because you don't know better.
+Wizard: You haven't seen the swamp the way I have. A pond you'd deem insignifant stretches out like the sky: vast, endless, glistening like no gemstone you've ever seen.
+Wizard: No wars over land, or property. You hop on a lily pad, feel the sun on your skin, and let the rhythm of the water lull you to sleep.
+Wizard: It is impossible to simply undo the curse, let alone for a single individual.
+Wizard: The only way is to turn back.
+# wizard casting spell
+do addWhiteOverlay()
+do playSound('spellcasting')
+do delay(1.0)
+{{Globals.MC}}: Ugh, no! NO! Stop!!
+# cast, loops
+do removeWhiteOverlay()
+=> END
 
-#let player jump and kill
+~ letter3
+#do growBranch()
+{{Globals.MC}}: Ugh... 
 => END
 
 ~ test_dialogue_1
