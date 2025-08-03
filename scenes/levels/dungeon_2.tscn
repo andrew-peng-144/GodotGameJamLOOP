@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bco4gqsflcwd7" path="res://scenes/levels/game2-main1.tres" id="2_buvxe"]
 [ext_resource type="PackedScene" uid="uid://x7eucgslsxye" path="res://scenes/platforming/spikes.tscn" id="4_h4t8u"]
 [ext_resource type="PackedScene" uid="uid://chf3n27hyqvs4" path="res://scenes/platforming/platform.tscn" id="5_0dqjk"]
-[ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="6_0bc6d"]
+[ext_resource type="PackedScene" path="res://scenes/triggers/door.tscn" id="6_0bc6d"]
 [ext_resource type="PackedScene" uid="uid://cq73qfmma2kf" path="res://scenes/enemies/slime.tscn" id="9_1tpyt"]
 [ext_resource type="PackedScene" uid="uid://coedpyeoonamd" path="res://scenes/triggers/scene_transition_area.tscn" id="9_36ao4"]
 [ext_resource type="PackedScene" uid="uid://cqswgck5dl3cn" path="res://scenes/triggers/checkpoint.tscn" id="9_fu6xk"]

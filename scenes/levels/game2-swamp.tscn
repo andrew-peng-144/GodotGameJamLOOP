@@ -1,4 +1,4 @@
-[gd_scene load_steps=177 format=4 uid="uid://dijeu5qieagx7"]
+[gd_scene load_steps=179 format=4 uid="uid://dijeu5qieagx7"]
 
 [ext_resource type="Script" path="res://scenes/levels/game2_swamp_cutscenes.gd" id="1_cw1og"]
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_s4y4t"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://ovh27pponqc0" path="res://assets/Swamp/tree.png" id="28_5pecf"]
 [ext_resource type="Texture2D" uid="uid://dd02g6vg16im7" path="res://assets/Swamp/vine.png" id="29_no8tq"]
 [ext_resource type="Texture2D" uid="uid://3c6yx3c6n4de" path="res://assets/sprites/trapdoors.png" id="30_im268"]
+[ext_resource type="PackedScene" uid="uid://coedpyeoonamd" path="res://scenes/triggers/scene_transition_area.tscn" id="32_br2f4"]
 [ext_resource type="Texture2D" uid="uid://dh2d5dkitiym4" path="res://assets/sprites/longbranch.png" id="42_ims3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5duh"]
@@ -1193,6 +1194,8 @@ shader_parameter/tint_color = Color(1, 1, 0.5, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsifk"]
 size = Vector2(30, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5mm8"]
+
 [node name="Game" type="Node2D"]
 
 [node name="Cutscenes" type="Node" parent="."]
@@ -1814,5 +1817,15 @@ offset_left = -3.0
 offset_top = -7.0
 offset_right = 2105.0
 offset_bottom = 495.0
+
+[node name="SceneTransitionArea" parent="." instance=ExtResource("32_br2f4")]
+position = Vector2(1643, 212)
+door_id = "swamp_entrance"
+next_scene_file = ""
+next_scene_door_id = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionArea"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_p5mm8")
 
 [connection signal="body_entered" from="Cutscenes/PlayerDetectorForInitialCutscene" to="Cutscenes" method="_on_player_detector_for_initial_cutscene_body_entered"]

@@ -3,19 +3,21 @@ extends Node
 @onready var intro_dialogue: Area2D = $IntroDialogue
 var player = null
 @onready var playerInstance: Player = $"../Player"
-@onready var wizard: CharacterBody2D = %Wizard
+@onready var wizard: Area2D = %Wizard
 @onready var intro_dialogue_collision_shape: CollisionShape2D = %introDialogueCollisionShape
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	#Globals.loop_count = 2
-	if Globals.loop_count == 2:
+	if Globals.hasVisitedSwamp:
 		# with wizard
 		# cutscene opening should change
 		playerInstance.position = Vector2(1574, 236)
 		intro_dialogue_collision_shape.position = Vector2(1574, 236)
 		wizard.position = Vector2(1499, 241)
 		intro_dialogue.dialogue_start = "wizardSwamp"
+	Globals.hasVisitedSwamp = true
 	#else:
 		#print("Loop count isn't 0 or 1...?")
 

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://da2cgv7pcx0mt" path="res://assets/sprites/dungeon_wizard/mountains.png" id="2_bjb6m"]
 [ext_resource type="Texture2D" uid="uid://cjbfblsn18e0i" path="res://assets/SUNNYLAND/Props/spikes.png" id="3_c8037"]
 [ext_resource type="PackedScene" uid="uid://3y5kn2ut0yhq" path="res://scenes/npcs/actionable.tscn" id="3_qmrb0"]
-[ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="6_gico7"]
+[ext_resource type="PackedScene" path="res://scenes/triggers/door.tscn" id="6_gico7"]
 [ext_resource type="PackedScene" uid="uid://cq73qfmma2kf" path="res://scenes/enemies/slime.tscn" id="7_nt0wi"]
 [ext_resource type="PackedScene" uid="uid://bjeakr0b2bom2" path="res://scenes/pickups/coin.tscn" id="8_6pdx2"]
 [ext_resource type="PackedScene" uid="uid://dly2facgb200l" path="res://scenes/enemies/wizard.tscn" id="12_sbm1f"]

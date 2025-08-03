@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://d1b6g3eftm5nc"]
+[gd_scene load_steps=102 format=4 uid="uid://d1b6g3eftm5nc"]
 
 [ext_resource type="Script" path="res://scenes/levels/game2_loop2_cutscenes.gd" id="1_6ayyw"]
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_m10ia"]
@@ -51,8 +51,9 @@
 [ext_resource type="Texture2D" uid="uid://b3vy2811stmeb" path="res://assets/sprites/bar.png" id="47_vhitp"]
 [ext_resource type="Texture2D" uid="uid://c1v3ven7xtdv8" path="res://assets/sprites/tavern-door.png" id="48_qjy83"]
 [ext_resource type="Texture2D" uid="uid://df6bmgptwe3nu" path="res://assets/sprites/asdf.png" id="49_y8eg2"]
-[ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="52_wook1"]
+[ext_resource type="PackedScene" path="res://scenes/triggers/door.tscn" id="52_wook1"]
 [ext_resource type="PackedScene" uid="uid://beh6jws8rltbu" path="res://scenes/triggers/checkpoint_no_sprite.tscn" id="53_lcd3q"]
+[ext_resource type="PackedScene" uid="uid://coedpyeoonamd" path="res://scenes/triggers/scene_transition_area.tscn" id="54_jlqln"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dau4i"]
 size = Vector2(49, 55)
@@ -349,6 +350,9 @@ size = Vector2(31, 876)
 size = Vector2(31, 47)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40b35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjr25"]
+size = Vector2(20, 319)
 
 [node name="Game" type="Node2D"]
 
@@ -1097,5 +1101,15 @@ next_scene_door_id = "outside_dungeon_1_entrance"
 
 [node name="CheckpointNoSprite" parent="." instance=ExtResource("53_lcd3q")]
 position = Vector2(349, 226)
+
+[node name="SceneTransitionArea" parent="." instance=ExtResource("54_jlqln")]
+position = Vector2(-102, 191)
+door_id = "vines"
+next_scene_file = "res://scenes/levels/game2-swamp.tscn"
+next_scene_door_id = "swamp_entrance"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionArea"]
+position = Vector2(0, -136)
+shape = SubResource("RectangleShape2D_yjr25")
 
 [connection signal="body_entered" from="Cutscenes/PlayerDetectorForInitialCutscene" to="Cutscenes" method="_on_player_detector_for_initial_cutscene_body_entered"]
