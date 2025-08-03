@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dld11jjif5foy"]
+[gd_scene load_steps=26 format=4 uid="uid://dld11jjif5foy"]
 
 [ext_resource type="PackedScene" uid="uid://cphvj3awqo71f" path="res://scenes/player/player.tscn" id="1_dm4kc"]
 [ext_resource type="Script" path="res://scenes/levels/dungeon_wizard_cutscenes.gd" id="1_edb5g"]
@@ -12,12 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="6_gico7"]
 [ext_resource type="PackedScene" uid="uid://cq73qfmma2kf" path="res://scenes/enemies/slime.tscn" id="7_nt0wi"]
 [ext_resource type="PackedScene" uid="uid://bjeakr0b2bom2" path="res://scenes/pickups/coin.tscn" id="8_6pdx2"]
+[ext_resource type="PackedScene" uid="uid://cqswgck5dl3cn" path="res://scenes/triggers/checkpoint.tscn" id="9_0mkys"]
 [ext_resource type="PackedScene" uid="uid://dly2facgb200l" path="res://scenes/enemies/wizard.tscn" id="12_sbm1f"]
 [ext_resource type="Script" path="res://scenes/npcs/actionable.gd" id="13_p6cv5"]
 [ext_resource type="Resource" uid="uid://jbsd78prqwes" path="res://assets/dialogue/main.dialogue" id="14_pif5u"]
 [ext_resource type="PackedScene" uid="uid://b1rwvgk2jifcb" path="res://scenes/ui/speechbubble.tscn" id="15_cc0nr"]
 [ext_resource type="PackedScene" uid="uid://d4q2na3oe0ik" path="res://scenes/platforming/platform_dungeon.tscn" id="18_sd0m0"]
-[ext_resource type="PackedScene" uid="uid://dl758vqgfcmat" path="res://scenes/triggers/moving_spell_fireball.tscn" id="19_bsaet"]
+[ext_resource type="PackedScene" uid="uid://dl758vqgfcmat" path="res://scenes/triggers/moving_spell.tscn" id="19_bsaet"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lbuil"]
 
@@ -132,9 +133,8 @@ size = Vector2(15, 20)
 
 [node name="DungeonWizard" type="Node2D"]
 
-[node name="Cutscenes" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="Cutscenes" type="Node" parent="."]
 script = ExtResource("1_edb5g")
-player = NodePath("../Player")
 
 [node name="Markers" type="Node" parent="Cutscenes"]
 
@@ -164,9 +164,6 @@ position = Vector2(160, 128)
 
 [node name="Floor2Left2" type="Node2D" parent="Cutscenes/Markers"]
 position = Vector2(224, 128)
-
-[node name="Floor2Mid" type="Node2D" parent="Cutscenes/Markers"]
-position = Vector2(336, 151)
 
 [node name="Floor2Right1" type="Node2D" parent="Cutscenes/Markers"]
 position = Vector2(448, 128)
@@ -232,10 +229,7 @@ position = Vector2(104, 255)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -38)
 zoom = Vector2(3, 3)
-limit_left = 0
-limit_top = -120
-limit_right = 666
-limit_bottom = 386
+limit_bottom = 450
 limit_smoothed = true
 position_smoothing_enabled = true
 
@@ -249,9 +243,9 @@ tile_set = SubResource("TileSet_widqi")
 
 [node name="Door" parent="." instance=ExtResource("6_gico7")]
 position = Vector2(104, 256)
-door_id = "dungeon_1_to_boss"
-next_scene_file = ""
-next_scene_door_id = ""
+door_id = "dungeon_2_door_1"
+next_scene_file = "res://scenes/levels/dungeon_1.tscn"
+next_scene_door_id = "dungeon_1_door_1"
 
 [node name="Slime" parent="." instance=ExtResource("7_nt0wi")]
 visible = false
@@ -259,6 +253,9 @@ position = Vector2(169, 389)
 
 [node name="Coin" parent="." instance=ExtResource("8_6pdx2")]
 position = Vector2(194, 191)
+
+[node name="Checkpoint" parent="." instance=ExtResource("9_0mkys")]
+position = Vector2(89, 256)
 
 [node name="Wizard" parent="." instance=ExtResource("12_sbm1f")]
 unique_name_in_owner = true
@@ -343,7 +340,7 @@ position = Vector2(177, 168)
 [node name="Platform8" parent="Platforms" instance=ExtResource("18_sd0m0")]
 position = Vector2(145, 168)
 
-[node name="MovingSpellFireball" parent="." instance=ExtResource("19_bsaet")]
+[node name="MovingSpell" parent="." instance=ExtResource("19_bsaet")]
 position = Vector2(120, 189)
 
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]

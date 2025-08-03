@@ -12,7 +12,7 @@ func _ready():
 	if self.is_in_group("scene_transition_areas"):
 		# Disable Scene Transition Area for short time to prevent looping.
 		collision_shape_2d.disabled = true
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(1.5).timeout
 		collision_shape_2d.disabled = false
 #@onready var scene_transition_animation_player: Node = $SceneTransitionAnimation/AnimationPlayer
 #

@@ -11,8 +11,9 @@ const MIDAIR_JUMP_SPEED = 450.0
 #const JUMP_VELOCITY_1 = -260.0
 #const JUMP_VELOCITY_2 = -360.0
 #const JUMP_VELOCITY_3 = -440.0
-const MAX_SPEED = 130.0
-const MAX_SPEED_AIR = 130.0
+const MAX_SPEED_X = 130.0
+const MAX_SPEED_X_AIR = 130.0
+const MAX_SPEED_Y = 600
 const SHORT_HOP_RATIO = 0.75
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -31,6 +32,7 @@ var input_direction: int = 0
 var dialogue_locked = false
 var is_dead = false
 var is_stopped = false
+var invuln = false
 
 #var triple_jump_progress = 0 # 1, 2, or 3. 0 is invalid.
 
@@ -48,9 +50,10 @@ func _ready() -> void:
 		global_position = Globals.current_checkpoint_position
 		camera_2d.force_update_scroll()
 		camera_2d.reset_smoothing()
+		Globals.last_scene_transition_from_death = false
 	elif Globals.door_id_to_spawn_at:
 		for door in get_tree().get_nodes_in_group("doors"):
-			#print(door.door_id+" =? "+Globals.door_id_to_spawn_at)
+			print(door.door_id+" =? "+Globals.door_id_to_spawn_at)
 			if door.door_id == Globals.door_id_to_spawn_at:
 				#print("MATC")
 				if Globals.door_direction_x > 0:
@@ -64,7 +67,7 @@ func _ready() -> void:
 				camera_2d.force_update_scroll()
 				camera_2d.reset_smoothing()
 				break
-		
+	# else: spawn at player position in editor?
 		
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -84,7 +87,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 				return
 				
 	# Handle jump.	
-	var max_midair_jumps = Globals.loop_count
+	var max_midair_jumps = Globals.loop_count + 1
 	if is_on_floor():
 		midair_jumps_remaining = max_midair_jumps
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -94,10 +97,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 			print(triggers)
 			if triggers[0] is Door:
 				if triggers[0].is_in_group("doors") and not triggers[0].is_in_group("scene_transition_areas"):
-					Globals.door_id_to_spawn_at = triggers[0].next_scene_door_id
-					Globals.door_direction_x = 0
-					Globals.last_scene_transition_from_death = false
-					change_scene(triggers[0].next_scene_file)
+					if triggers[0].next_scene_door_id and triggers[0].next_scene_file:
+						Globals.door_id_to_spawn_at = triggers[0].next_scene_door_id
+						Globals.door_direction_x = 0
+						Globals.last_scene_transition_from_death = false
+						change_scene(triggers[0].next_scene_file)
 		else:
 			AudioManager.jump_low.play()
 			velocity.y = JUMP_VELOCITY
@@ -126,8 +130,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 func _process(delta: float):
 	GlobalUI.set_debug_text("Current Scene",get_tree().current_scene.scene_file_path)
 	
+	GlobalUI.set_debug_text("player position", str(position.x)+","+str(position.y))
 	GlobalUI.set_debug_text("player.midair_jumps_remaining", str(midair_jumps_remaining))
 	GlobalUI.set_debug_text("player.dialogue_locked", str(dialogue_locked))
+	GlobalUI.set_debug_text("player.invuln", str(invuln))
 	
 	GlobalUI.set_debug_text("freeze_player_input", str(Globals.freeze_player_input))
 	GlobalUI.set_debug_text("coins", str(Globals.coins))
@@ -145,6 +151,8 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor() and not is_dead:
 		velocity.y += gravity * delta
+		if (velocity.y > MAX_SPEED_Y):
+			velocity.y = MAX_SPEED_Y
 	
 	# Apply movement
 	if dialogue_locked:
@@ -153,12 +161,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		if is_on_floor():
 			if input_direction:
-				velocity.x = move_toward(velocity.x, input_direction * MAX_SPEED, ACCEL * delta)
+				velocity.x = move_toward(velocity.x, input_direction * MAX_SPEED_X, ACCEL * delta)
 			else:
 				velocity.x = move_toward(velocity.x, 0, DECEL * delta)
 		else:
 			if input_direction:
-				velocity.x = move_toward(velocity.x, input_direction * MAX_SPEED_AIR, ACCEL_AIR * delta)
+				velocity.x = move_toward(velocity.x, input_direction * MAX_SPEED_X_AIR, ACCEL_AIR * delta)
 			else:
 				velocity.x = move_toward(velocity.x, 0, DECEL_AIR * delta)
 
@@ -198,13 +206,25 @@ func stop():
 	is_stopped = true
 
 func DIE(): # rip
-	is_dead = true
-	is_stopped = true
-	print("You died")
-	self.get_node("CollisionShape2D").queue_free()
-	killzone_sensor.queue_free()
-	animated_sprite.play("death")
-	after_death_timer.start()
+	if invuln:
+		print("invuln, can't die")
+		return
+	elif Globals.godmode:
+		print("godmode, cant die")
+		return
+	else:
+		is_dead = true
+		is_stopped = true
+		print("You died")
+		self.get_node("CollisionShape2D").queue_free()
+		killzone_sensor.queue_free()
+		animated_sprite.play("death")
+		after_death_timer.start()
+	
+func make_invuln(time_in_seconds: float):
+	invuln = true
+	await get_tree().create_timer(time_in_seconds).timeout
+	invuln = false
 	
 func change_scene(next_scene_file: String):
 	GlobalUI.play_fade_in()
@@ -227,10 +247,11 @@ func _on_after_death_timer_timeout() -> void:
 # when player steps into any trigger zones.
 func _on_trigger_sensor_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area is Door and area.is_in_group("scene_transition_areas"):
-		Globals.door_id_to_spawn_at = area.next_scene_door_id
-		Globals.door_direction_x = area.door_direction_x
-		Globals.last_scene_transition_from_death = false
-		change_scene(area.next_scene_file)
+		if area.next_scene_door_id and area.next_scene_file:
+			Globals.door_id_to_spawn_at = area.next_scene_door_id
+			Globals.door_direction_x = area.door_direction_x
+			Globals.last_scene_transition_from_death = false
+			change_scene(area.next_scene_file)
 
 # when player steps into any killzones
 func _on_killzone_sensor_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:

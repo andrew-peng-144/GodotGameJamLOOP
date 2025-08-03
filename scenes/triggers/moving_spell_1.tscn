@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://dp0s5urlei44s"]
+
+[ext_resource type="Script" path="res://scenes/triggers/moving_spell.gd" id="1_b5gy3"]
+[ext_resource type="Texture2D" uid="uid://borcpni0b4yly" path="res://assets/sprites/spells.png" id="1_lkxou"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_714cj"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hci47"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0aseo"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcpjc"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(192, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp8ct"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44fqq"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsugq"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(384, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjjip"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(448, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu8s2"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(512, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fflju"]
+atlas = ExtResource("1_lkxou")
+region = Rect2(576, 448, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_27m3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_714cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hci47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0aseo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcpjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp8ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44fqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsugq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjjip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu8s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fflju")
+}],
+"loop": true,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4bgh3"]
+radius = 20.2237
+
+[node name="MovingSpell" type="Area2D" groups=["killzones"]]
+collision_layer = 256
+script = ExtResource("1_b5gy3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_27m3f")
+autoplay = "default"
+frame_progress = 0.722339
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4bgh3")

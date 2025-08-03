@@ -105,7 +105,8 @@ Wizard: Hmph. It can't be helped. I'm not doing it on purpose. It's just a side 
 {{Globals.MC}}: Not ordinary magic, I take it.
 Wizard: No. And I've never cared about that stupid village, ever since [tornado]the incident[/tornado]. 
 Wizard: If only you knew, rabbit... that no one there deserves to live!
-do onWizardDeath1() #REMOVE THIS!!!
+#do onWizardDeath1() #REMOVE THIS!!!
+do onWizardStartFight1()
 => END
 
 ~ beatwizard1
