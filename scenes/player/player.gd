@@ -24,8 +24,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var killzone_sensor: Area2D = $KillzoneSensor
 @onready var trigger_sensor: Area2D = $TriggerSensor
-@onready var screen_transition_animation_player: Node = $ScreenTransitionAnimation/AnimationPlayer
-@onready var screen_transition_animation_color_rect: ColorRect = $ScreenTransitionAnimation/ColorRect
 
 
 var input_direction: int = 0
@@ -36,7 +34,6 @@ var is_stopped = false
 
 #var triple_jump_progress = 0 # 1, 2, or 3. 0 is invalid.
 
-var max_midair_jumps = 3
 var midair_jumps_remaining = 0
 
 
@@ -44,13 +41,31 @@ var midair_jumps_remaining = 0
 
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
-	
-	screen_transition_animation_color_rect.visible = true # so it's invisible only in editor.
-	screen_transition_animation_player.play("fade_out")
+	GlobalUI.play_fade_out()
 	
 	# Move to previous checkpoint
 	if (Globals.last_scene_transition_from_death):
 		global_position = Globals.current_checkpoint_position
+		camera_2d.force_update_scroll()
+		camera_2d.reset_smoothing()
+	elif Globals.door_id_to_spawn_at:
+		for door in get_tree().get_nodes_in_group("doors"):
+			#print(door.door_id+" =? "+Globals.door_id_to_spawn_at)
+			if door.door_id == Globals.door_id_to_spawn_at:
+				#print("MATC")
+				if Globals.door_direction_x > 0:
+					global_position = door.global_position + Vector2(48, 0) # may need to scale, or keep all zones consistently sized
+					animated_sprite.flip_h = false
+				elif Globals.door_direction_x < 0:
+					global_position = door.global_position + Vector2(-48, 0)
+					animated_sprite.flip_h = true
+				else:
+					global_position = door.global_position
+				camera_2d.force_update_scroll()
+				camera_2d.reset_smoothing()
+				break
+		
+		
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Globals.freeze_player_input or is_stopped:
@@ -69,6 +84,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 				return
 				
 	# Handle jump.	
+	var max_midair_jumps = Globals.loop_count
 	if is_on_floor():
 		midair_jumps_remaining = max_midair_jumps
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -77,8 +93,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 		if triggers.size() > 0:
 			print(triggers)
 			if triggers[0] is Door:
-				Globals.last_scene_transition_from_death = false
-				change_scene(triggers[0].next_scene_file)
+				if triggers[0].is_in_group("doors") and not triggers[0].is_in_group("scene_transition_areas"):
+					Globals.door_id_to_spawn_at = triggers[0].next_scene_door_id
+					Globals.door_direction_x = 0
+					Globals.last_scene_transition_from_death = false
+					change_scene(triggers[0].next_scene_file)
 		else:
 			AudioManager.jump_low.play()
 			velocity.y = JUMP_VELOCITY
@@ -114,6 +133,7 @@ func _process(delta: float):
 	GlobalUI.set_debug_text("coins", str(Globals.coins))
 	GlobalUI.set_debug_text("current_checkpoint_position", str(Globals.current_checkpoint_position))
 	GlobalUI.set_debug_text("current_checkpoint_scene_path", str(Globals.current_checkpoint_scene_path))
+	GlobalUI.set_debug_text("door_id_to_spawn_at", str(Globals.door_id_to_spawn_at))
 
 	
 func _physics_process(delta: float) -> void:
@@ -123,7 +143,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not is_dead:
 		velocity.y += gravity * delta
 	
 	# Apply movement
@@ -179,15 +199,16 @@ func stop():
 
 func DIE(): # rip
 	is_dead = true
+	is_stopped = true
 	print("You died")
 	self.get_node("CollisionShape2D").queue_free()
 	killzone_sensor.queue_free()
 	after_death_timer.start()
 	
 func change_scene(next_scene_file: String):
-	screen_transition_animation_player.play("fade_in")
+	GlobalUI.play_fade_in()
 	is_stopped = true
-	await screen_transition_animation_player.animation_finished
+	await GlobalUI.animation_player.animation_finished
 	get_tree().change_scene_to_file(next_scene_file)
 	is_stopped = false
 	
@@ -204,7 +225,10 @@ func _on_after_death_timer_timeout() -> void:
 
 # when player steps into any trigger zones.
 func _on_trigger_sensor_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if area is SceneTransitionArea:
+	if area is Door and area.is_in_group("scene_transition_areas"):
+		Globals.door_id_to_spawn_at = area.next_scene_door_id
+		Globals.door_direction_x = area.door_direction_x
+		Globals.last_scene_transition_from_death = false
 		change_scene(area.next_scene_file)
 
 # when player steps into any killzones

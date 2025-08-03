@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://coedpyeoonamd"]
 
-[ext_resource type="Script" path="res://scenes/triggers/scene_transition_area.gd" id="1_l22lj"]
+[ext_resource type="Script" path="res://scenes/triggers/door.gd" id="1_qbchw"]
 
-[node name="SceneTransitionArea" type="Area2D"]
+[node name="SceneTransitionArea" type="Area2D" groups=["doors", "scene_transition_areas"]]
 collision_layer = 64
 collision_mask = 0
-script = ExtResource("1_l22lj")
+script = ExtResource("1_qbchw")

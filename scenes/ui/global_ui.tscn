@@ -1,6 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://rmifjuuvbig"]
+[gd_scene load_steps=7 format=3 uid="uid://rmifjuuvbig"]
 
 [ext_resource type="Script" path="res://scenes/ui/global_ui.gd" id="1_jkp8f"]
+
+[sub_resource type="Animation" id="Animation_oh8x5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qei2m"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kyan6"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l4q2v"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mtlle"]
+_data = {
+"RESET": SubResource("Animation_oh8x5"),
+"fade_in": SubResource("Animation_qei2m"),
+"fade_out": SubResource("Animation_kyan6"),
+"new_animation": SubResource("Animation_l4q2v")
+}
 
 [node name="GlobalUI" type="Control"]
 layout_mode = 3
@@ -32,3 +89,21 @@ offset_top = 45.0
 offset_right = 98.0
 offset_bottom = 68.0
 text = "TEST"
+
+[node name="ScreenTransitionAnimation" type="Node" parent="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ScreenTransitionAnimation"]
+anchors_preset = -1
+anchor_right = 5.82899
+anchor_bottom = 5.67901
+offset_left = -3259.0
+offset_top = -1579.0
+offset_right = -2091.0
+offset_bottom = -919.0
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ScreenTransitionAnimation"]
+libraries = {
+"": SubResource("AnimationLibrary_mtlle")
+}

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 60.0
 @export var jump_velocity = -250
-@onready var game_manager: Node = %GameManager
+
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -18,6 +18,7 @@ var dead = false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var collision_shape_top: CollisionShape2D = $TopArea/CollisionShape2D
+@onready var kill_zone_collision_shape: CollisionShape2D = $KillZone/CollisionShape2D
 
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,13 +38,14 @@ func _physics_process(delta: float) -> void:
 			
 		if !is_chasing_player:
 			velocity.x += direction * speed * delta # accleration?
-		else:
-			var dir_to_player = position.direction_to(game_manager.player_body.position)
-			velocity.x = dir_to_player.x * speed
+		#else:
+			#var dir_to_player = position.direction_to(game_manager.player_body.position)
+			#velocity.x = dir_to_player.x * speed
 			
 		is_roaming = true
 	elif dead:
 		velocity.x = 0
+		return
 		
 	move_and_slide()
 	update_animations(direction)
@@ -65,22 +67,30 @@ func update_animations(direction):
 		animated_sprite.play("jump")
 		
 func die():
+	dead = true
+	collision_shape.disabled = true
+	collision_shape_top.disabled = true
+	kill_zone_collision_shape.disabled = true
 	animated_sprite.play("death")
-	collision_shape.set_deferred("disabled", true) # "Can't change this state while flushing queries" error
-	collision_shape_top.set_deferred("disabled", true)
 	await animated_sprite.animation_finished
+	#print("waited.")
 	queue_free()
 	
 	
 
+# TopArea
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	print(body.name)
+func _on_top_area_body_entered(body: Node2D) -> void:
+	#print(body.name)
 	if(body.is_in_group("player_body")):
 		print("FROM ANOVE!!")
 		die()
 		
-
+# KillZone
+func _on_kill_zone_body_entered(body: Node2D) -> void:
+	print(body.name)
+	if(body.is_in_group("player_body")):
+		body.DIE()
 
 func _on_direction_timer_timeout() -> void:
 	$DirectionTimer.wait_time = choose([1.5,2.0,2.5])

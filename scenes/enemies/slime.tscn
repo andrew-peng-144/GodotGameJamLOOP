@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cq73qfmma2kf"]
+[gd_scene load_steps=37 format=3 uid="uid://cq73qfmma2kf"]
 
 [ext_resource type="Script" path="res://scenes/enemies/slime.gd" id="1_55ukx"]
 [ext_resource type="Texture2D" uid="uid://die6054e01bw8" path="res://assets/sprites/SLIME/Slime_Idle.png" id="1_ybx46"]
@@ -132,7 +132,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dwy0f")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 8.0
 }, {
@@ -225,10 +225,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_36byd"]
-radius = 5.0
+radius = 3.16228
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fw2lp"]
 size = Vector2(8, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqtag"]
+size = Vector2(12, 5)
 
 [node name="Slime" type="CharacterBody2D"]
 collision_layer = 4
@@ -238,9 +241,8 @@ script = ExtResource("1_55ukx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_0hr2j")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.698873
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, -4)
@@ -253,19 +255,28 @@ target_position = Vector2(-9, 0)
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_36byd")
 
 [node name="TopArea" type="Area2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, 5)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopArea"]
-position = Vector2(0, -15)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_fw2lp")
+
+[node name="KillZone" type="Area2D" parent="."]
+position = Vector2(0, 6)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_sqtag")
 
 [node name="DirectionTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_entered" from="TopArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="TopArea" to="." method="_on_top_area_body_entered"]
+[connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

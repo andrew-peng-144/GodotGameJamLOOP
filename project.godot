@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameJamLOOP"
-run/main_scene="res://scenes/main_scene.tscn"
+run/main_scene="res://scenes/levels/game2.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -41,6 +41,7 @@ speechbubble=""
 player_body=""
 killzones=""
 doors=""
+scene_transition_areas=""
 
 [input]
 
