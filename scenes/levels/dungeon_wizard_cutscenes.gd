@@ -4,7 +4,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Globals.loop_count = 2; #REMOVE THIS!!!
+	#Globals.loop_count = 2; #REMOVE THIS!!!
 	if Globals.loop_count == 0:
 		print("First time in wizard's dungeon.")
 	elif Globals.loop_count == 1:
