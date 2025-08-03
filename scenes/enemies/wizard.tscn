@@ -132,10 +132,6 @@ region = Rect2(465, 0, 93, 77)
 atlas = ExtResource("2_u3po3")
 region = Rect2(558, 0, 93, 77)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xxlp7"]
-atlas = ExtResource("5_u7rd4")
-region = Rect2(0, 0, 93, 77)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_xm2yl"]
 atlas = ExtResource("5_u7rd4")
 region = Rect2(93, 0, 93, 77)
@@ -147,6 +143,10 @@ region = Rect2(186, 0, 93, 77)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4la11"]
 atlas = ExtResource("5_u7rd4")
 region = Rect2(279, 0, 93, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxlp7"]
+atlas = ExtResource("5_u7rd4")
+region = Rect2(0, 0, 93, 77)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74vao"]
 atlas = ExtResource("2_6ypep")
@@ -478,9 +478,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xxlp7")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_xm2yl")
 }, {
 "duration": 1.0,
@@ -488,6 +485,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4la11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxlp7")
 }],
 "loop": false,
 "name": &"hurt",
@@ -790,8 +790,10 @@ script = ExtResource("1_kjspg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -17)
 sprite_frames = SubResource("SpriteFrames_wcht8")
-animation = &"idle"
+animation = &"hurt"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)

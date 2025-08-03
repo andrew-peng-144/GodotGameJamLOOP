@@ -1,11 +1,13 @@
-[gd_scene load_steps=25 format=4 uid="uid://bm48p1xg67nfd"]
+[gd_scene load_steps=27 format=4 uid="uid://bm48p1xg67nfd"]
 
+[ext_resource type="PackedScene" uid="uid://bolybwd6iuflo" path="res://scenes/music.tscn" id="1_1iptf"]
 [ext_resource type="PackedScene" uid="uid://cphvj3awqo71f" path="res://scenes/player/player.tscn" id="1_82pqb"]
+[ext_resource type="AudioStream" uid="uid://ch1m3me1cmqgq" path="res://assets/music/exploration.ogg" id="2_3ctil"]
 [ext_resource type="TileSet" uid="uid://bco4gqsflcwd7" path="res://scenes/levels/game2-main1.tres" id="2_6very"]
 [ext_resource type="Texture2D" uid="uid://cjbfblsn18e0i" path="res://assets/SUNNYLAND/Props/spikes.png" id="3_7o0bw"]
 [ext_resource type="PackedScene" uid="uid://x7eucgslsxye" path="res://scenes/platforming/spikes.tscn" id="4_hjxwa"]
 [ext_resource type="PackedScene" uid="uid://chf3n27hyqvs4" path="res://scenes/platforming/platform.tscn" id="5_7eby5"]
-[ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="6_m0kym"]
+[ext_resource type="PackedScene" path="res://scenes/triggers/door.tscn" id="6_m0kym"]
 [ext_resource type="PackedScene" uid="uid://bjeakr0b2bom2" path="res://scenes/pickups/coin.tscn" id="7_wep3s"]
 [ext_resource type="PackedScene" uid="uid://cqswgck5dl3cn" path="res://scenes/triggers/checkpoint.tscn" id="8_02kld"]
 [ext_resource type="PackedScene" uid="uid://coedpyeoonamd" path="res://scenes/triggers/scene_transition_area.tscn" id="8_y7202"]
@@ -144,6 +146,12 @@ _data = {
 size = Vector2(26, 64)
 
 [node name="Dungeon1" type="Node2D"]
+
+[node name="Music" parent="." instance=ExtResource("1_1iptf")]
+unique_name_in_owner = true
+stream = ExtResource("2_3ctil")
+autoplay = true
+attenuation = 8.93607e-05
 
 [node name="Player" parent="." instance=ExtResource("1_82pqb")]
 z_index = 5

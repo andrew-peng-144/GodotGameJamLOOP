@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/megabot.ogg-4eb2f781414e03a51b680c77880f2c11.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

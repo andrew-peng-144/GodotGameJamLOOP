@@ -8,8 +8,7 @@ var player = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	#Globals.loop_count = 2
+	Globals.hasVisitedSwamp = true #REMOVETHIS!!!
 	if Globals.hasVisitedSwamp:
 		# with wizard
 		# cutscene opening should change

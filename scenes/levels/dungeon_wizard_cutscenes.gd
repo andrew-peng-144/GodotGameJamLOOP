@@ -21,6 +21,8 @@ extends Node
 @onready var floor_3_mid: Node2D = $Markers/Floor3Mid
 @onready var floor_4_left: Node2D = $Markers/Floor4Left
 @onready var floor_4_right: Node2D = $Markers/Floor4Right
+@onready var music: AudioStreamPlayer2D = %Music
+@onready var fight_music: AudioStreamPlayer2D = %fightMusic
 
 @onready var wizard: Wizard = %Wizard
 @onready var wizard_actionable_collision_shape: CollisionShape2D = $"../Wizard/Area2D/CollisionShape2D"
@@ -58,12 +60,17 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if wizard.dead and Globals.loop_count == 0:
+		fight_music.stop()
 		wizard_kill_dialogue.onWizardDeath1()
+		#await get_tree().create_timer(1.0).timeout
+		music.play()
 		wizard.dead = false
 	
 func start_fight_1() -> void:
 	print("BATTLE WITH WIZARD 1 STARTED!")
 	# TODO change music
+	music.stop()
+	fight_music.play()
 	
 	player.invuln = false
 	# disable door

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/magic cliffs.ogg-60b54e3465ef22607d4cf322e12c
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=179 format=4 uid="uid://dijeu5qieagx7"]
+[gd_scene load_steps=180 format=4 uid="uid://dijeu5qieagx7"]
 
 [ext_resource type="Script" path="res://scenes/levels/game2_swamp_cutscenes.gd" id="1_cw1og"]
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_s4y4t"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cou5qxw4r0t88" path="res://scenes/triggers/killzone.tscn" id="8_j32o5"]
 [ext_resource type="AudioStream" uid="uid://dsgutfhfrcidn" path="res://assets/music/dark-ambient-music-312290.mp3" id="8_kbgoj"]
 [ext_resource type="PackedScene" uid="uid://bolybwd6iuflo" path="res://scenes/music.tscn" id="9_msvav"]
+[ext_resource type="AudioStream" uid="uid://kf0k55t25g3y" path="res://assets/sounds/croaking-frogs-distant.mp3" id="11_ju2yv"]
 [ext_resource type="Shader" path="res://scenes/levels/game2-swamp.gdshader" id="16_hgqnr"]
 [ext_resource type="Texture2D" uid="uid://c2a5a7getyonq" path="res://assets/sprites/GandalfHardcore Water Tiles sheet.png" id="16_mgsah"]
 [ext_resource type="Texture2D" uid="uid://d25r7hmhnmo4t" path="res://assets/sprites/GandalfHardcore Animated Water Tiles.png" id="17_7xjfh"]
@@ -1313,6 +1314,15 @@ unique_name_in_owner = true
 stream = ExtResource("8_kbgoj")
 volume_db = 10.937
 autoplay = true
+attenuation = 3.50555e-05
+parameters/looping = false
+
+[node name="frogs-distant" parent="." instance=ExtResource("9_msvav")]
+unique_name_in_owner = true
+stream = ExtResource("11_ju2yv")
+volume_db = 8.126
+pitch_scale = 0.71
+attenuation = 3.50555e-05
 parameters/looping = false
 
 [node name="Enemies" type="Node" parent="."]
@@ -1812,7 +1822,7 @@ color = Color(0, 0, 0, 1)
 [node name="White-Overlay" type="ColorRect" parent="."]
 unique_name_in_owner = true
 visible = false
-z_index = 4
+z_index = 99
 offset_left = -3.0
 offset_top = -7.0
 offset_right = 2105.0

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Hurt_and_heart.ogg-8cf37b5bb6204b6cb4d1f42bf9
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

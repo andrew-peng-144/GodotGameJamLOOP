@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Maniac.ogg-cffe954bcc1269187fde057010c96f95.o
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/joyful.ogg-289dc68ee5c1832eebb2ba40099dc159.o
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

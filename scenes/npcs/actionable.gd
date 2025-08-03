@@ -75,6 +75,8 @@ func playSound(name) -> void:
 		AudioManager.torch_lit.play()
 	elif name == 'creaking':
 		AudioManager.creaking.play()
+	elif name == 'croaking-frogs':
+		AudioManager.croaking_frogs_distant.play()
 	else:
 		print("Fail!")
 		
@@ -205,8 +207,9 @@ func onWizardDeath1() -> void:
 	onWizardLoop1() # REMOVETHIS!!
 
 func onWizardLoop1() -> void:
+	AudioManager.spellcasting.play()
 	addWhiteOverlay()
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	get_tree().change_scene_to_file("res://scenes/levels/game2-loop1.tscn")
 	Globals.door_id_to_spawn_at = ""
 	Globals.loop_count = Globals.loop_count + 1
@@ -242,8 +245,13 @@ func goTogetherToSwamp() -> void:
 	get_tree().change_scene_to_file("res://scenes/levels/game2-swamp.tscn")
 	
 func onWizardDeath3() -> void:
-	addWhiteOverlay()
-	await get_tree().create_timer(1.0).timeout
+	white_overlay.modulate.a = 0.0
+	white_overlay.visible = true
+	var tween := create_tween()
+	tween.tween_property(white_overlay, "modulate:a", 1, 1)
+	AudioManager.whoosh.play()
+	AudioManager.impact.play()
+	await get_tree().create_timer(2.0).timeout
 	player.position = Vector2(1574, 236)
 	wizard.position = Vector2(1499, 241)
 	await get_tree().create_timer(1.0).timeout
@@ -261,6 +269,7 @@ func turnWizard() -> void:
 	wizardSprite.flip_h = true
 
 func wizardDeathAnimation() -> void:
+	AudioManager.wizard_death.play()
 	var wizardSprite = wizard.get_node("AnimatedSprite2D")
 	wizardSprite.play(&"death")
 	await wizardSprite.animation_finished
@@ -270,6 +279,9 @@ func wizardDeathAnimation() -> void:
 	tween.tween_property(dark_overlay, "modulate:a", 1, 1)
 	await get_tree().create_timer(3.0).timeout
 	get_tree().change_scene_to_file("res://scenes/levels/game2-swamp-epilogue.tscn")
+
+func stopCroakingFrogs() -> void:
+	AudioManager.croaking_frogs_distant.stop()
 
 func action() -> void:
 	var balloon: Node = BALLOON.instantiate()

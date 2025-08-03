@@ -185,7 +185,7 @@ Barkeep: Yesterday? No, I don't remember seeing you here. Haven't seen you in ag
 do playSound('rustle')
 {{Globals.MC}}: [wave]So the seed came back in my pocket but my money didn't?[/wave]
 {{Globals.MC}}: [wave]UUGGHHHhhh.[/wave]
-{{Globals.MC}}: I'll get a __
+{{Globals.MC}}: I'll get a carrot mead.
 Barkeep: Here you are.
 do playSound('cup-put-down')
 do delay(1.0)
@@ -351,6 +351,7 @@ do revealWizardStaff()
 {{Globals.MC}}: See, isn't it nice?
 Wizard: Hmm, it certainly has poten--
 #hallucinate toads hate him
+do playSound('croaking-frogs')
 Mysterious Croaking: LEAVE!!!
 Wizard: Huh?
 Mysterious Croaking: YOU of all creatures are NOT welcome!! Begone!!!
@@ -366,6 +367,7 @@ Mysterious Croaking: Your magic has caused nothing but ruin. After so many years
 Mysterious Croaking: Horrible at magic, and horrible at being a decent living being at all.
 Wizard: STOP! I didn't mean to cause so much damage! I just--
 Mysterious Croaking: Just only cared about yourself. As always. You selfish, nasty beast!
+do stopCroakingFrogs()
 Wizard: Selfish... yes, yes I suppose so. It's just who I am, isn't it?
 Wizard: There's no home for me anywhere. Not in this timeline, not 100 years ago, not ever!
 {{Globals.MC}}: What are you saying...?

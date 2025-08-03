@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://bp5h8d5ucelq3"]
+[gd_scene load_steps=81 format=4 uid="uid://bp5h8d5ucelq3"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_84hi7"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_rtdfn"]
@@ -44,8 +44,6 @@
 [ext_resource type="Texture2D" uid="uid://cur42f5y4r00f" path="res://assets/SUNNYLAND/Props/straw-house.png" id="27_8ddms"]
 [ext_resource type="Texture2D" uid="uid://b3vy2811stmeb" path="res://assets/sprites/bar.png" id="33_cy767"]
 [ext_resource type="Texture2D" uid="uid://cmpa63w7y1hcy" path="res://assets/SUNNYLAND/Props/shrooms.png" id="33_g4dar"]
-[ext_resource type="Texture2D" uid="uid://buiygs5myfweb" path="res://assets/SUNNYLAND/Props/rock-1.png" id="34_yqo2q"]
-[ext_resource type="Texture2D" uid="uid://drsx0lkxtyas4" path="res://assets/SUNNYLAND/Props/rock-2.png" id="35_aj6e0"]
 [ext_resource type="Texture2D" uid="uid://dyrjneyeb2om6" path="res://assets/SUNNYLAND/Props/sign.png" id="35_pkfw5"]
 [ext_resource type="Texture2D" uid="uid://ctv0k0jui1csd" path="res://assets/sprites/branches.png" id="39_bnhab"]
 [ext_resource type="Texture2D" uid="uid://dh2d5dkitiym4" path="res://assets/sprites/longbranch.png" id="42_uhooc"]
@@ -371,6 +369,7 @@ shape = SubResource("WorldBoundaryShape2D_2qmvx")
 unique_name_in_owner = true
 stream = ExtResource("10_4em34")
 autoplay = true
+attenuation = 2.31281e-05
 
 [node name="NPCs" type="Node" parent="."]
 
@@ -773,16 +772,6 @@ flip_h = true
 position = Vector2(1745, 361)
 texture = ExtResource("33_g4dar")
 
-[node name="Rock-1" type="Sprite2D" parent="Props"]
-z_index = 1
-position = Vector2(2063, 193.5)
-texture = ExtResource("34_yqo2q")
-
-[node name="Rock-2" type="Sprite2D" parent="Props"]
-z_index = 1
-position = Vector2(1942, 115.5)
-texture = ExtResource("35_aj6e0")
-
 [node name="Fence" type="Sprite2D" parent="Props"]
 position = Vector2(377, 218)
 texture = ExtResource("25_ycopv")
@@ -839,6 +828,16 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/fence-body2"]
+position = Vector2(384.5, -213)
+shape = SubResource("RectangleShape2D_shwjv")
+
+[node name="house-boundary" type="StaticBody2D" parent="Props"]
+unique_name_in_owner = true
+position = Vector2(-255, 17)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/house-boundary"]
 position = Vector2(384.5, -213)
 shape = SubResource("RectangleShape2D_shwjv")
 

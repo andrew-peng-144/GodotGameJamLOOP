@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://benwq7wleril4"]
+[gd_scene load_steps=26 format=4 uid="uid://benwq7wleril4"]
 
 [ext_resource type="PackedScene" uid="uid://cphvj3awqo71f" path="res://scenes/player/player.tscn" id="1_c0nfi"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_b58al"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://x7eucgslsxye" path="res://scenes/platforming/spikes.tscn" id="4_hb2q6"]
 [ext_resource type="PackedScene" uid="uid://chf3n27hyqvs4" path="res://scenes/platforming/platform.tscn" id="5_msj52"]
 [ext_resource type="PackedScene" uid="uid://cou5qxw4r0t88" path="res://scenes/triggers/killzone.tscn" id="5_tnkd7"]
+[ext_resource type="PackedScene" uid="uid://bolybwd6iuflo" path="res://scenes/music.tscn" id="6_jbpx8"]
 [ext_resource type="PackedScene" path="res://scenes/triggers/door.tscn" id="6_r60li"]
 [ext_resource type="PackedScene" uid="uid://bjeakr0b2bom2" path="res://scenes/pickups/coin.tscn" id="7_d46ba"]
+[ext_resource type="AudioStream" uid="uid://cwva6qcpkd5c" path="res://assets/music/1BITTopDownMusics - Track 01 (1BIT Adventure).wav" id="7_i7h8v"]
 [ext_resource type="PackedScene" uid="uid://cqswgck5dl3cn" path="res://scenes/triggers/checkpoint.tscn" id="8_4mgg1"]
 [ext_resource type="PackedScene" uid="uid://coedpyeoonamd" path="res://scenes/triggers/scene_transition_area.tscn" id="9_x2lfk"]
 [ext_resource type="PackedScene" uid="uid://cq73qfmma2kf" path="res://scenes/enemies/slime.tscn" id="12_te4os"]
@@ -149,6 +151,12 @@ position = Vector2(0, 728)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("WorldBoundaryShape2D_rqw8v")
+
+[node name="Music" parent="." instance=ExtResource("6_jbpx8")]
+unique_name_in_owner = true
+stream = ExtResource("7_i7h8v")
+autoplay = true
+attenuation = 4.31583e-05
 
 [node name="Spikes" type="Node" parent="."]
 

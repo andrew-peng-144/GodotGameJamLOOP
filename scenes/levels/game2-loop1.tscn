@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://b4plimotmhskp"]
+[gd_scene load_steps=92 format=4 uid="uid://b4plimotmhskp"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_thv2a"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_1fb1l"]
@@ -38,8 +38,6 @@
 [ext_resource type="Texture2D" uid="uid://c6ukd8ds61k4i" path="res://assets/SUNNYLAND/Props/plant-house.png" id="35_61yq8"]
 [ext_resource type="Texture2D" uid="uid://cur42f5y4r00f" path="res://assets/SUNNYLAND/Props/straw-house.png" id="36_2u1js"]
 [ext_resource type="Texture2D" uid="uid://cmpa63w7y1hcy" path="res://assets/SUNNYLAND/Props/shrooms.png" id="37_4g6ql"]
-[ext_resource type="Texture2D" uid="uid://buiygs5myfweb" path="res://assets/SUNNYLAND/Props/rock-1.png" id="38_82ybi"]
-[ext_resource type="Texture2D" uid="uid://drsx0lkxtyas4" path="res://assets/SUNNYLAND/Props/rock-2.png" id="39_v4nhh"]
 [ext_resource type="Texture2D" uid="uid://dd7eii650qkcd" path="res://assets/sprites/fence.png" id="40_w0qtv"]
 [ext_resource type="Texture2D" uid="uid://ctv0k0jui1csd" path="res://assets/sprites/branches.png" id="41_hnneq"]
 [ext_resource type="Texture2D" uid="uid://dh2d5dkitiym4" path="res://assets/sprites/longbranch.png" id="42_ag6hv"]
@@ -312,6 +310,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shwjv"]
 size = Vector2(31, 876)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pf8q"]
+size = Vector2(31, 876)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qjeo"]
 size = Vector2(31, 47)
 
@@ -448,6 +449,7 @@ unique_name_in_owner = true
 stream = ExtResource("10_wkkfk")
 volume_db = 6.558
 autoplay = true
+attenuation = 1e-05
 parameters/looping = false
 
 [node name="NPCs" type="Node" parent="."]
@@ -627,7 +629,7 @@ position = Vector2(1553, 256)
 [node name="Wizard" parent="Enemies" instance=ExtResource("17_n1aql")]
 unique_name_in_owner = true
 z_index = 5
-position = Vector2(1755, 269)
+position = Vector2(798, 621)
 collision_layer = 4
 collision_mask = 0
 
@@ -873,16 +875,6 @@ flip_h = true
 position = Vector2(1745, 361)
 texture = ExtResource("37_4g6ql")
 
-[node name="Rock-1" type="Sprite2D" parent="Props"]
-z_index = 1
-position = Vector2(2063, 193.5)
-texture = ExtResource("38_82ybi")
-
-[node name="Rock-2" type="Sprite2D" parent="Props"]
-z_index = 1
-position = Vector2(1942, 115.5)
-texture = ExtResource("39_v4nhh")
-
 [node name="Fence" type="Sprite2D" parent="Props"]
 position = Vector2(377, 218)
 texture = ExtResource("40_w0qtv")
@@ -940,6 +932,16 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/fence-body2"]
 position = Vector2(384.5, -213)
 shape = SubResource("RectangleShape2D_shwjv")
+
+[node name="house-boundary" type="StaticBody2D" parent="Props"]
+unique_name_in_owner = true
+position = Vector2(-255, 17)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/house-boundary"]
+position = Vector2(384.5, -213)
+shape = SubResource("RectangleShape2D_4pf8q")
 
 [node name="TavernProps" type="Node" parent="."]
 

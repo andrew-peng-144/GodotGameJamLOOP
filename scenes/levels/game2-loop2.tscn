@@ -466,6 +466,7 @@ shape = SubResource("WorldBoundaryShape2D_2qmvx")
 unique_name_in_owner = true
 stream = ExtResource("10_bimy0")
 autoplay = true
+attenuation = 2.65671e-05
 parameters/looping = false
 
 [node name="NPCs" type="Node" parent="."]

@@ -1295,6 +1295,7 @@ unique_name_in_owner = true
 stream = ExtResource("8_dstum")
 volume_db = 10.937
 autoplay = true
+attenuation = 1e-05
 parameters/looping = false
 
 [node name="Enemies" type="Node" parent="."]
