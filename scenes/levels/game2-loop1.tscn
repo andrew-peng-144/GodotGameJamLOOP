@@ -48,7 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://b3vy2811stmeb" path="res://assets/sprites/bar.png" id="47_6k8jw"]
 [ext_resource type="Texture2D" uid="uid://c1v3ven7xtdv8" path="res://assets/sprites/tavern-door.png" id="48_go48l"]
 [ext_resource type="Texture2D" uid="uid://df6bmgptwe3nu" path="res://assets/sprites/asdf.png" id="49_616xc"]
-[ext_resource type="PackedScene" path="res://scenes/triggers/door.tscn" id="51_v2ih7"]
+[ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="51_v2ih7"]
 [ext_resource type="PackedScene" uid="uid://beh6jws8rltbu" path="res://scenes/triggers/checkpoint_no_sprite.tscn" id="52_0rds7"]
 
 [sub_resource type="Animation" id="Animation_x3dvm"]
@@ -317,6 +317,9 @@ size = Vector2(31, 876)
 size = Vector2(31, 47)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40b35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awi2a"]
+size = Vector2(31, 876)
 
 [node name="Game" type="Node2D"]
 
@@ -1038,5 +1041,15 @@ next_scene_door_id = "outside_dungeon_1_entrance"
 
 [node name="CheckpointNoSprite" parent="." instance=ExtResource("52_0rds7")]
 position = Vector2(349, 226)
+
+[node name="fence-body3" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1551, 153)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fence-body3"]
+position = Vector2(384.5, -213)
+shape = SubResource("RectangleShape2D_awi2a")
 
 [connection signal="body_entered" from="IntroCutscene/PlayerDetectorForInitialCutscene" to="IntroCutscene" method="_on_player_detector_for_initial_cutscene_body_entered"]

@@ -49,7 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://dh2d5dkitiym4" path="res://assets/sprites/longbranch.png" id="42_uhooc"]
 [ext_resource type="Texture2D" uid="uid://c1v3ven7xtdv8" path="res://assets/sprites/tavern-door.png" id="44_7team"]
 [ext_resource type="PackedScene" uid="uid://beh6jws8rltbu" path="res://scenes/triggers/checkpoint_no_sprite.tscn" id="51_c7eok"]
-[ext_resource type="PackedScene" path="res://scenes/triggers/door.tscn" id="51_sncue"]
+[ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="51_sncue"]
 [ext_resource type="PackedScene" uid="uid://coedpyeoonamd" path="res://scenes/triggers/scene_transition_area.tscn" id="52_isoea"]
 
 [sub_resource type="Animation" id="Animation_x3dvm"]
@@ -831,6 +831,7 @@ collision_mask = 0
 position = Vector2(384.5, -213)
 shape = SubResource("RectangleShape2D_shwjv")
 
+
 [node name="house-boundary" type="StaticBody2D" parent="Props"]
 unique_name_in_owner = true
 position = Vector2(-255, 17)
@@ -838,6 +839,15 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/house-boundary"]
+
+[node name="fence-body3" type="StaticBody2D" parent="Props"]
+unique_name_in_owner = true
+position = Vector2(1551, 153)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/fence-body3"]
+
 position = Vector2(384.5, -213)
 shape = SubResource("RectangleShape2D_shwjv")
 

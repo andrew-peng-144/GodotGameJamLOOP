@@ -48,7 +48,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dpqtt"]
-radius = 6.08276
+radius = 11.0454
 
 [sub_resource type="Animation" id="Animation_1pxqr"]
 length = 0.001

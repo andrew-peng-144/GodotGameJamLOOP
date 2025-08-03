@@ -1,6 +1,5 @@
 extends Node
 
-@export var wizard_health: int = 3
 @export var player: Player
 
 @onready var area_2d: Area2D = $"../Wizard/Area2D"
@@ -59,12 +58,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if wizard.dead and Globals.loop_count == 0:
+
+
+	if wizard.dead:
 		fight_music.stop()
-		wizard_kill_dialogue.onWizardDeath1()
-		#await get_tree().create_timer(1.0).timeout
 		music.play()
-		wizard.dead = false
+		if Globals.loop_count == 0:
+			wizard_kill_dialogue.onWizardDeath1()
+			wizard.dead = false
+		elif Globals.loop_count == 1:
+			wizard_kill_dialogue.onWizardDeath2()
+			wizard.dead = false
+
 	
 func start_fight_1() -> void:
 	print("BATTLE WITH WIZARD 1 STARTED!")
@@ -90,12 +95,7 @@ func start_fight_1() -> void:
 	
 
 	# shoot spell relative to itself: horizontal spells, or vertical spells, or diagonal
-	var projectile = MOVING_SPELL_1.instantiate()
-	projectile.global_position = floor_2_beam_origin.position
-	projectile.direction_degrees = 0
-	projectile.lifetime_seconds = 5
-	projectile.speed = 100
-	get_tree().current_scene.add_child(projectile)
+	wizard.attack_random([ground_floor_beam_origin, floor_2_beam_origin, floor_3_beam_origin])
 
 	await get_tree().create_timer( [1.5,2.0,2.5].pick_random() ).timeout
 	
@@ -106,3 +106,23 @@ func start_fight_1() -> void:
 	# fly to top of room, invulnerable, and summons a strong storm.
 	
 	# etc
+	
+	# from now on, every random amount of time, do either teleport, spell, or fireball.
+	continue_fight()
+
+func continue_fight():
+	await get_tree().create_timer( [1.5,2.0,2.5].pick_random() ).timeout
+	var action = [1,2,3].pick_random()
+	match action:
+		1:
+			wizard.attack_random([ground_floor_beam_origin, floor_2_beam_origin, floor_3_beam_origin])
+		2:
+			var random_platform = [floor_3_mid, floor_2_left_1, floor_2_right_2].pick_random()
+			wizard.teleport_to(random_platform.position)
+		3:
+			wizard.shoot_fireball()
+	
+func start_fight_2() -> void:
+	print("BATTLE WITH WIZARD 2 STARTED!")
+	wizard.health = 5
+	start_fight_1()

@@ -13,7 +13,7 @@ const MIDAIR_JUMP_SPEED = 450.0
 #const JUMP_VELOCITY_3 = -440.0
 const MAX_SPEED_X = 130.0
 const MAX_SPEED_X_AIR = 130.0
-const MAX_SPEED_Y = 600
+const MAX_SPEED_Y = 450
 const SHORT_HOP_RATIO = 0.75
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -151,8 +151,8 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor() and not is_dead:
 		velocity.y += gravity * delta
-		if (velocity.y > MAX_SPEED_Y):
-			velocity.y = MAX_SPEED_Y
+		if (velocity.y < -MAX_SPEED_Y):
+			velocity.y = -MAX_SPEED_Y
 	
 	# Apply movement
 	if dialogue_locked:

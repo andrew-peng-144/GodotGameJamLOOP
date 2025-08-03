@@ -213,7 +213,8 @@ do wizardGlint()
 {{Globals.MC}}: [wave]If I can knock it out of his arms, he can't cast the spell![/wave]
 Wizard: You can't defeat me. Why not stay for carrot tea instead, rabbit?
 {{Globals.MC}}: My name's not Rabbit! It's {{Globals.MC}}!!
-do onWizardDeath2() #REMOVE THIS!!!
+#do onWizardDeath2() #REMOVE THIS!!!
+do onWizardStartFight2()
 #fight
 => END
 

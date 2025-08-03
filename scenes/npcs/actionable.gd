@@ -192,6 +192,9 @@ func swampSpellsOff() -> void:
 
 func onWizardStartFight1() -> void:
 	get_owner().get_node("Cutscenes").start_fight_1()
+
+func onWizardStartFight2() -> void:
+	get_owner().get_node("Cutscenes").start_fight_2()
 	
 func onWizardDeath1() -> void:
 	var wizardSprite = wizard.get_node("AnimatedSprite2D")
