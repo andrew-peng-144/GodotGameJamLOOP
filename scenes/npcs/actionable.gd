@@ -104,6 +104,9 @@ func addWhiteOverlay() -> void:
 func removeWhiteOverlay() -> void:
 	var tween := create_tween()
 	tween.tween_property(white_overlay, "modulate:a", 0.0, 0.5)
+	
+func revealWizardStaff() -> void:
+	wizardSprite.play(&"reveal_idle")
 
 #func growBranch() -> void:
 #	if branchSize == 1:

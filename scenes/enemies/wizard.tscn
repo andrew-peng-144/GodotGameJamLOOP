@@ -535,10 +535,8 @@ radius = 15.0333
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -17)
 sprite_frames = SubResource("SpriteFrames_wcht8")
-animation = &"glint"
+animation = &"reveal_idle"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

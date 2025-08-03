@@ -251,7 +251,112 @@ do removeWhiteOverlay()
 
 ~ letter3
 #do growBranch()
-{{Globals.MC}}: Ugh... 
+{{Globals.MC}}: That wizard...
+{{Globals.MC}}: He was a hybrid all along. Like me.
+{{Globals.MC}}: Hybrid or not, I don't think he deserves to die. Even though the whole village wants him gone, maybe I can make him see reason.
+{{Globals.MC}}: He was pretty stubborn, though.
+do! playSound('crumblePaper')
+do! vanishPaper()
+=> END
+
+~ watering3
+{{Globals.MC}}: Jeez, talk about a growth spurt!
+{{Globals.MC}}: It's huge. Long enough to climb all the way across!
+{{Globals.MC}}: I never knew if there was something past this cliff. Only one way to find out.
+{{Globals.MC}}: Oh, but first.
+do playSound('rustle')
+do delay(1.0)
+do playSound('plantSeed')
+do delay(1.0)
+do playSound('watering')
+set Globals.watering = true
+do watering()
+set Globals.watering = false
+{{Globals.MC}}: Okay. Let's go.
+=> END
+
+~ swamp
+{{Globals.MC}}: This is nice.
+{{Globals.MC}}: [wave]Vast, endless, glistening like no gemstone you've ever seen.[/wave]
+{{Globals.MC}}: ... I think he'd like this.
+{{Globals.MC}}: [wave]No wars over land, or property,[/wave]
+{{Globals.MC}}: No rent.
+=> END
+
+~ passageway
+{{Globals.MC}}: Well, isn't this convenient.
+=> END
+
+~ wizardFinal
+{{Globals.MC}}: Wizard, I've come to bargain.
+Wizard: Oh, rabbit. You know now that it's futile.
+{{Globals.MC}}: No, because you don't have to do this.
+{{Globals.MC}}: I don't really know where we can go where we'd belong, either.
+{{Globals.MC}}: Maybe it's not with humans, but it's definitely not in this creepy dungeon.
+{{Globals.MC}}: But I found somewhere better. A swamp, probably just like your old home!
+Wizard: Save it. The land has long been descerated by human settlements.
+{{Globals.MC}}: No, there's no one there. It's totally untouched. You should come see for yourself!
+Wizard: Talk all you want. I'm not changing my plans. This world has long since been ruined for me, and our kind.
+{{Globals.MC}}: Please, we don't have to keep looking back. We've got the whole world to explore; I'm sure you'll find somewhere that can be home!
+{{Globals.MC}}: I'm sure... I hope... I can too.
+Wizard: [tornado]sigh...[/tornado]
+Wizard: It's too late. Even if I stay, this world hasn't just been ravaged by humans, but by my own hands as well.
+Wizard: These dimensional loops are irreversable. They will mark the landscape forever.
+{{Globals.MC}}: Well, that sucks... but I mean, we got to live with it, right? As long as they don't get any worse?
+Wizard: Everyone here wants me dead.
+{{Globals.MC}}: Not everyone! Maybe everyone in the village, but they're mostly just scared. If I explain to them--
+Wizard: I already invested so much in my magic. I can't let it all be for naught.
+{{Globals.MC}}: Please. Just come with me to the swamp. It'll give you a new perspective, at least.
+Wizard: Rabbit. This better not be a trap.
+{{Globals.MC}}: I promise, from one hybrid to another. I wouldn't lie to you.
+=> END
+
+~ wizardSwamp
+#fade to black, new scene with both of you in the swamp
+do revealWizardStaff()
+{{Globals.MC}}: See, isn't it nice?
+Wizard: Hmm, it certainly has poten--
+#hallucinate toads hate him
+Mysterious Croaking: LEAVE!!!
+Wizard: Huh?
+Mysterious Croaking: YOU of all creatures are NOT welcome!! Begone!!!
+Wizard: Who-Who--?
+{{Globals.MC}}: Wizard? What's wrong?
+Mysterious Croaking: You TRAITOR of a toad! You dare think of yourself as one of us? We'd NEVER accept you!
+Wizard: What's happening? Why would you say that?!
+{{Globals.MC}}: [wave]Shit, it was probably too soon to let him out all of a sudden after trapping himself in a dungeon for like 100 years.[/wave]
+{{Globals.MC}}: Wizard, let's loop back to your place, alright?
+Mysterious Croaking: Your dimensional loops have devastated so many of our families, too, not just the humans'!
+Mysterious Croaking: That we'd accept you once you become a toad... don't make me laugh!
+Mysterious Croaking: Your magic has caused nothing but ruin. After so many years of failure, don't you think it's time to accept that you're just horrible at magic?
+Mysterious Croaking: Horrible at magic, and horrible at being a decent living being at all.
+Wizard: STOP! I didn't mean to cause so much damage! I just--
+Mysterious Croaking: Just only cared about yourself. As always. You selfish, nasty beast!
+Wizard: Selfish... yes, yes I suppose so. It's just who I am, isn't it?
+Wizard: There's no home for me anywhere. Not in this timeline, not 100 years ago, not ever!
+{{Globals.MC}}: What are you saying...?
+
+# wizard destruction
+{{Globals.MC}}: Stop!! The animals!
+# boom
+{{Globals.MC}}: Wizard... no!!!
+# fight
+# you win
+=> END
+
+~ wizardDeath
+{{Globals.MC}}: Wizard... I'm sorry, it was too sudden--
+Wizard: ... Save it... {{Globals.MC}}.
+Wizard: I was wrong. I was wrong 100 years ago, and I was wrong just now.
+Wizard: Ahh, it's really too late for me.
+Wizard: But... I really would've liked to stay in this swamp longer.
+Wizard: It really is beautiful...
+# fade to black
+=> END
+
+~ epilogue
+# bunny in swamp, has a house, watering flowers
+# stands where wizard died. flowers on grave.
 => END
 
 ~ test_dialogue_1
