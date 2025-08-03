@@ -203,6 +203,7 @@ func DIE(): # rip
 	print("You died")
 	self.get_node("CollisionShape2D").queue_free()
 	killzone_sensor.queue_free()
+	animated_sprite.play("death")
 	after_death_timer.start()
 	
 func change_scene(next_scene_file: String):

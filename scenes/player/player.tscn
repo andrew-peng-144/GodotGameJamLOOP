@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cphvj3awqo71f"]
+[gd_scene load_steps=68 format=3 uid="uid://cphvj3awqo71f"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xgbmt"]
 [ext_resource type="Texture2D" uid="uid://1be1wl234l2i" path="res://assets/sprites/Bunny/DEATH/Bunny_Death.png" id="2_o2ke8"]

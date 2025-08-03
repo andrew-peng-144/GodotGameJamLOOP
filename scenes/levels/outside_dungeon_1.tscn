@@ -4,16 +4,31 @@
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_b58al"]
 [ext_resource type="TileSet" uid="uid://bco4gqsflcwd7" path="res://scenes/levels/game2-main1.tres" id="2_kh54v"]
 [ext_resource type="Texture2D" uid="uid://bcxpwbrcgcfrr" path="res://assets/SUNNYLAND/Layers/middle.png" id="3_jedmv"]
-[ext_resource type="PackedScene" uid="uid://x7eucgslsxye" path="res://scenes/platforming/spikes.tscn" id="4_hb2q6"]
+[ext_resource type="PackedScene" path="res://scenes/platforming/spikes.tscn" id="4_hb2q6"]
 [ext_resource type="PackedScene" uid="uid://chf3n27hyqvs4" path="res://scenes/platforming/platform.tscn" id="5_msj52"]
 [ext_resource type="PackedScene" uid="uid://cou5qxw4r0t88" path="res://scenes/triggers/killzone.tscn" id="5_tnkd7"]
-[ext_resource type="PackedScene" uid="uid://s6lge7jmypy1" path="res://scenes/triggers/door.tscn" id="6_r60li"]
+[ext_resource type="PackedScene" path="res://scenes/triggers/door.tscn" id="6_r60li"]
 [ext_resource type="PackedScene" uid="uid://bjeakr0b2bom2" path="res://scenes/pickups/coin.tscn" id="7_d46ba"]
-[ext_resource type="PackedScene" uid="uid://8dk3rat13dgx" path="res://scenes/triggers/checkpoint.tscn" id="8_4mgg1"]
+[ext_resource type="PackedScene" uid="uid://cqswgck5dl3cn" path="res://scenes/triggers/checkpoint.tscn" id="8_4mgg1"]
 [ext_resource type="PackedScene" uid="uid://coedpyeoonamd" path="res://scenes/triggers/scene_transition_area.tscn" id="9_x2lfk"]
 [ext_resource type="PackedScene" uid="uid://cq73qfmma2kf" path="res://scenes/enemies/slime.tscn" id="12_te4os"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rqw8v"]
+
+[sub_resource type="Animation" id="Animation_qg6xu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(88, 656)]
+}
 
 [sub_resource type="Animation" id="Animation_gsbpl"]
 resource_name = "new_animation"
@@ -32,21 +47,6 @@ tracks/0/keys = {
 "values": [Vector2(88, 656), Vector2(400, 656)]
 }
 
-[sub_resource type="Animation" id="Animation_qg6xu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(88, 656)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wn3ff"]
 _data = {
 "RESET": SubResource("Animation_qg6xu"),
@@ -60,12 +60,12 @@ size = Vector2(26, 64)
 
 [node name="Player" parent="." instance=ExtResource("1_c0nfi")]
 z_index = 5
-position = Vector2(504, 584)
+position = Vector2(80, 224)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -20)
 zoom = Vector2(3, 3)
-limit_left = 56
+limit_left = 40
 limit_bottom = 728
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -353,10 +353,10 @@ position = Vector2(11, 0)
 shape = SubResource("RectangleShape2D_wubtp")
 
 [node name="Checkpoint" parent="Triggers" instance=ExtResource("8_4mgg1")]
-position = Vector2(416, 152)
+position = Vector2(415, 160)
 
 [node name="Checkpoint2" parent="Triggers" instance=ExtResource("8_4mgg1")]
-position = Vector2(488, 584)
+position = Vector2(487, 592)
 
 [node name="Pickups" type="Node" parent="."]
 

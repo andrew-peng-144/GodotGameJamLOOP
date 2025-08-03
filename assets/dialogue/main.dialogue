@@ -161,7 +161,7 @@ I know the incident years ago was before your time, but you understand why peopl
 => END
 
 ~ barkeep2
-Barkeep: Oh, MC, I don't often see you here during the day.
+Barkeep: Oh, {{Globals.MC}}, I don't often see you here during the day.
 Barkeep: What will it be?
 {{Globals.MC}}: Huh? Wasn't I here yesterday?
 Barkeep: Yesterday? No, I don't remember seeing you here. Haven't seen you in ages, to be frank.

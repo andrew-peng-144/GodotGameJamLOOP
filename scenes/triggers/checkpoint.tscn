@@ -1,18 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://8dk3rat13dgx"]
+[gd_scene load_steps=9 format=3 uid="uid://cqswgck5dl3cn"]
 
 [ext_resource type="Script" path="res://scenes/triggers/checkpoint.gd" id="1_xvfqn"]
-[ext_resource type="Texture2D" uid="uid://b3vy2811stmeb" path="res://assets/sprites/bar.png" id="2_b4wbe"]
+[ext_resource type="Texture2D" uid="uid://dbrxa50d6lyly" path="res://assets/sprites/Lantern.png" id="2_nlccd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tpuff"]
 radius = 23.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyb1q"]
+atlas = ExtResource("2_nlccd")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q68vk"]
+atlas = ExtResource("2_nlccd")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5edbs"]
+atlas = ExtResource("2_nlccd")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tyu7"]
+atlas = ExtResource("2_nlccd")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_moegx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyb1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q68vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5edbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tyu7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="Checkpoint" type="Area2D"]
 script = ExtResource("1_xvfqn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_b4wbe")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_tpuff")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_moegx")
+autoplay = "default"
+frame_progress = 0.990339
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

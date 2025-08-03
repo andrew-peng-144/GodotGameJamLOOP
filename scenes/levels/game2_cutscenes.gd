@@ -38,5 +38,6 @@ func cutsceneopening():
 	letter.get_node("Actionable").action() # Read letter automatically
 	await DialogueManager.dialogue_ended
 	Globals.freeze_player_input = false
+	queue_free()
 
 	
