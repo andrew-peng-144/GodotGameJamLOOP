@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dir8f4i0spcdc"]
+[gd_scene load_steps=24 format=4 uid="uid://dir8f4i0spcdc"]
 
 [ext_resource type="Script" path="res://util_scripts/audio_manager.gd" id="1_bvfvx"]
 [ext_resource type="AudioStream" uid="uid://dkb2lmaccltoc" path="res://assets/sounds/newspaper-flip-4-196721.mp3" id="2_r3tod"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://d0ttqf4ng6nbh" path="res://assets/sounds/Hit3.wav" id="17_gp2e3"]
 [ext_resource type="AudioStream" uid="uid://ha1y32m8jp2b" path="res://assets/sounds/magic-spell-333896.mp3" id="18_bh8ca"]
 [ext_resource type="AudioStream" uid="uid://p6n6ps5i4vbe" path="res://assets/sounds/explosion-large-129051.mp3" id="19_m7hsd"]
+[ext_resource type="AudioStream" uid="uid://e4dr0ca6csrg" path="res://assets/sounds/creaking.wav" id="19_n18ov"]
 [ext_resource type="AudioStream" uid="uid://7eqchb1mge7h" path="res://assets/sounds/Pickup13-1.wav" id="20_5yv4g"]
 
 [sub_resource type="AudioStreamMP3" id="AudioStreamMP3_edh6e"]
@@ -82,6 +83,9 @@ stream = ExtResource("17_gp2e3")
 
 [node name="Magic-spell-333896" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_bh8ca")
+
+[node name="Creaking" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_n18ov")
 
 [node name="Explosion-large-129051" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_m7hsd")

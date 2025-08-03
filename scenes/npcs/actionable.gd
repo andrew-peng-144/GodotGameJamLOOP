@@ -71,6 +71,8 @@ func playSound(name) -> void:
 		AudioManager.explosions.play()
 	elif name == 'torch-lit':
 		AudioManager.torch_lit.play()
+	elif name == 'creaking':
+		AudioManager.creaking.play()
 	else:
 		print("Fail!")
 		
@@ -194,7 +196,7 @@ func onWizardDeath1() -> void:
 
 func onWizardLoop1() -> void:
 	addWhiteOverlay()
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(5.0).timeout
 	get_tree().change_scene_to_file("res://scenes/levels/game2-loop1.tscn")
 	Globals.loop_count = Globals.loop_count + 1
 
@@ -221,6 +223,7 @@ func removeBranchBoundary() -> void:
 	branch_boundary.get_node("CollisionShape2D").set_disabled(true)
 
 func openTrapDoor() -> void:
+	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://scenes/levels/dungeon_wizard.tscn")
 
 func goTogetherToSwamp() -> void:

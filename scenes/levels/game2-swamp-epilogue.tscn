@@ -1,10 +1,11 @@
-[gd_scene load_steps=177 format=4 uid="uid://ck5ikjq0fnmao"]
+[gd_scene load_steps=178 format=4 uid="uid://ck5ikjq0fnmao"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_l5esg"]
 [ext_resource type="Texture2D" uid="uid://vgsf6gkfjg2v" path="res://assets/Swamp/background.png" id="2_p0jrj"]
 [ext_resource type="Texture2D" uid="uid://d3fudatdk82ak" path="res://assets/Swamp/middleground.png" id="3_bvihj"]
 [ext_resource type="PackedScene" uid="uid://cphvj3awqo71f" path="res://scenes/player/player.tscn" id="4_s358o"]
 [ext_resource type="Texture2D" uid="uid://o2u3mjv0dsn8" path="res://assets/Swamp/tileset.png" id="5_ofj6j"]
+[ext_resource type="FontFile" uid="uid://xy787a7nuox7" path="res://assets/fonts/red_alert/C&C Red Alert [INET].ttf" id="6_gj2eh"]
 [ext_resource type="PackedScene" uid="uid://cou5qxw4r0t88" path="res://scenes/triggers/killzone.tscn" id="6_nqsgp"]
 [ext_resource type="PackedScene" uid="uid://bolybwd6iuflo" path="res://scenes/music.tscn" id="7_fjsew"]
 [ext_resource type="AudioStream" uid="uid://sejg722ouwwr" path="res://assets/music/eerie-music-box-for-mysterious-scenes-172690.mp3" id="8_dstum"]
@@ -1269,6 +1270,20 @@ offset_top = 101.0
 offset_right = 107.0
 offset_bottom = 124.0
 text = "ASDF"
+
+[node name="Credits" type="Label" parent="UI/CanvasLayer"]
+z_index = 99
+offset_left = 456.0
+offset_top = 26.0
+offset_right = 999.0
+offset_bottom = 239.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_gj2eh")
+theme_override_font_sizes/font_size = 50
+text = "Thank you for playing!
+
+Programming: Andrew Peng
+Story: @Lyxil"
 
 [node name="Killzone" parent="." instance=ExtResource("6_nqsgp")]
 

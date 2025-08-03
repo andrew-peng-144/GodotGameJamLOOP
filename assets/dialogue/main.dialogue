@@ -160,6 +160,20 @@ I know the incident years ago was before your time, but you understand why peopl
 "The chosen one will [tornado]restore life[/tornado] to the world"... Oh, I hope that's true.
 => END
 
+~ me2
+Hey, I made some carrot cake the other day if you want some.
+{{Globals.MC}}: [wave]This is so creepy.[/wave]
+=> END
+
+~ buns2
+Your fur looks really cute today, but I think I told you already?
+=> END
+
+~ red2
+Hey, rabbit, sorry if I said something weird to you lately.
+Oops, I mean {{Globals.MC}}, my bad.
+=> END
+
 ~ barkeep2
 Barkeep: Oh, {{Globals.MC}}, I don't often see you here during the day.
 Barkeep: What will it be?
@@ -300,6 +314,7 @@ do removeBranchBoundary()
 
 ~ trapdoor
 {{Globals.MC}}: Well, isn't this convenient.
+do playSound('creaking')
 do openTrapDoor()
 => END
 
@@ -322,7 +337,8 @@ Wizard: These dimensional loops are irreversable. They will mark the landscape f
 Wizard: Everyone here wants me dead.
 {{Globals.MC}}: Not everyone! Maybe everyone in the village, but they're mostly just scared. If I explain to them--
 Wizard: I already invested so much in my magic. I can't let it all be for naught.
-{{Globals.MC}}: Please. Just come with me to the swamp. It'll give you a new perspective, at least.
+{{Globals.MC}}: Please. Just come with me to the swamp. Maybe it'll give you the space you need to be yourself.
+{{Globals.MC}}: And maybe even one day you can try reentering human society again. Bit by bit. Only if you want, of course.
 Wizard: Rabbit. This better not be a trap.
 {{Globals.MC}}: I promise, from one hybrid to another. I wouldn't lie to you.
 do goTogetherToSwamp()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=4 uid="uid://b4plimotmhskp"]
+[gd_scene load_steps=91 format=4 uid="uid://b4plimotmhskp"]
 
 [ext_resource type="Script" path="res://util_scripts/game_manager.gd" id="1_thv2a"]
 [ext_resource type="Texture2D" uid="uid://duf24rtpuf08t" path="res://assets/SUNNYLAND/Layers/back.png" id="2_1fb1l"]
@@ -105,6 +105,8 @@ shader_parameter/tint_color = Color(0.8, 0.6, 0.6, 1)
 distance = -440.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8123t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pyla4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k5jt4"]
 radius = 15.0333
@@ -491,28 +493,6 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(6, 13, 13, 17)
 
-[node name="NPC3" parent="NPCs" instance=ExtResource("11_d0lgv")]
-visible = false
-z_index = 1
-position = Vector2(1010, 382)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC3"]
-z_index = 1
-position = Vector2(-27, 1)
-shape = SubResource("CircleShape2D_8123t")
-
-[node name="SpeechBubble" parent="NPCs/NPC3" instance=ExtResource("12_w7xqs")]
-visible = false
-z_index = 1
-position = Vector2(-27, -13)
-
-[node name="MySpritesTransparent" type="Sprite2D" parent="NPCs/NPC3"]
-z_index = 1
-position = Vector2(-27, 1)
-texture = ExtResource("14_0fguj")
-region_enabled = true
-region_rect = Rect2(6, 32, 12, 19)
-
 [node name="amps" parent="NPCs" instance=ExtResource("11_d0lgv")]
 z_index = 1
 position = Vector2(1019, 326)
@@ -534,28 +514,6 @@ position = Vector2(22, 1)
 texture = ExtResource("14_0fguj")
 region_enabled = true
 region_rect = Rect2(22, 33, 15, 18)
-
-[node name="NPC5" parent="NPCs" instance=ExtResource("11_d0lgv")]
-visible = false
-z_index = 1
-position = Vector2(954, 407)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC5"]
-z_index = 1
-position = Vector2(65, 1)
-shape = SubResource("CircleShape2D_8123t")
-
-[node name="SpeechBubble" parent="NPCs/NPC5" instance=ExtResource("12_w7xqs")]
-visible = false
-z_index = 1
-position = Vector2(65, -13)
-
-[node name="MySpritesTransparent" type="Sprite2D" parent="NPCs/NPC5"]
-z_index = 1
-position = Vector2(66, 2)
-texture = ExtResource("14_0fguj")
-region_enabled = true
-region_rect = Rect2(43, 13, 15, 17)
 
 [node name="fro" parent="NPCs" instance=ExtResource("11_d0lgv")]
 z_index = 1
@@ -580,25 +538,70 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(44, 33, 13, 18)
 
-[node name="NPC1" parent="NPCs" instance=ExtResource("11_d0lgv")]
+[node name="red" parent="NPCs" instance=ExtResource("11_d0lgv")]
+z_index = 1
+position = Vector2(1267, 325)
+dialogue_start = "red2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/red"]
+z_index = 1
+position = Vector2(-27, 1)
+shape = SubResource("CircleShape2D_pyla4")
+
+[node name="SpeechBubble" parent="NPCs/red" instance=ExtResource("12_w7xqs")]
 visible = false
 z_index = 1
-position = Vector2(1097, 389)
+position = Vector2(-27, -13)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC1"]
+[node name="MySpritesTransparent" type="Sprite2D" parent="NPCs/red"]
+z_index = 1
+position = Vector2(-27, 1)
+texture = ExtResource("14_0fguj")
+region_enabled = true
+region_rect = Rect2(6, 32, 12, 19)
+
+[node name="buns" parent="NPCs" instance=ExtResource("11_d0lgv")]
+z_index = 1
+position = Vector2(788, 326)
+dialogue_start = "buns2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/buns"]
+z_index = 1
+position = Vector2(65, 1)
+shape = SubResource("CircleShape2D_pyla4")
+
+[node name="SpeechBubble" parent="NPCs/buns" instance=ExtResource("12_w7xqs")]
+visible = false
+z_index = 1
+position = Vector2(65, -13)
+
+[node name="MySpritesTransparent" type="Sprite2D" parent="NPCs/buns"]
+z_index = 1
+position = Vector2(66, 2)
+texture = ExtResource("14_0fguj")
+region_enabled = true
+region_rect = Rect2(43, 13, 15, 17)
+
+[node name="me" parent="NPCs" instance=ExtResource("11_d0lgv")]
+z_index = 1
+position = Vector2(823, 327)
+dialogue_start = "me2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/me"]
 z_index = 1
 position = Vector2(-2, 1)
-shape = SubResource("CircleShape2D_8123t")
+shape = SubResource("CircleShape2D_pyla4")
 
-[node name="SpeechBubble" parent="NPCs/NPC1" instance=ExtResource("12_w7xqs")]
+[node name="SpeechBubble" parent="NPCs/me" instance=ExtResource("12_w7xqs")]
 visible = false
 z_index = 1
 position = Vector2(-3, -14)
 
-[node name="MySpritesTransparent" type="Sprite2D" parent="NPCs/NPC1"]
+[node name="MySpritesTransparent" type="Sprite2D" parent="NPCs/me"]
 z_index = 1
 position = Vector2(-2, 0)
 texture = ExtResource("14_0fguj")
+flip_h = true
 region_enabled = true
 region_rect = Rect2(24, 11, 15.43, 20)
 
