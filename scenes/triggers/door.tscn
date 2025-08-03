@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://s6lge7jmypy1"]
+[gd_scene load_steps=4 format=3 uid="uid://s6lge7jmypy1"]
 
+[ext_resource type="Script" path="res://scenes/triggers/door.gd" id="1_22p7c"]
 [ext_resource type="Texture2D" uid="uid://bso6gq5y0pa6d" path="res://assets/sprites/custom/door.png" id="1_keme5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kucwh"]
 size = Vector2(16, 14)
 
-[node name="Door" type="Area2D"]
+[node name="Door" type="Area2D" groups=["doors"]]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_22p7c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)

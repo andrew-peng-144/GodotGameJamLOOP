@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cou5qxw4r0t88" path="res://scenes/triggers/killzone.tscn" id="6_o5anf"]
 [ext_resource type="PackedScene" uid="uid://cggn66v8oayyy" path="res://scenes/enemies/enemy.tscn" id="7_jgyeg"]
 [ext_resource type="Texture2D" uid="uid://ugga7fklcpqm" path="res://assets/SUNNYLAND/Props/palm.png" id="9_7yunk"]
-[ext_resource type="Script" path="res://util_scripts/debug_text.gd" id="9_kyyxj"]
 [ext_resource type="Texture2D" uid="uid://kp7m7wo2n0u6" path="res://assets/SUNNYLAND/Props/pine.png" id="10_obtnt"]
 [ext_resource type="Texture2D" uid="uid://cc2lljsuwwmvm" path="res://assets/SUNNYLAND/Props/bush.png" id="11_8yed5"]
 [ext_resource type="Texture2D" uid="uid://cd40krqk0owy7" path="res://assets/SUNNYLAND/Props/rock.png" id="12_golbe"]
@@ -461,6 +460,8 @@ _data = {
 "move": SubResource("Animation_n41kk")
 }
 
+[sub_resource type="GDScript" id="GDScript_tdw86"]
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2qmvx"]
 distance = -440.0
 
@@ -468,11 +469,10 @@ distance = -440.0
 
 [node name="Game" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body", "coins_label")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 unique_name_in_owner = true
 script = ExtResource("1_sjjgf")
 player_body = NodePath("../Player")
-coins_label = NodePath("../UI/CanvasLayer/ScoreLabel")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -575,21 +575,23 @@ offset_right = 114.0
 offset_bottom = 77.0
 text = "TESTING
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/CanvasLayer"]
 offset_left = 33.0
 offset_top = 51.0
 offset_right = 73.0
 offset_bottom = 91.0
+metadata/_edit_use_anchors_ = true
 
-[node name="DebugText" type="Label" parent="UI/CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="DebugText" type="Label" parent="UI/CanvasLayer"]
 offset_left = 67.0
 offset_top = 101.0
 offset_right = 107.0
 offset_bottom = 124.0
 text = "ASDF"
-script = ExtResource("9_kyyxj")
-player = NodePath("../../../Player")
+script = SubResource("GDScript_tdw86")
+metadata/_edit_use_anchors_ = true
 
 [node name="Killzone" parent="." instance=ExtResource("6_o5anf")]
 

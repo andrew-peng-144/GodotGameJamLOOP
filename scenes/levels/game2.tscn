@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cggn66v8oayyy" path="res://scenes/enemies/enemy.tscn" id="8_fgmjp"]
 [ext_resource type="PackedScene" uid="uid://bjeakr0b2bom2" path="res://scenes/pickups/coin.tscn" id="9_sc4cy"]
 [ext_resource type="AudioStream" uid="uid://b4dinwvgav8um" path="res://assets/music/1BITTopDownMusics - Track 03 (1BIT Eerie).wav" id="10_4em34"]
-[ext_resource type="Script" path="res://util_scripts/debug_text.gd" id="10_7keh5"]
 [ext_resource type="PackedScene" uid="uid://cou5qxw4r0t88" path="res://scenes/triggers/killzone.tscn" id="11_7nu6s"]
 [ext_resource type="Texture2D" uid="uid://ugga7fklcpqm" path="res://assets/SUNNYLAND/Props/palm.png" id="12_ur6ey"]
 [ext_resource type="Texture2D" uid="uid://kp7m7wo2n0u6" path="res://assets/SUNNYLAND/Props/pine.png" id="13_3e7sb"]
@@ -49,6 +48,8 @@
 [ext_resource type="Texture2D" uid="uid://ctv0k0jui1csd" path="res://assets/sprites/branches.png" id="39_bnhab"]
 [ext_resource type="Texture2D" uid="uid://dh2d5dkitiym4" path="res://assets/sprites/longbranch.png" id="42_uhooc"]
 [ext_resource type="Texture2D" uid="uid://c1v3ven7xtdv8" path="res://assets/sprites/tavern-door.png" id="44_7team"]
+
+[sub_resource type="GDScript" id="GDScript_tdw86"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2qmvx"]
 distance = -440.0
@@ -193,11 +194,10 @@ size = Vector2(31, 47)
 
 [node name="Game" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body", "coins_label")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_body")]
 unique_name_in_owner = true
 script = ExtResource("1_84hi7")
 player_body = NodePath("../Player")
-coins_label = NodePath("../UI/CanvasLayer/ScoreLabel")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -269,14 +269,13 @@ offset_top = 51.0
 offset_right = 73.0
 offset_bottom = 91.0
 
-[node name="DebugText" type="Label" parent="UI/CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="DebugText" type="Label" parent="UI/CanvasLayer"]
 offset_left = 67.0
 offset_top = 101.0
 offset_right = 107.0
 offset_bottom = 124.0
 text = "ASDF"
-script = ExtResource("10_7keh5")
-player = NodePath("../../../Player")
+script = SubResource("GDScript_tdw86")
 
 [node name="Killzone" parent="." instance=ExtResource("11_7nu6s")]
 

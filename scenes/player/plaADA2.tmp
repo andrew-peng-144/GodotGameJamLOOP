@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cphvj3awqo71f"]
+[gd_scene load_steps=42 format=3 uid="uid://cphvj3awqo71f"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xgbmt"]
 [ext_resource type="Texture2D" uid="uid://bku6fmkhjv4pn" path="res://assets/sprites/Bunny/IDLE/Bunny_Idle.png" id="2_qf4jk"]
@@ -239,7 +239,23 @@ radius = 14.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_pvkhr"]
 radius = 6.0
 
-[sub_resource type="Animation" id="Animation_oh8x5"]
+[sub_resource type="Animation" id="Animation_8odry"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 3.03143),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_urq0r"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -254,23 +270,7 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_qei2m"]
-resource_name = "fade_in"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_kyan6"]
+[sub_resource type="Animation" id="Animation_kassr"]
 resource_name = "fade_out"
 length = 0.5
 tracks/0/type = "value"
@@ -281,20 +281,16 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(3.03143, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_l4q2v"]
-resource_name = "new_animation"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mtlle"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_32lcc"]
 _data = {
-"RESET": SubResource("Animation_oh8x5"),
-"fade_in": SubResource("Animation_qei2m"),
-"fade_out": SubResource("Animation_kyan6"),
-"new_animation": SubResource("Animation_l4q2v")
+"RESET": SubResource("Animation_urq0r"),
+"fade_in": SubResource("Animation_8odry"),
+"fade_out": SubResource("Animation_kassr")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player_body"]]
@@ -342,10 +338,9 @@ shape = SubResource("CircleShape2D_pvkhr")
 
 [node name="AfterDeathTimer" type="Timer" parent="."]
 
-[node name="ScreenTransitionAnimation" type="Node" parent="."]
+[node name="SceneTransitioner" type="Node" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="ScreenTransitionAnimation"]
-visible = false
+[node name="ColorRect" type="ColorRect" parent="SceneTransitioner"]
 offset_left = -1.0
 offset_top = -4.0
 offset_right = 1167.0
@@ -353,9 +348,9 @@ offset_bottom = 656.0
 color = Color(0, 0, 0, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ScreenTransitionAnimation"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SceneTransitioner"]
 libraries = {
-"": SubResource("AnimationLibrary_mtlle")
+"": SubResource("AnimationLibrary_32lcc")
 }
 
 [connection signal="area_entered" from="DirectionMarker/ActionableFinder" to="DirectionMarker/ActionableFinder" method="_on_area_entered"]
